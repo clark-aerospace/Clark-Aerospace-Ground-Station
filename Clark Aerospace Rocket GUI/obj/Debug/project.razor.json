@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "/Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark Aerospace Rocket GUI/Assembly-CSharp-Editor.csproj",
+  "TargetFramework": "v4.5",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}
