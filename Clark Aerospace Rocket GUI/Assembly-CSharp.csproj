@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Code\ArduinoReciever.cs" />
+     <Compile Include="Assets\Code\GraphLib\Graph.cs" />
      <Compile Include="Assets\Code\MeasurementItem.cs" />
      <Compile Include="Assets\Code\MeasurementItemGraphical.cs" />
      <Compile Include="Assets\Code\RocketComponent.cs" />
@@ -640,6 +641,7 @@
      <None Include="Assets\Mapbox\Unity\Location\ExampleGpsTraces\LocationProviderAndroidNative-2.txt" />
      <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\YUVShaderLinear.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets\Code\GraphLib\GraphBG.shader" />
      <None Include="Assets\Mapbox\Examples\2_AstronautGame\AstronautGame\Astronaut\ProjectorLight.shader" />
      <None Include="Assets\GoogleARCore\Examples\ComputerVision\Materials\AREdgeDetectionBackground.shader" />
      <None Include="Assets\UnityARKitPlugin\Examples\Common\Shaders\MobileARShadow.shader" />
