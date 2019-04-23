@@ -59,9 +59,9 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = lerp(_ColTop, _ColBottom, clamp((i.height / _HeightInc) + _HeightOffset, 0.0, 1.0));
+                //fixed4 col = lerp(_ColTop, _ColBottom, clamp((i.height / _HeightInc) + _HeightOffset, 0.0, 1.0));
 
-                //col = i.color;
+                fixed4 col = i.color;
                 //col.rgb = i.screenPos;
                 //col.r = i.screenPos.x;
                 //col.a = 1;

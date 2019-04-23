@@ -14,7 +14,7 @@ public class Graph : MonoBehaviour
     private List<Vector2> points = new List<Vector2>();
     
     public LineRenderer lineRenderer;
-    public LineRenderer vertLinesRenderer;
+    public LineRenderer gridLineRenderer;
 
     [SerializeField]
     private RectTransform rectTransform;
@@ -33,6 +33,14 @@ public class Graph : MonoBehaviour
 
     public Material backMat;
 
+    public float xPadding = 1f;
+    public float yPadding = 1f;
+
+    float currentYPt = 5;
+    float time = 4;
+
+    int thing = 0;
+
 
     public void Start() {
         lineRenderer = new GameObject().AddComponent<LineRenderer>();
@@ -45,14 +53,17 @@ public class Graph : MonoBehaviour
 
         lineRenderer.useWorldSpace = false;
 
-        vertLinesRenderer = new GameObject().AddComponent<LineRenderer>();
-        vertLinesRenderer.transform.SetParent(transform, false);
+        gridLineRenderer = new GameObject().AddComponent<LineRenderer>();
+        gridLineRenderer.transform.SetParent(transform, false);
+        gridLineRenderer.material = new Material(Shader.Find("Unlit/Color"));
+        gridLineRenderer.material.color = new Color(0.7f, 0.7f, 0.7f, 0.5f);
+        gridLineRenderer.transform.localPosition = new Vector3(0f, 0f, 1f);
         //vertLinesRenderer.numCornerVertices = 8;
         //vertLinesRenderer.numCapVertices = 8;
         //vertLinesRenderer.SetWidth(3f, 3f);
-        vertLinesRenderer.alignment = LineAlignment.TransformZ;
+        gridLineRenderer.alignment = LineAlignment.TransformZ;
 
-        vertLinesRenderer.useWorldSpace = false;
+        gridLineRenderer.useWorldSpace = false;
 
         rectTransform = GetComponent<RectTransform>();
 
@@ -76,25 +87,26 @@ public class Graph : MonoBehaviour
         AddPoint(1, 2);
         AddPoint(2, 3);
         AddPoint(3, 5);
-        AddPoint(4, 6);
-        AddPoint(5, 7);
-        AddPoint(6, 8);
-        AddPoint(7, 10);
-        AddPoint(8, 12);
-        AddPoint(9, 13);
-        AddPoint(10, 15);
-        AddPoint(11, 17);
-        AddPoint(12, 19);
-        AddPoint(13, 20);
-        AddPoint(14, 21);
-        AddPoint(15, 24);
-        AddPoint(16, 27);
-        AddPoint(17, 30);
-        AddPoint(18, 34);
+        // AddPoint(4, 6);
+        // AddPoint(5, 7);
+        // AddPoint(6, 8);
+        // AddPoint(7, 10);
+        // AddPoint(8, 12);
+        // AddPoint(9, 13);
+        // AddPoint(10, 15);
+        // AddPoint(11, 17);
+        // AddPoint(12, 19);
+        // AddPoint(13, 20);
+        // AddPoint(14, 21);
+        // AddPoint(15, 24);
+        // AddPoint(16, 27);
+        // AddPoint(17, 30);
+        // AddPoint(18, 34);
 
         //SetLineColor();
+        
         GenerateMesh();
-        //DrawGridLines();
+        
 
 
         
@@ -102,15 +114,33 @@ public class Graph : MonoBehaviour
     }
 
     public void Update() {
+        if (thing >= 40) {AddTestPoint();}
+        thing++;
+
         ResetLineRenderer();
         SetLineColor();
         OnMouseOver();
         GenerateMesh();
+        DrawGridLines();
+    }
+
+    public void AddTestPoint() {
+        currentYPt = currentYPt + Random.Range(-1f, 2f);
+        AddPoint(time, currentYPt);
+        time++;
+        thing = 0;
     }
 
 
 
     public void GenerateMesh() {
+
+        Vector3[] _pts = new Vector3[lineRenderer.positionCount];
+        lineRenderer.GetPositions(_pts);
+
+        Vector2[] pts = ScaledPoints(Vec3ArrayToVec2Array(_pts));
+        pts = points.ToArray();
+
         Color colTop = color * 0.7f;
         colTop.a = 0.4f;
 
@@ -118,13 +148,13 @@ public class Graph : MonoBehaviour
         colBottom.a = 0f;
 
 
-        verts = new Vector3[points.ToArray().Length * 2];
-        Color[] colors = new Color[points.ToArray().Length * 2];
-        tris = new int[(points.ToArray().Length - 1) * 6];
+        verts = new Vector3[pts.Length * 2];
+        Color[] colors = new Color[pts.Length * 2];
+        tris = new int[(pts.Length - 1) * 6];
 
-        for (int i = 0; i < points.ToArray().Length; i++) {
-            verts[i] = ScalePoint(Vec2ArrayToVec3Array(points.ToArray())[i]);
-            verts[i + points.ToArray().Length] = new Vector3(verts[i].x, -(rectTransform.rect.height * rectTransform.pivot.y), 0f);
+        for (int i = 0; i < pts.Length; i++) {
+            verts[i] = ScalePoint(Vec2ArrayToVec3Array(pts)[i]);
+            verts[i + pts.Length] = new Vector3(verts[i].x, -(rectTransform.rect.height * rectTransform.pivot.y), 0f);
 
             if (verts[i].y != 0) {
                 colors[i] = colTop;
@@ -133,13 +163,13 @@ public class Graph : MonoBehaviour
             }
         }
         mesh.vertices = verts;
-        for (int i = 0; i < points.ToArray().Length - 1; i++) {
+        for (int i = 0; i < pts.Length - 1; i++) {
             tris[i * 6] = i;
             tris[i * 6 + 1] = i + 1;
-            tris[i * 6 + 2] = i + points.ToArray().Length;
+            tris[i * 6 + 2] = i + pts.Length;
             tris[i * 6 + 3] = i + 1;
-            tris[i * 6 + 4] = i + points.ToArray().Length + 1;
-            tris[i * 6 + 5] = i + points.ToArray().Length;
+            tris[i * 6 + 4] = i + pts.Length + 1;
+            tris[i * 6 + 5] = i + pts.Length;
         }
         mesh.triangles = tris;
         mesh.colors = colors;
@@ -235,14 +265,40 @@ public class Graph : MonoBehaviour
         return Vector2.zero;
     }
 
-    public Vector2 GetMaxValue(Axis axis) {
-        Vector2 biggestPoint = Vector2.zero;
+    public Vector2 GetMaxValue(Axis axis, bool scaled = false) {
+        Vector2 biggestPoint = Vector2.negativeInfinity;
+
+        if (scaled) {
+            //biggestPoint = ScalePoint(biggestPoint);
+            return rectTransform.rect.max;
+        }
 
         foreach (Vector2 pt in points) {
             if (axis == Axis.X) {if (pt.x > biggestPoint.x) {biggestPoint = pt;}}
             else if (axis == Axis.Y) {if (pt.y > biggestPoint.y) {biggestPoint = pt;}}
         }
+
+
+        if (biggestPoint == Vector2.negativeInfinity) {return Vector2.one;}
         return biggestPoint;
+    }
+
+    public Vector2 GetMinValue(Axis axis, bool scaled = false) {
+        Vector2 smallestPoint = Vector2.positiveInfinity;
+        if (scaled) {
+            //biggestPoint = ScalePoint(biggestPoint);
+            return rectTransform.rect.min;
+        }
+
+        foreach (Vector2 pt in points) {
+            if (axis == Axis.X) {if (pt.x < smallestPoint.x) {smallestPoint = pt;}}
+            else if (axis == Axis.Y) {if (pt.y < smallestPoint.y) {smallestPoint = pt;}}
+        }
+
+
+
+        if (smallestPoint == Vector2.positiveInfinity) {return Vector2.one;}
+        return smallestPoint;
     }
 
     private void ResetLineRenderer() {
@@ -255,34 +311,134 @@ public class Graph : MonoBehaviour
         Vector3[] array = Vec2ArrayToVec3Array(ScaledPoints(points.ToArray()));
 
         lineRenderer.SetPositions(array);
+
+        lineRenderer.Simplify((GetMaxValue(Axis.Y).y - GetMinValue(Axis.Y).y) * 0.01f);
         
 
     }
 
     public void DrawGridLines() {
-        vertLinesRenderer.positionCount = ((int)GetMaxValue(Axis.X).x * 2) + 1;
+        // The line needs to start at the TOP LEFT corner (min x, max y) and go to
+        // the TOP RIGHT corner (max x, max y). THEN, move one unit down (max x, max y - 1)
+        // and then back to (min x, max y - 1)
 
-        for (int i = 0; i < vertLinesRenderer.positionCount; i++) {
-            vertLinesRenderer.SetPosition(i, Vector3.zero);
+        Vector3 startPos = new Vector3(GetMinValue(Axis.X, true).x, GetMaxValue(Axis.Y, true).y, 0f);
+
+
+
+        Vector3 endPos = new Vector3(GetMaxValue(Axis.X, true).x, GetMaxValue(Axis.Y, true).y, 0f);
+
+
+
+        int numberOfVertsY = ((int)(GetMaxValue(Axis.Y).y) * 2) + 2;
+
+        int numberOfVertsX = ((int)(GetMaxValue(Axis.X).x) * 2) + 1;
+
+        int numberOfVerts = numberOfVertsY + numberOfVertsX;
+
+
+        gridLineRenderer.positionCount = numberOfVerts;
+        //print(numberOfVerts);
+        Vector3[] pos = new Vector3[numberOfVerts];
+        pos[0] = startPos;
+
+        Debug.Log(ScalePoint(Vector2.one));
+
+        float yUnitAmt = GetYStep();
+        float xUnitAmt = GetXStep();
+        Debug.Log("Y unit amt: " + yUnitAmt.ToString());
+
+        int status = 0;
+        // 0 = moving right
+        // 1 = moving down after having moved right
+        // 2 = moving left
+        // 3 = moving down after having moved left
+
+        Vector3 currentPos = new Vector3(GetMinValue(Axis.X, true).x, GetMaxValue(Axis.Y, true).y, 0f);
+
+        for (int i = 1; i < numberOfVertsY; i++) {
+            //Debug.Log("loop iteration " + i.ToString());
+            if (status == 0) {
+                //Debug.Log("moving right");
+                currentPos.x = GetMaxValue(Axis.X, true).x;
+                status = 1;
+            }
+
+            else if (status == 1) {
+                //Debug.Log("moving down");
+                currentPos.y -= yUnitAmt;
+                status = 2;
+            }
+
+            else if (status == 2) {
+                //Debug.Log("moving left");
+                currentPos.x = GetMinValue(Axis.X, true).x;
+                status = 3;
+            } else if (status == 3) {
+                //Debug.Log("moving down");
+                currentPos.y -= yUnitAmt;
+                status = 0;
+            }
+
+            pos[i] = currentPos;
         }
-        
 
-        Debug.Log((int)GetMaxValue(Axis.X).x * 2);
-        Vector3[] vertArray = new Vector3[((int)GetMaxValue(Axis.X).x * 2) + 1];
+        // the Ys are taken care of, now for the Xs
 
-        int g = 0;
-        for (int i = 0; g < GetMaxValue(Axis.X).x; i += 2) {
-            vertArray[i] = Vec2ToVec3(new Vector2(g , 0f));
-            vertArray[i+1] = Vec2ToVec3(new Vector2(g, GetMaxValue(Axis.Y).y));
-            g++;
+        status = 0;
+        // 0 = moving up
+        // 1 = moving left after having moved up
+        // 2 = moving down
+        // 3 = moving left after having moved down
+
+        for (int i = numberOfVertsY; i < numberOfVerts; i++) {
+            if (status == 0) {
+                currentPos.y = GetMaxValue(Axis.Y, true).y;
+                status = 1;
+            }
+
+            else if (status == 1) {
+                currentPos.x -= xUnitAmt;
+                status = 2;
+            }
+
+            else if (status == 2) {
+                currentPos.y = GetMinValue(Axis.Y, true).y;
+                status = 3;
+            }
+
+            else if (status == 3) {
+                currentPos.x -= xUnitAmt;
+                status = 0;
+            }
+
+            pos[i] = currentPos;
         }
 
-        Debug.Log(vertArray.Length);
+        gridLineRenderer.SetPositions(pos);
+        gridLineRenderer.startWidth = 1f;
+        gridLineRenderer.endWidth = 1f;
 
-        foreach (Vector3 i in vertArray) {Debug.Log(i);}
-        vertLinesRenderer.SetPositions(Vec2ArrayToVec3Array(ScaledPoints(Vec3ArrayToVec2Array(vertArray))));
+
+
+        // gridLineRenderer.startColor = new Color(0.3f, 0.3f, 0.3f, 0.7f);
+        // gridLineRenderer.endColor = new Color(0.3f, 0.3f, 0.3f, 0.7f);
+
+    }
+    
+    public float GetYStep() {
+        // Return the world-space units that correspond to one graph-unit on the Y axis
+
+        float percentAcross = 1 / (GetMaxValue(Axis.Y).y - GetMinValue(Axis.Y).y);
+        return percentAcross * rectTransform.rect.height;
+        //return Mathf.Abs(ScalePoint(new Vector2(0f, 1f)).y);
     }
 
+    public float GetXStep() {
+        // Return the world-space units that correspond to one graph-unit on the X axis
+        float percentAcross = 1 / (GetMaxValue(Axis.X).x - GetMinValue(Axis.X).x);
+        return percentAcross * rectTransform.rect.width;
+    }
     public void RemovePoint(float x) {
 
     }
