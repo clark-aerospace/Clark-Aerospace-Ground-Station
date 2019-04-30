@@ -166,6 +166,19 @@
      <Compile Include="Assets\ThirdPartyAssets\WoLfulus\LineEnding\Editor\LogEntries.cs" />
      <Compile Include="Assets\ThirdPartyAssets\WoLfulus\LineEnding\Editor\LogEntry.cs" />
      <Compile Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Editor\UnityARBuildPostprocessor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\AccordionElementEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\BezierLineRendererEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\BoxSliderEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\CanvasGroupActivator.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\CUIBezierCurveEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\CUIGraphicEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\CUIImageEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\CUITextEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\NonDrawingGraphicEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\ReadOnlyDrawer.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\TextPicEditor.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\uGUITools.cs" />
+     <Compile Include="Assets\unity-ui-extensions\Editor\UIExtensionsMenuOptions.cs" />
  <Reference Include="Cinemachine">
  <HintPath>/Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark Aerospace Rocket GUI/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
