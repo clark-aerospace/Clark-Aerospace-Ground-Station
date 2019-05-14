@@ -17,6 +17,10 @@ public class RocketPartItem : MonoBehaviour
 
     public Material rocketMat;
 
+    public RectTransform myRectTransform;
+
+    void Start() {myRectTransform = GetComponent<RectTransform>();}
+
     public void SetComponent(RocketComponent comp) {
         component = comp;
         partLabel.text = component.name;
@@ -31,6 +35,10 @@ public class RocketPartItem : MonoBehaviour
             MeasurementItemGraphical bl = new GameObject().AddComponent<MeasurementItemGraphical>();
             bl.SetUpUI(item, graphicalListOfMeasurements);
         }
+    }
+
+    public void Update() {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(myRectTransform);
     }
 
 

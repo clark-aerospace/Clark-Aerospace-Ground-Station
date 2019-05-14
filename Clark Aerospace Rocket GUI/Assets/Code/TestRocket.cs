@@ -51,7 +51,7 @@ public class TestRocket : MonoBehaviour
 
         dateOfNewData = System.DateTime.Now;
 
-        lastUpdatedLabel.text = "Last updated " + dateOfNewData.ToLongTimeString() + " " + dateOfNewData.ToShortDateString();
-        altitudeLabel.text = "Alt: " + transform.position.y.ToString(); 
+        // lastUpdatedLabel.text = "Last updated " + dateOfNewData.ToLongTimeString() + " " + dateOfNewData.ToShortDateString();
+        // altitudeLabel.text = "Alt: " + transform.position.y.ToString(); 
     }
 }

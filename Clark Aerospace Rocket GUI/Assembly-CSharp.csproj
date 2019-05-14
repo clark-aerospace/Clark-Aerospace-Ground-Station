@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Code\ArduinoReciever.cs" />
+     <Compile Include="Assets\Code\GeneralManager.cs" />
      <Compile Include="Assets\Code\GraphLib\Graph.cs" />
+     <Compile Include="Assets\Code\GraphLib\GraphDisplayer.cs" />
      <Compile Include="Assets\Code\MeasurementItem.cs" />
      <Compile Include="Assets\Code\MeasurementItemGraphical.cs" />
      <Compile Include="Assets\Code\RocketComponent.cs" />
@@ -814,6 +816,7 @@
      <None Include="Assets\UnityARKitPlugin\ARKitRemote\ARKITREMOTE.txt" />
      <None Include="Assets\unity-ui-extensions\Shaders\UILinearDodge.shader" />
      <None Include="Assets\unity-ui-extensions\Shaders\UI Particle VertexLit Blended.shader" />
+     <None Include="Assets\Code\SDF\SDF_Image.shader" />
      <None Include="Assets\unity-ui-extensions\Shaders\UI Particle AddMultiply.shader" />
      <None Include="Assets\Mapbox\Unity\Location\ExampleGpsTraces\LocationProviderUnity.txt" />
      <None Include="Assets\Mapbox\Unity\Location\ExampleGpsTraces\LocationProviderAndroidNative-2.txt" />

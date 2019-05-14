@@ -169,6 +169,39 @@ lastmodified INTEGER,
 			}
 		}
 
+		// FUNCTION BY MAPBOX SENT TO CLARK AEROSPACE
+		// private void openOrCreateDb(string dbName)
+		// {
+		// 	_dbPath = Path.Combine(Application.persistentDataPath, "cache");
+		// 	if (!Directory.Exists(_dbPath)) { Directory.CreateDirectory(_dbPath); }
+		// 	_dbPath = Path.Combine(_dbPath, dbName);
+		
+		// 	/*
+		// 	print the path to the editor cache. 
+		// 	This is the location to look for editor-generated cache files.
+		// 	*/
+		// 	Debug.LogFormat("MBTiles cache path ----> {0}", _dbPath);
+		// 	CheckForOfflineCache(dbName);
+		
+		// 	_sqlite = new SQLiteConnection(_dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+		// }
+		
+		// //load caches from the resources folder if they exist.
+		// private void CheckForOfflineCache( string dbName )
+		// {
+		// 	/*
+		// 	If there is a cache file in the resources/offline-maps folder, 
+		// 	write it to the _dbPath. Just drag files from the editor cache 
+		// 	to resources/offline-maps
+		// 	*/
+		// 	string cacheFile = System.IO.Path.GetFileNameWithoutExtension(dbName);
+		// 	TextAsset textCache = Resources.Load(cacheFile) as TextAsset;
+		// 	if ( textCache != null)
+		// 	{
+		// 		System.IO.File.WriteAllBytes(_dbPath, textCache.bytes);
+		// 	}
+		// }
+
 
 		private void openOrCreateDb(string dbName)
 		{

@@ -44,7 +44,11 @@ MonoBehaviour:
   minMaxValues: {x: 50, y: 200}
   suffix: " \xB0C"
   id: AVIONICS_TEMP
+  buttonEnabled: 0
+  buttonText: 
   guiInstance: {fileID: 0}
   infoLabel: {fileID: 0}
   colorIndicator: {fileID: 0}
-  mat: {fileID: 0}
+  button: {fileID: 0}
+  mat: {fileID: 2100000, guid: 804829458397e49d3b19751e8aa5ff54, type: 2}
+  graphUI: {fileID: 0}

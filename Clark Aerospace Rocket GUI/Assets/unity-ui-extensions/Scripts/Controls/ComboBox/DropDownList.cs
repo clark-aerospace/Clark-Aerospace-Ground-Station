@@ -3,6 +3,7 @@
 
 
 using System.Collections.Generic;
+using TMPro;
 
 namespace UnityEngine.UI.Extensions
 {
@@ -23,7 +24,7 @@ namespace UnityEngine.UI.Extensions
 		private bool _isPanelActive = false;
 		private bool _hasDrawnOnce = false;
 
-		private DropDownListButton _mainButton;
+		public DropDownListButton _mainButton;
 
 		private RectTransform _rectTransform;
 

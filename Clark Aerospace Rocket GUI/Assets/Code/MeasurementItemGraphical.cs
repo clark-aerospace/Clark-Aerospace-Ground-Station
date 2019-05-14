@@ -10,26 +10,35 @@ public class MeasurementItemGraphical : MonoBehaviour
         measurementItem = mI;
         measurementItem.guiInstance = Instantiate(RocketPartPopulator.populator.measurementPrefab);
         measurementItem.guiInstance.transform.SetParent(list, false);
-        measurementItem.infoLabel = measurementItem.guiInstance.transform.Find("NumValue").GetComponent<TextMeshProUGUI>();
-        measurementItem.colorIndicator = measurementItem.guiInstance.transform.Find("ColorIndicator").GetComponent<Image>();
-        measurementItem.button = measurementItem.guiInstance.transform.Find("InteractButton").GetComponent<Button>();
+        measurementItem.infoLabel = measurementItem.guiInstance.transform.Find("HorizPart/NumValue").GetComponent<TextMeshProUGUI>();
+        measurementItem.colorIndicator = measurementItem.guiInstance.transform.Find("HorizPart/ColorIndicator").GetComponent<Image>();
+        measurementItem.button = measurementItem.guiInstance.transform.Find("HorizPart/InteractButton").GetComponent<Button>();
 
         if (!measurementItem.buttonEnabled) {measurementItem.button.gameObject.SetActive(false);}
         measurementItem.button.transform.Find("ButtonText").GetComponent<TextMeshProUGUI>().text = measurementItem.buttonText;
+
+        measurementItem.graphUI = measurementItem.guiInstance.transform.Find("GraphContainer/Graph").GetComponent<Graph>();
+
+        GraphDisplayer disp = measurementItem.guiInstance.transform.Find("GraphContainer").GetComponent<GraphDisplayer>();
+        disp.parentRectTransform = GetComponent<RectTransform>();
         //mat = 
     }
     void Update()
     {
         float val = ArduinoReciever.GetValue(measurementItem.id);
-        measurementItem.infoLabel.text = val.ToString() + measurementItem.suffix;
+
+        val = Mathf.Abs(Mathf.Sin(Time.time) * 200);
+        measurementItem.infoLabel.text = val.ToString("0.0") + measurementItem.suffix;
 
 
         Color colOut = measurementItem.gradient.Evaluate(Mathf.InverseLerp(measurementItem.minMaxValues.x, measurementItem.minMaxValues.y, val));
         measurementItem.colorIndicator.color = colOut;
 
-        // if (mat != null) {
-        //     mat.color = colOut;
-        // }
+        //measurementItem.graphUI.AddPoint(Time.time, val);
+
+        if (measurementItem.mat != null) {
+            measurementItem.mat.color = colOut;
+        }
         
     }
 }

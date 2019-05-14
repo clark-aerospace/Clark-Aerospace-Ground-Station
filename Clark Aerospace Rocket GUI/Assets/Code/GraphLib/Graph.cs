@@ -57,7 +57,7 @@ public class Graph : MonoBehaviour
 
     public void Start() {
 
-        uiLineRenderer = new GameObject().AddComponent<UILineRenderer>();
+        uiLineRenderer = new GameObject("Graph Line Renderer").AddComponent<UILineRenderer>();
         uiLineRenderer.transform.SetParent(transform, false);
         uiLineRenderer.LineThickness = 3;
 
@@ -68,14 +68,14 @@ public class Graph : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
 
 
-        dotImage = new GameObject().AddComponent<Image>();
+        dotImage = new GameObject("Dot Image").AddComponent<Image>();
         dotImage.transform.SetParent(transform, false);
         dotImage.sprite = dotSprite;
         dotImage.color = color;
         dotImage.useSpriteMesh = true;
         dotImage.rectTransform.sizeDelta = new Vector2(10,10);
 
-        mFilter = new GameObject().AddComponent<MeshFilter>();
+        mFilter = new GameObject("Area Mesh").AddComponent<MeshFilter>();
         mFilter.transform.SetParent(transform, false);
         mRenderer = mFilter.gameObject.AddComponent<MeshRenderer>();
 
@@ -83,7 +83,7 @@ public class Graph : MonoBehaviour
         mFilter.mesh = mesh;
 
         // Create the X axis Max label
-        xAxisMaxLabel = new GameObject().AddComponent<TextMeshProUGUI>();
+        xAxisMaxLabel = new GameObject("X Axis Max Label").AddComponent<TextMeshProUGUI>();
         xAxisMaxLabel.rectTransform.SetParent(transform, false);
         xAxisMaxLabel.rectTransform.pivot = new Vector2(1f,1f);
         xAxisMaxLabel.rectTransform.anchorMax = new Vector2(1f,0f);
@@ -97,7 +97,7 @@ public class Graph : MonoBehaviour
 
 
         // Create the X axis Min label
-        xAxisMinLabel = new GameObject().AddComponent<TextMeshProUGUI>();
+        xAxisMinLabel = new GameObject("X Axis Min Label").AddComponent<TextMeshProUGUI>();
         xAxisMinLabel.rectTransform.SetParent(transform, false);
         xAxisMinLabel.rectTransform.pivot = new Vector2(0f,1f);
         xAxisMinLabel.rectTransform.anchorMax = new Vector2(0f,0f);
@@ -106,21 +106,24 @@ public class Graph : MonoBehaviour
         xAxisMinLabel.rectTransform.sizeDelta = new Vector2(50,25);
         xAxisMinLabel.font = defaultTextFont;
         xAxisMinLabel.fontSize = 15;
-        xAxisMinLabel.text = "Hello!";
         xAxisMinLabel.alignment = TextAlignmentOptions.MidlineLeft;
+        xAxisMinLabel.text = "0";
+
+
+        
 
 
         AddPoint(0, 0);
         AddPoint(1, 2);
         AddPoint(2, 3);
         AddPoint(3, 5);
-        // AddPoint(4, 6);
-        // AddPoint(5, 7);
-        // AddPoint(6, 8);
-        // AddPoint(7, 10);
-        // AddPoint(8, 12);
-        // AddPoint(9, 13);
-        // AddPoint(10, 15);
+        AddPoint(4, 6);
+        AddPoint(5, 7);
+        AddPoint(6, 8);
+        AddPoint(7, 10);
+        AddPoint(8, 12);
+        AddPoint(9, 13);
+        AddPoint(10, 15);
         // AddPoint(11, 17);
         // AddPoint(12, 19);
         // AddPoint(13, 20);
@@ -132,7 +135,7 @@ public class Graph : MonoBehaviour
 
         //SetLineColor();
         
-        GenerateMesh();
+        //GenerateMesh();
         
 
 
@@ -141,16 +144,16 @@ public class Graph : MonoBehaviour
     }
 
     public void Update() {
-        if (thing >= 40) {AddTestPoint();}
-        thing++;
+        // if (thing >= 40) {AddTestPoint();}
+        // thing++;
 
         ResetLineRenderer();
         SetLineColor();
-        OnMouseOver();
-        GenerateMesh();
+        //OnMouseOver();
+        //GenerateMesh();
         GetTickInterval();
 
-        xAxisMinLabel.text = "0";
+        
         xAxisMaxLabel.text = (gridRenderer.GridColumns * xSpacePerLine).ToString();
     }
 
@@ -213,7 +216,7 @@ public class Graph : MonoBehaviour
 
         mRenderer.material.SetColor("_ColBottom", colBottom);
         mRenderer.material.SetFloat("_HeightInc", rectTransform.rect.height * 0.75f);
-        mRenderer.transform.localPosition = new Vector3(0f, 0f, 0.5f);
+        mRenderer.transform.localPosition = new Vector3(0f, 0f, -5f);
 
 
 
@@ -224,7 +227,7 @@ public class Graph : MonoBehaviour
 
     public void SetLineColor() {
         uiLineRenderer.color = color;
-        dotImage.color = color;
+        if (dotImage != null) {dotImage.color = color;}
 
     }
 
@@ -242,21 +245,22 @@ public class Graph : MonoBehaviour
     public void OnMouseOver() {
         Vector2 mousePos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, Input.mousePosition, Camera.main, out mousePos);
+
         if (rectTransform.rect.Contains(mousePos)) {
 
             float xPercent = (mousePos.x + (rectTransform.pivot.x * rectTransform.rect.width)) / rectTransform.rect.width;
 
             float xHover = (xPercent * GetMaxValue(Axis.X).x);
             dotImage.rectTransform.localScale = Vector2.one;
-            scrolleyThing.localScale = Vector3.one;
+            if (scrolleyThing != null) {scrolleyThing.localScale = Vector3.one;}
             dotImage.rectTransform.anchoredPosition = ScalePoint(GetInterpolatedValue(xHover)); //ScalePoint(ValueAtX(xHover));
             Debug.Log(xHover.ToString());
-            scrolleyThing.anchoredPosition = ScalePoint(GetInterpolatedValue(xHover)) + new Vector2(0f, 3f);
+            if (scrolleyThing != null) {scrolleyThing.anchoredPosition = ScalePoint(GetInterpolatedValue(xHover)) + new Vector2(0f, 3f);}
         }
 
         else {
             dotImage.rectTransform.localScale = Vector2.zero;
-            scrolleyThing.localScale = Vector3.zero;
+            if (scrolleyThing != null) {scrolleyThing.localScale = Vector3.zero;}
         }
     }
 
@@ -521,6 +525,8 @@ public class Graph : MonoBehaviour
     }
 
     public Vector3[] Vec2ArrayToVec3Array(Vector2[] val) {
+        //Debug.LogError(val);
+        if (val == null) {return null;}
         Vector3[] outval = new Vector3[val.Length];
 
         for (int i = 0; i < val.Length; i++) {
@@ -531,6 +537,7 @@ public class Graph : MonoBehaviour
     }
 
     public Vector2[] Vec3ArrayToVec2Array(Vector3[] val) {
+        if (val == null) {return null;}
         Vector2[] outval = new Vector2[val.Length];
 
         for (int i = 0; i < val.Length; i++) {
@@ -550,7 +557,7 @@ public class Graph : MonoBehaviour
 
 
     public Vector2[] ScaledPoints(Vector2[] ptsIn) {
-
+        if (ptsIn == null) {return null;}
         Vector2[] scaledPts = new Vector2[ptsIn.Length];
         
         for (int i = 0; i < ptsIn.Length; i++) {
@@ -564,7 +571,12 @@ public class Graph : MonoBehaviour
     }
 
     public Vector2 ScalePoint(Vector2 val) {
-        return new Vector2(((val.x / GetMaxValue(Axis.X).x) * rectTransform.rect.width) - (rectTransform.pivot.x * rectTransform.rect.width), ((val.y / GetMaxValue(Axis.Y).y) * rectTransform.rect.height) - (rectTransform.pivot.y * rectTransform.rect.height));
+        // float maxX = GetMaxValue(Axis.X).x == 0 ? 1 : GetMaxValue(Axis.X).x;
+        // float maxY = GetMaxValue(Axis.Y).y == 0 ? 1 : GetMaxValue(Axis.Y).y;
+
+        float maxX = ((gridRenderer.GridColumns + 1) * xSpacePerLine);
+        float maxY = ((gridRenderer.GridRows + 1) * ySpacePerLine);
+        return new Vector2(((val.x / maxX * rectTransform.rect.width) - (rectTransform.pivot.x * rectTransform.rect.width)), ((val.y / maxY * rectTransform.rect.height) - (rectTransform.pivot.y * rectTransform.rect.height)));
     }
 
 }

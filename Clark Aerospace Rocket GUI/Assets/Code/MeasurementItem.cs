@@ -20,6 +20,7 @@ public class MeasurementItem : ScriptableObject
     public Image colorIndicator;
     public Button button;
     public Material mat;
+    public Graph graphUI;
 
 
 }

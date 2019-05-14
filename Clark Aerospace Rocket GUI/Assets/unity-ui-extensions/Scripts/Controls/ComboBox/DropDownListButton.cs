@@ -1,6 +1,7 @@
 ﻿///Credit perchik
 ///Sourced from - http://forum.unity3d.com/threads/receive-onclick-event-and-pass-it-on-to-lower-ui-elements.293642/
 
+using TMPro;
 namespace UnityEngine.UI.Extensions
 {
     [RequireComponent(typeof(RectTransform), typeof(Button))]
@@ -8,7 +9,7 @@ namespace UnityEngine.UI.Extensions
     {
         public RectTransform rectTransform;
         public Button btn;
-        public Text txt;
+        public TextMeshProUGUI txt;
         public Image btnImg;
         public Image img;
         public GameObject gameobject;
@@ -19,7 +20,7 @@ namespace UnityEngine.UI.Extensions
             rectTransform = btnObj.GetComponent<RectTransform>();
             btnImg = btnObj.GetComponent<Image>();
             btn = btnObj.GetComponent<Button>();
-            txt = rectTransform.Find("Text").GetComponent<Text>();
+            txt = rectTransform.Find("Text").GetComponent<TextMeshProUGUI>();
             img = rectTransform.Find("Image").GetComponent<Image>();
         }
     }
