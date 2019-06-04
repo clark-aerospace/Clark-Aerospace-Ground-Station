@@ -15,6 +15,5 @@ MonoBehaviour:
   name: Airbrakes
   id: 
   measurementItems:
-  - {fileID: 11400000, guid: 93e2c2a19059b469a9d76b4599ab7f0e, type: 2}
   - {fileID: 11400000, guid: 09cb5383cf6604c6d81b55cd9e3844bc, type: 2}
-  mat: {fileID: 0}
+  mat: {fileID: 2100000, guid: 9cc35c657386047fabcf992593c3df84, type: 2}

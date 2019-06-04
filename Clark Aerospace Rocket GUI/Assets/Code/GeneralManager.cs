@@ -11,21 +11,28 @@ public class GeneralManager : MonoBehaviour
 {
     public DropDownList arduinoPortsList;
     public TMP_InputField arduinoBaudRateInput;
+    public TMP_InputField launchTimeInput;
 
     public Button openSettingsButton;
     public Button saveSettingsButton;
     public GameObject settingsPanel;
 
-    [Header("Timer thing")]
+    [Header("Timeline Stuff")]
     public TextMeshProUGUI launchTimerLabel;
+    public TextMeshProUGUI bigLaunchTimerLabel;
     public Button openTimelineButton;
     public Button closeTimelineButton;
     public GameObject timelinePanel;
+    public Image timelineBar;
 
     public int launchEpochTime;
 
-    public void Start() {
+    public DateTime departureTime = new DateTime(2019, 5, 14, 15, 00, 0);
 
+    public int quitLength = 0;
+
+
+    public void Start() {
         openSettingsButton.onClick.AddListener(OpenSettings);
         saveSettingsButton.onClick.AddListener(SaveSettings);
 
@@ -51,11 +58,23 @@ public class GeneralManager : MonoBehaviour
     public void OpenSettings() {
         settingsPanel.SetActive(true);
         LoadSerialPorts();
+
+        //arduinoPortsList.OverrideHighlighted = true;
+        //arduinoPortsList.SelectedItem = arduinoPortsList.Items.Find(item => item.ID == PlayerPrefs.GetString("port_name"));
+        arduinoBaudRateInput.text = PlayerPrefs.GetInt("port_baud_rate").ToString();
     }
 
     public void SaveSettings() {
         PlayerPrefs.SetString("port_name", arduinoPortsList.SelectedItem.ID);
         PlayerPrefs.SetInt("port_baud_rate", int.Parse(arduinoBaudRateInput.text));
+
+        ArduinoReciever.reciever.serialPort.Close();
+
+        ArduinoReciever.reciever.serialPort.PortName = arduinoPortsList.SelectedItem.ID;
+        ArduinoReciever.reciever.serialPort.BaudRate = int.Parse(arduinoBaudRateInput.text);
+        ArduinoReciever.reciever.serialPort.Open();
+
+        departureTime = DateTime.Parse(launchTimeInput.text);
         settingsPanel.SetActive(false);
     }
 
@@ -68,11 +87,26 @@ public class GeneralManager : MonoBehaviour
     }
 
     public void Update() {
-        DateTime departure = new DateTime(2019, 5, 13, 12, 17, 0);
 
-        TimeSpan diff = DateTime.Now - departure;
+        if (Input.GetKey(KeyCode.Q)) {
+            quitLength++;
+        } else {
+            quitLength = 0;
+        }
+
+        if (quitLength >= 100) {
+            Application.Quit();
+            Debug.LogError("QUIT");
+            Debug.Break();
+        }
+
+        TimeSpan diff = DateTime.Now - departureTime;
 
         string symbol = (diff > TimeSpan.Zero) ? "+" : "-";
-        launchTimerLabel.text = "T" + symbol + diff.ToString(@"mm\:ss");
+        string tMinus = "T" + symbol + diff.ToString(@"mm\:ss");
+        launchTimerLabel.text = tMinus;
+        bigLaunchTimerLabel.text = tMinus;
+
+        timelineBar.fillAmount = Mathf.InverseLerp(0f, 20f * 60f, (float)diff.TotalSeconds);
     }
 }

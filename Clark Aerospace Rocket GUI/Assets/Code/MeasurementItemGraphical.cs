@@ -27,7 +27,7 @@ public class MeasurementItemGraphical : MonoBehaviour
     {
         float val = ArduinoReciever.GetValue(measurementItem.id);
 
-        val = Mathf.Abs(Mathf.Sin(Time.time) * 200);
+        //val = Mathf.Abs(Mathf.Sin(Time.time) * 200);
         measurementItem.infoLabel.text = val.ToString("0.0") + measurementItem.suffix;
 
 

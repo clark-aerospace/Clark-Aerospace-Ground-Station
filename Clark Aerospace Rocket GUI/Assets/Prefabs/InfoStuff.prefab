@@ -34,7 +34,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: -20, y: -35}
+  m_SizeDelta: {x: -60, y: -35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &473112038386124320
 MonoBehaviour:
@@ -61,7 +61,11 @@ MonoBehaviour:
   ySpacePerLine: 1
   xAxisMaxLabel: {fileID: 0}
   xAxisMinLabel: {fileID: 0}
-  defaultTextFont: {fileID: 0}
+  yAxisMinLabel: {fileID: 0}
+  yAxisMaxLabel: {fileID: 0}
+  xAxisLabel: {fileID: 0}
+  yAxisLabel: {fileID: 0}
+  defaultTextFont: {fileID: 11400000, guid: 51f376482686f491ebd0e020f8cb4162, type: 2}
   scrolleyThing: {fileID: 0}
   scrolleyThing_Label: {fileID: 0}
 --- !u!1 &4383019713654896504

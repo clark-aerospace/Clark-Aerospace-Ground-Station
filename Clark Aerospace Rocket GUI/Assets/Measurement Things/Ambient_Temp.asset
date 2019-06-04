@@ -43,8 +43,12 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minMaxValues: {x: 50, y: 200}
   suffix: " \xB0C"
-  id: AMBIENT_TEMP
+  id: temp_ambient
+  buttonEnabled: 0
+  buttonText: 
   guiInstance: {fileID: 0}
   infoLabel: {fileID: 0}
   colorIndicator: {fileID: 0}
+  button: {fileID: 0}
   mat: {fileID: 0}
+  graphUI: {fileID: 0}

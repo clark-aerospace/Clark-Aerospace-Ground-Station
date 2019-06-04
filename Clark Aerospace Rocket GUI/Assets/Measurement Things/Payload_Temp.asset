@@ -43,7 +43,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minMaxValues: {x: 50, y: 200}
   suffix: " \xB0C"
-  id: PAYLOAD_TEMP
+  id: temp_payload
   buttonEnabled: 1
   buttonText: Toggle Fan
   guiInstance: {fileID: 0}

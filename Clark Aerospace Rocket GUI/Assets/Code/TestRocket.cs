@@ -15,7 +15,13 @@ public class TestRocket : MonoBehaviour
 
     public Transform mapTransform;
 
+    public GameObject rocketObj;
+    public GameObject parachuteObj;
+
     public float timeThing = 0f;
+
+    private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,22 +32,37 @@ public class TestRocket : MonoBehaviour
     void Update()
     {
 
-    //if (mapTransform.position.y != -2884f) {mapTransform.position = new Vector3(mapTransform.position.x, -2884f, mapTransform.position.z);}
-     timeThing += Time.deltaTime;
+        if (!ArduinoReciever.reciever.serialPort.IsOpen) {
+            //Debug.LogError("Serial port not open!");
+            timeSinceLastDataLabel.text = "Serial port not open";
+        } else {
+            System.DateTime timeOfLastData = epoch.AddSeconds(ArduinoReciever.reciever.lastRecievedEpoch);
+            System.TimeSpan timeSinceLastData = System.DateTime.Now - ArduinoReciever.reciever.dateTimeAtRecieve;
 
-     
-     System.TimeSpan timeSinceLastData = System.DateTime.Now - dateOfNewData;
-     timeSinceLastDataLabel.text = "(" + timeSinceLastData.Milliseconds + " ms ago)";
+            //TimeSpan lagTime = ArduinoReciever.reciever.dateTimeAtRecieve - timeOfLastData;
 
-     if (timeThing >= 0.1f) {
-         UpdatePosition();
-         UpdateLabels();
-     }
+            string lastRecieved = "Last recieved at " + timeOfLastData.ToLongTimeString() + " ";
+            string sinceLastRecieved = timeSinceLastData.TotalSeconds.ToString("0.##") + " s ago";
+            //string lagAmt = "Lag " + lagTime.TotalSeconds.ToString("0.##") + " s";
+
+            string allTogether = lastRecieved + System.Environment.NewLine + sinceLastRecieved + System.Environment.NewLine;// + lagAmt;
+
+            timeSinceLastDataLabel.text = allTogether;
+        }
+
+        UpdatePosition();
+        UpdateLabels();
      
     }
 
     void UpdatePosition() {
-        //transform.position = new Vector3(0f, ArduinoReciever.GetValue("ALTITUDE"), 0f);
+        transform.position = new Vector3(0f, ArduinoReciever.GetValue("ALT"), 0f);
+        rocketObj.transform.rotation = new Quaternion(ArduinoReciever.GetValue("rot_x"), ArduinoReciever.GetValue("rot_y"), ArduinoReciever.GetValue("rot_z"), ArduinoReciever.GetValue("rot_w"));
+        altitudeLabel.text = ArduinoReciever.GetValue("ALT").ToString() + " ft";
+
+        parachuteObj.SetActive(ArduinoReciever.GetValue("para") != 0);
+        //parachuteObj.SetActive(true);
+        //parachuteObj.transform.rotation = Quaternion.Inverse(transform.rotation);
         //transform.Translate(0f, 0.5f, 0f);
         return;
     }
@@ -52,6 +73,6 @@ public class TestRocket : MonoBehaviour
         dateOfNewData = System.DateTime.Now;
 
         // lastUpdatedLabel.text = "Last updated " + dateOfNewData.ToLongTimeString() + " " + dateOfNewData.ToShortDateString();
-        // altitudeLabel.text = "Alt: " + transform.position.y.ToString(); 
+        //altitudeLabel.text = "Alt: " + transform.position.y.ToString(); 
     }
 }

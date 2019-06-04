@@ -43,7 +43,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minMaxValues: {x: 50, y: 200}
   suffix: " \xB0C"
-  id: AVIONICS_TEMP
+  id: temp_avionics
   buttonEnabled: 0
   buttonText: 
   guiInstance: {fileID: 0}

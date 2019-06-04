@@ -43,8 +43,12 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minMaxValues: {x: 50, y: 200}
   suffix: ' A'
-  id: AIRBRAKE_CURRENT
+  id: temp_airbrakes
+  buttonEnabled: 0
+  buttonText: 
   guiInstance: {fileID: 0}
   infoLabel: {fileID: 0}
   colorIndicator: {fileID: 0}
-  mat: {fileID: 0}
+  button: {fileID: 0}
+  mat: {fileID: 2100000, guid: 9cc35c657386047fabcf992593c3df84, type: 2}
+  graphUI: {fileID: 0}

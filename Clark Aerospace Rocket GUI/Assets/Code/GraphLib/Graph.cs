@@ -48,6 +48,12 @@ public class Graph : MonoBehaviour
     [Header("Labels")]
     public TextMeshProUGUI xAxisMaxLabel;
     public TextMeshProUGUI xAxisMinLabel;
+
+    public TextMeshProUGUI yAxisMinLabel;
+    public TextMeshProUGUI yAxisMaxLabel;
+
+    public TextMeshProUGUI xAxisLabel;
+    public TextMeshProUGUI yAxisLabel;
     public TMP_FontAsset defaultTextFont;
 
     public RectTransform scrolleyThing;
@@ -68,12 +74,12 @@ public class Graph : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
 
 
-        dotImage = new GameObject("Dot Image").AddComponent<Image>();
-        dotImage.transform.SetParent(transform, false);
-        dotImage.sprite = dotSprite;
-        dotImage.color = color;
-        dotImage.useSpriteMesh = true;
-        dotImage.rectTransform.sizeDelta = new Vector2(10,10);
+        // dotImage = new GameObject("Dot Image").AddComponent<Image>();
+        // dotImage.transform.SetParent(transform, false);
+        // dotImage.sprite = dotSprite;
+        // dotImage.color = color;
+        // dotImage.useSpriteMesh = true;
+        // dotImage.rectTransform.sizeDelta = new Vector2(10,10);
 
         mFilter = new GameObject("Area Mesh").AddComponent<MeshFilter>();
         mFilter.transform.SetParent(transform, false);
@@ -109,9 +115,59 @@ public class Graph : MonoBehaviour
         xAxisMinLabel.alignment = TextAlignmentOptions.MidlineLeft;
         xAxisMinLabel.text = "0";
 
+        // Create the Y axis Min label
+        yAxisMinLabel = new GameObject("Y Axis Min Label").AddComponent<TextMeshProUGUI>();
+        yAxisMinLabel.rectTransform.SetParent(transform, false);
+        yAxisMinLabel.rectTransform.pivot = new Vector2(1f,0f);
+        yAxisMinLabel.rectTransform.anchorMax = new Vector2(0f,0f);
+        yAxisMinLabel.rectTransform.anchorMin = new Vector2(0f,0f);
+        yAxisMinLabel.rectTransform.anchoredPosition = new Vector2(-10f, 0f);
+        yAxisMinLabel.rectTransform.sizeDelta = new Vector2(50,25);
+        yAxisMinLabel.font = defaultTextFont;
+        yAxisMinLabel.fontSize = 15;
+        yAxisMinLabel.alignment = TextAlignmentOptions.BottomRight;
+        yAxisMinLabel.text = "0";
 
-        
+        // Create the Y axis Max label
+        yAxisMaxLabel = new GameObject("Y Axis Max Label").AddComponent<TextMeshProUGUI>();
+        yAxisMaxLabel.rectTransform.SetParent(transform, false);
+        yAxisMaxLabel.rectTransform.pivot = new Vector2(1f,1f);
+        yAxisMaxLabel.rectTransform.anchorMax = new Vector2(0f,1f);
+        yAxisMaxLabel.rectTransform.anchorMin = new Vector2(0f,1f);
+        yAxisMaxLabel.rectTransform.anchoredPosition = new Vector2(-10f, 0f);
+        yAxisMaxLabel.rectTransform.sizeDelta = new Vector2(50,25);
+        yAxisMaxLabel.font = defaultTextFont;
+        yAxisMaxLabel.fontSize = 15;
+        yAxisMaxLabel.alignment = TextAlignmentOptions.TopRight;
+        yAxisMaxLabel.text = "?";
 
+
+        // Create the Y axis label
+        yAxisLabel = new GameObject("Y Axis Label").AddComponent<TextMeshProUGUI>();
+        yAxisLabel.rectTransform.SetParent(transform, false);
+        yAxisLabel.rectTransform.pivot = new Vector2(0.5f,0f);
+        yAxisLabel.rectTransform.anchorMax = new Vector2(0f,0.5f);
+        yAxisLabel.rectTransform.anchorMin = new Vector2(0f,0.5f);
+        yAxisLabel.rectTransform.anchoredPosition = new Vector2(-10f, 0f);
+        yAxisLabel.rectTransform.sizeDelta = new Vector2(100,25);
+        yAxisLabel.rectTransform.localEulerAngles = new Vector3(0f,0f,90f);
+        yAxisLabel.font = defaultTextFont;
+        yAxisLabel.fontSize = 15;
+        yAxisLabel.alignment = TextAlignmentOptions.Center;
+        yAxisLabel.text = "Y Axis";
+
+        // Create the X axis label
+        xAxisLabel = new GameObject("X Axis Label").AddComponent<TextMeshProUGUI>();
+        xAxisLabel.rectTransform.SetParent(transform, false);
+        xAxisLabel.rectTransform.pivot = new Vector2(0.5f,1f);
+        xAxisLabel.rectTransform.anchorMax = new Vector2(0.5f,0f);
+        xAxisLabel.rectTransform.anchorMin = new Vector2(0.5f,0f);
+        xAxisLabel.rectTransform.anchoredPosition = new Vector2(0f, -10f);
+        xAxisLabel.rectTransform.sizeDelta = new Vector2(100,25);
+        xAxisLabel.font = defaultTextFont;
+        xAxisLabel.fontSize = 15;
+        xAxisLabel.alignment = TextAlignmentOptions.Center;
+        xAxisLabel.text = "X Axis";
 
         AddPoint(0, 0);
         AddPoint(1, 2);
@@ -155,6 +211,7 @@ public class Graph : MonoBehaviour
 
         
         xAxisMaxLabel.text = (gridRenderer.GridColumns * xSpacePerLine).ToString();
+        yAxisMaxLabel.text = (gridRenderer.GridRows * ySpacePerLine).ToString();
     }
 
     public void AddTestPoint() {
@@ -254,7 +311,7 @@ public class Graph : MonoBehaviour
             dotImage.rectTransform.localScale = Vector2.one;
             if (scrolleyThing != null) {scrolleyThing.localScale = Vector3.one;}
             dotImage.rectTransform.anchoredPosition = ScalePoint(GetInterpolatedValue(xHover)); //ScalePoint(ValueAtX(xHover));
-            Debug.Log(xHover.ToString());
+            //Debug.Log(xHover.ToString());
             if (scrolleyThing != null) {scrolleyThing.anchoredPosition = ScalePoint(GetInterpolatedValue(xHover)) + new Vector2(0f, 3f);}
         }
 
@@ -352,7 +409,7 @@ public class Graph : MonoBehaviour
         // to it that fits a good number (power of 1, 5, or 10).
 
         xSpacePerLine = CalcStepSize(xRange, 8f);
-        Debug.Log("Step size is " + xSpacePerLine.ToString());
+        //Debug.Log("Step size is " + xSpacePerLine.ToString());
 
         // the number of steps would be 
     
