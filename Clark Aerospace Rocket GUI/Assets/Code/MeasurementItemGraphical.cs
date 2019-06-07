@@ -27,18 +27,17 @@ public class MeasurementItemGraphical : MonoBehaviour
     {
         float val = ArduinoReciever.GetValue(measurementItem.id);
 
-        //val = Mathf.Abs(Mathf.Sin(Time.time) * 200);
         measurementItem.infoLabel.text = val.ToString("0.0") + measurementItem.suffix;
 
 
         Color colOut = measurementItem.gradient.Evaluate(Mathf.InverseLerp(measurementItem.minMaxValues.x, measurementItem.minMaxValues.y, val));
         measurementItem.colorIndicator.color = colOut;
 
-        //measurementItem.graphUI.AddPoint(Time.time, val);
-
         if (measurementItem.mat != null) {
             measurementItem.mat.color = colOut;
         }
+
+        //measurementItem.graphUI.AddPoint(Time.time, val);
         
     }
 }

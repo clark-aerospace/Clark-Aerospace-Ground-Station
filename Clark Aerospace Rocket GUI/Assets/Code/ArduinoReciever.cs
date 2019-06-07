@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO.Ports;
+using System.Text;
 using System.Threading;
 using TMPro;
 
@@ -29,6 +30,9 @@ public class ArduinoReciever : MonoBehaviour
 
     public TextMeshProUGUI debuglabel;
 
+    [TextArea]
+    public string input = "535452001c00000001454e44";
+
     void Awake() {
         if (reciever != null) {Destroy(gameObject);}
         else {reciever = this;}
@@ -44,7 +48,7 @@ public class ArduinoReciever : MonoBehaviour
         // Debug.Log("Value of PAYLOAD_TEMP is " + GetValue("PAYLOAD_TEMP").ToString());
 
         serialPort = new SerialPort(PlayerPrefs.GetString("port_name", "/dev/cu.usbserial-AK06RGGT"), PlayerPrefs.GetInt("port_baud_rate", 57600));
-        serialPort.ReadTimeout = 75;
+        serialPort.ReadTimeout = 0;
         serialPort.Parity = Parity.None;
         serialPort.DataBits = 8;
         serialPort.StopBits = StopBits.One;
@@ -73,62 +77,48 @@ public class ArduinoReciever : MonoBehaviour
     // }
 
     void Update() {
-        if (!serialPort.IsOpen) {return;}
+        if (!serialPort.IsOpen) {
+            debuglabel.text = "Serial port is not open";
+            InputExistingValues();
+            return;
+            
+        }
         //Debug.Log(serialPort.ReadLine());
 
-        byte[] buf = new byte[128];
-        serialPort.Read(buf, 0, 128);
+        byte[] buf = new byte[115];
 
-        //debuglabel.text = BitConverter.ToString(buf).Replace("-","");
-
-        // stream = new MemoryStream(onlyAlt);
-        // reader = new BinaryReader(stream);
-
-        // double alt = reader.ReadDouble();
-        // bool para = reader.ReadBoolean();
-        // //ulong lastRecievedEpoch = reader.ReadUInt64();
-
-        // debuglabel.text += System.Environment.NewLine + "Alt: " + alt.ToString() + System.Environment.NewLine + "Para: " + para.ToString();
-
-
-        // string startThing = BitConverter.ToString(onlyAlt, 0, 4);
-        // Debug.Log(startThing + " should say STRC");
-
-
-        
-        // double _pos_alt = BitConverter.ToDouble(onlyAlt, 4);
-        // InputToDict("pos_alt", (float)_pos_alt);
-        
-        // bool parachuteOut = BitConverter.ToBoolean(onlyAlt, 12);
-        // InputToDict("para", parachuteOut ? 1f : 0f);
-
-        // string endThing = BitConverter.ToString(onlyAlt, 13, 4);
-        // Debug.Log(endThing + " should say EDRC");
-
-        // byte[] buf = new byte[117]; 
-        // serialPort.Read(buf, 0, 117);
-
-        //Debug.Log(BitConverter.ToString(onlyAlt));
-
-        Stream stream = new MemoryStream(buf);
-        reader = new BinaryReader(stream);
-
-        char[] startMarker = reader.ReadChars(3);
-
-        stream.Seek(3, SeekOrigin.End);
-        char[] endMarker = reader.ReadChars(3);
-
-        if (new string(startMarker) != "STR" || new string(endMarker) != "END") {
+        // UNCOMMENT
+        try {serialPort.Read(buf, 0, 115);}
+        catch (TimeoutException e) {
+            InputExistingValues();
             return;
+
         }
 
-        debuglabel.text = new string(startMarker) + " " + new string(endMarker);
-        stream.Seek(4, SeekOrigin.Begin);
+        //buf = StringToByteArray(input);
+        
 
+        debuglabel.text = buf.ToString();
+        debuglabel.text = BitConverter.ToString(buf).Replace("-","");
+
+        Stream stream = new MemoryStream(buf);
+        reader = new BinaryReader(stream, Encoding.GetEncoding("iso-8859-1"));
+        char[] startMarker = reader.ReadChars(3);
+
+        Debug.Log(new string(startMarker));// + " " + new string(endMarker));
+        debuglabel.text = BitConverter.ToString(buf).Replace("-","") + System.Environment.NewLine + new string(startMarker);
+
+        if (new string(startMarker) != "STR") { // || endMarker != new char[] {(char)69, (char)78, (char)68}) {
+            Debug.Log("Start marker is " + new string(startMarker) + " not STR");
+            InputExistingValues();
+            return;
+        }
         
         InputToDict("pos_lat", (float)reader.ReadDouble());
         InputToDict("pos_long", (float)reader.ReadDouble());
-        InputToDict("pos_alt", (float)reader.ReadDouble());
+
+        int alt = (int)reader.ReadUInt32();
+        InputToDict("pos_alt", alt);
         InputToDict("acc_x", (float)reader.ReadDouble());
         InputToDict("acc_y", (float)reader.ReadDouble());
         InputToDict("acc_z", (float)reader.ReadDouble());
@@ -140,100 +130,56 @@ public class ArduinoReciever : MonoBehaviour
         InputToDict("temp_avionics", (float)reader.ReadDouble());
         InputToDict("temp_airbrakes", (float)reader.ReadDouble());
         InputToDict("temp_ambient", (float)reader.ReadDouble());
-        InputToDict("para", (float)(reader.ReadBoolean() ? 1f : 0f));
 
-        lastRecievedEpoch = reader.ReadUInt32();
-
-        
-
-        
-        
+        bool para_out = reader.ReadBoolean();
+        InputToDict("para", (para_out ? 1f : 0f));
 
 
+        debuglabel.text += System.Environment.NewLine + "Alt: " + alt.ToString() + System.Environment.NewLine + "Para: " + para_out.ToString();
 
-
-
-
-
-        //int offsetSoFar = 0;
-
-
-
-
-        // string startString = BitConverter.To(buf)
-
-        // double _pos_lat = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("pos_lat", (float)_pos_lat);
-        // offsetSoFar += 8;
-
-        // double _pos_long = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("pos_long", (float)_pos_long);
-        // offsetSoFar += 8;
-
-        // double _pos_alt = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("pos_alt", (float)_pos_alt);
-        // offsetSoFar += 8;
-
-        // double _acc_x = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("acc_x", (float)_acc_x);
-        // offsetSoFar += 8;
-
-        // double _acc_y = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("acc_y", (float)_acc_y);
-        // offsetSoFar += 8;
-
-        // double _acc_z = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("acc_z", (float)_acc_z);
-        // offsetSoFar += 8;
-
-        // double _rot_x = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("rot_x", (float)_rot_x);
-        // offsetSoFar += 8;
-
-        // double _rot_y = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("rot_y", (float)_rot_y);
-        // offsetSoFar += 8;
-
-        // double _rot_z = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("rot_z", (float)_rot_z);
-        // offsetSoFar += 8;
-
-        // double _rot_w = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("rot_w", (float)_rot_w);
-        // offsetSoFar += 8;
-
-        // double _tmp_payload = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("temp_payload", (float)_tmp_payload);
-        // offsetSoFar += 8;
-
-        // double _tmp_avionics = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("temp_avionics", (float)_tmp_avionics);
-        // offsetSoFar += 8;
-
-        // double _tmp_airbrakesC = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("temp_airbrakes", (float)_tmp_airbrakesC);
-        // offsetSoFar += 8;
-
-        // double _tmp_ambient = BitConverter.ToDouble(buf, offsetSoFar);
-        // InputToDict("temp_ambient", (float)_tmp_ambient);
-        // offsetSoFar += 8;
-
-        // bool parachuteOut = BitConverter.ToBoolean(buf, offsetSoFar);
-        // InputToDict("para", parachuteOut ? 1f : 0f);
-        // offsetSoFar += 1;
-
-        // lastRecievedEpoch = BitConverter.ToUInt32(buf, offsetSoFar);
-        //lastRecievedEpoch = DateTime.Now;
+        //lastRecievedEpoch = reader.ReadUInt32();
         dateTimeAtRecieve = DateTime.Now;
+    }
+
+    public void InputExistingValues() {
+        InputToDict("pos_lat", GetValue("pos_lat"));
+        InputToDict("pos_long", GetValue("pos_long"));
+        InputToDict("pos_alt", GetValue("pos_alt"));
+        InputToDict("acc_x", GetValue("acc_x"));
+        InputToDict("acc_y", GetValue("acc_y"));
+        InputToDict("acc_z", GetValue("acc_z"));
+        InputToDict("rot_x", GetValue("rot_x"));
+        InputToDict("rot_y", GetValue("rot_y"));
+        InputToDict("rot_z", GetValue("rot_z"));
+        InputToDict("rot_w", GetValue("rot_w"));
+        InputToDict("temp_payload", GetValue("temp_payload"));
+        InputToDict("temp_avionics", GetValue("temp_avionics"));
+        InputToDict("temp_airbrakes", GetValue("temp_airbrakes"));
+        InputToDict("temp_ambient", GetValue("temp_ambient"));
+        InputToDict("para", GetValue("para"));
+        return;
+    }
+
+    public static byte[] StringToByteArray(String hex)
+    {
+        int NumberChars = hex.Length;
+        byte[] bytes = new byte[NumberChars / 2];
+        for (int i = 0; i < NumberChars; i += 2)
+            bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+        return bytes;
     }
 
     public static float GetValue(string key) {
         float value;
-        if (key == null) {return 0f;}
+        if (key == null) {
+            Debug.LogError("The key requested was null!");
+            return 0f;
+        }
         bool hasValue = reciever.values.TryGetValue(key, out value);
         if (hasValue) {
             return value;
         } else {
+            Debug.LogError("The key " + key + " was not found!");
             return 0f;
         }
     }

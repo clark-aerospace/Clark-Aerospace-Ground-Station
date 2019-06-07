@@ -206,6 +206,11 @@ namespace UnityEngine.UI.Extensions
 			}
 		}
 
+		public void SetSelectedIndex(int index) {
+			_selectedIndex = index;
+			UpdateSelected();
+		}
+
 		private void OnItemClicked(int indx)
 		{
 			//Debug.Log("item " + indx + " clicked");

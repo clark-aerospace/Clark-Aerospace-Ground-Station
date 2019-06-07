@@ -4,6 +4,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets#, QtMacExtras
 Qt = QtCore.Qt
 import binascii
 
+"""
+/dev/cu.usbserial-AK06RGGT
+
+"""
 class Window(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(Window, self).__init__(parent)
@@ -18,7 +22,7 @@ class Window(QtWidgets.QMainWindow):
             self.ser.stopbits = serial.STOPBITS_ONE
             self.ser.rtscts = True
             self.ser.dsrdtr = True
-            self.ser.write_timeout = 100
+            self.ser.write_timeout = 0
             self.serialConnected = True
         except serial.serialutil.SerialException:
             pass
@@ -144,9 +148,9 @@ class Window(QtWidgets.QMainWindow):
             if (ctime > 32):
                 self.posInfo_para.setChecked(True)
 
-            ctime += 1
+            ctime += 3
             if (self.serialConnected): self.SendData()
-            time.sleep(0.1)
+            time.sleep(0.75)
 
         #self.autoButton.setEnabled(True)
         self.posInfo_alt.setReadOnly(False)
@@ -167,7 +171,8 @@ class Window(QtWidgets.QMainWindow):
     def SendData(self):
         print("Send data")
         # dataStruct = struct.Struct('d ? L') # only alt
-        dataStruct = struct.Struct('3s 3d 3d 4d 4d ? L 3s') # 6d + 8d + ? + L
+        dataStruct = struct.Struct('< 3s 2d I 3d 4d 4d ? 3s')
+        #dataStruct = struct.Struct('3s 3d 3d 4d 4d ? L 3s') # 6d + 8d + ? + L
 
         timeEpoch = int(time.time())
 
@@ -175,7 +180,7 @@ class Window(QtWidgets.QMainWindow):
             b"STR",
             self.posInfo_lat.value(),
             self.posInfo_long.value(),
-            self.posInfo_alt.value(),
+            int(self.posInfo_alt.value()),
 
             self.accelInfo_x.value(),
             self.accelInfo_y.value(),
@@ -193,7 +198,7 @@ class Window(QtWidgets.QMainWindow):
 
             self.posInfo_para.isChecked(),
 
-            timeEpoch,
+            # timeEpoch,
             b"END"
         )
 
@@ -205,7 +210,7 @@ class Window(QtWidgets.QMainWindow):
         #     #b"EDRC"
         # )
         packedData = dataStruct.pack(*info)
-        #self.ser.write(packedData)
+        self.ser.write(packedData)
 
         print("Length of packed data is " + str(len(packedData)))
         print(binascii.hexlify(packedData))

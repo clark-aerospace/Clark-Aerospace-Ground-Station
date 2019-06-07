@@ -247,11 +247,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -686,7 +686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1103739376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 1911031379}
   - component: {fileID: 1911031381}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: GraphObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,6 +918,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab6e3bc2773d46e3b17a6cbfbbab783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useSimplification: 1
+  simplificationAmt: 1
+  addTestPoints: 1
+  scalePoints: 1
   uiLineRenderer: {fileID: 0}
   gridRenderer: {fileID: 0}
   rectTransform: {fileID: 0}
@@ -931,6 +935,10 @@ MonoBehaviour:
   ySpacePerLine: 1
   xAxisMaxLabel: {fileID: 0}
   xAxisMinLabel: {fileID: 0}
+  yAxisMinLabel: {fileID: 0}
+  yAxisMaxLabel: {fileID: 0}
+  xAxisLabel: {fileID: 0}
+  yAxisLabel: {fileID: 0}
   defaultTextFont: {fileID: 11400000, guid: 51f376482686f491ebd0e020f8cb4162, type: 2}
   scrolleyThing: {fileID: 1103739376}
   scrolleyThing_Label: {fileID: 42781619}

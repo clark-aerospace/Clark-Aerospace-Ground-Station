@@ -43,7 +43,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minMaxValues: {x: 50, y: 200}
   suffix: " \xB0C"
-  id: tmp_airbrakes
+  id: temp_airbrakes
   buttonEnabled: 0
   buttonText: 
   guiInstance: {fileID: 0}

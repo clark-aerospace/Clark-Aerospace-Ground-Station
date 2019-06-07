@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
@@ -13,6 +14,11 @@ public class Graph : MonoBehaviour
         Y = 1
     }
     private List<Vector2> points = new List<Vector2>();
+
+    public bool useSimplification = true;
+    public int simplificationAmt = 0;
+    public bool addTestPoints = false;
+    public bool scalePoints = true;
 
     public UILineRenderer uiLineRenderer;
     public UIGridRenderer gridRenderer;
@@ -38,7 +44,7 @@ public class Graph : MonoBehaviour
     public float yPadding = 1f;
 
     float currentYPt = 5;
-    float time = 4;
+    float time = 0;
 
     int thing = 0;
 
@@ -67,6 +73,14 @@ public class Graph : MonoBehaviour
         uiLineRenderer.transform.SetParent(transform, false);
         uiLineRenderer.LineThickness = 3;
 
+        RectTransform rT = uiLineRenderer.rectTransform;
+        rT.anchorMax = new Vector2(1,1);
+        rT.anchorMin = new Vector2(0,0);
+        rT.anchoredPosition = new Vector2(0,0);
+        rT.pivot = new Vector2(0.5f,0.5f);
+        rT.offsetMax = new Vector2(1,1);
+        rT.offsetMin = new Vector2(0,0);
+
 
         gridRenderer = gameObject.AddComponent<UIGridRenderer>();
         gridRenderer.color = new Color(0.5f, 0.5f, 0.5f);
@@ -81,12 +95,12 @@ public class Graph : MonoBehaviour
         // dotImage.useSpriteMesh = true;
         // dotImage.rectTransform.sizeDelta = new Vector2(10,10);
 
-        mFilter = new GameObject("Area Mesh").AddComponent<MeshFilter>();
-        mFilter.transform.SetParent(transform, false);
-        mRenderer = mFilter.gameObject.AddComponent<MeshRenderer>();
+        // mFilter = new GameObject("Area Mesh").AddComponent<MeshFilter>();
+        // mFilter.transform.SetParent(transform, false);
+        // mRenderer = mFilter.gameObject.AddComponent<MeshRenderer>();
 
-        mesh = new Mesh();
-        mFilter.mesh = mesh;
+        // mesh = new Mesh();
+        // mFilter.mesh = mesh;
 
         // Create the X axis Max label
         xAxisMaxLabel = new GameObject("X Axis Max Label").AddComponent<TextMeshProUGUI>();
@@ -169,21 +183,21 @@ public class Graph : MonoBehaviour
         xAxisLabel.alignment = TextAlignmentOptions.Center;
         xAxisLabel.text = "X Axis";
 
-        AddPoint(0, 0);
-        AddPoint(1, 2);
-        AddPoint(2, 3);
-        AddPoint(3, 5);
-        AddPoint(4, 6);
-        AddPoint(5, 7);
-        AddPoint(6, 8);
-        AddPoint(7, 10);
-        AddPoint(8, 12);
-        AddPoint(9, 13);
-        AddPoint(10, 15);
+        // AddPoint(0, 0);
+        // AddPoint(1, 2);
+        // AddPoint(2, 3);
+        // AddPoint(3, 5);
+        // AddPoint(4, 6);
+        // AddPoint(5, 7);
+        // AddPoint(6, 8);
+        // AddPoint(7, 10);
+        // AddPoint(8, 12);
+        // AddPoint(9, 13);
+        // AddPoint(10, 15);
         // AddPoint(11, 17);
         // AddPoint(12, 19);
-        // AddPoint(13, 20);
-        // AddPoint(14, 21);
+        // AddPoint(13, 16);
+        // AddPoint(14, 20);
         // AddPoint(15, 24);
         // AddPoint(16, 27);
         // AddPoint(17, 30);
@@ -200,8 +214,9 @@ public class Graph : MonoBehaviour
     }
 
     public void Update() {
-        // if (thing >= 40) {AddTestPoint();}
-        // thing++;
+        return;
+        if (thing >= 40 && addTestPoints) {AddTestPoint();}
+        if (addTestPoints) {thing++;}
 
         ResetLineRenderer();
         SetLineColor();
@@ -217,6 +232,7 @@ public class Graph : MonoBehaviour
     public void AddTestPoint() {
         currentYPt = currentYPt + Random.Range(-1f, 2f);
         AddPoint(time, currentYPt);
+        Debug.Log(time.ToString() + " , " + currentYPt.ToString());
         time++;
         thing = 0;
     }
@@ -282,12 +298,14 @@ public class Graph : MonoBehaviour
 
     }
 
+    /// <summary>Set the color of the graph line</summary>
     public void SetLineColor() {
         uiLineRenderer.color = color;
         if (dotImage != null) {dotImage.color = color;}
 
     }
 
+    /// <summary> Add a point at coordinates (x,y) </summary>
     public void AddPoint(float x, float y) {
 
         // Ensure only one point exists for each x
@@ -321,6 +339,7 @@ public class Graph : MonoBehaviour
         }
     }
 
+    /// <summary>Get the interpolated Vector2 at a given point</summary>
     public Vector2 GetInterpolatedValue(float xPosition) {
         // find the nearest two defined x points
 
@@ -344,6 +363,7 @@ public class Graph : MonoBehaviour
         return lerpedVec;
     }
 
+    /// <summary>Returns True if there is a point at the specified X value.</summary>
     public bool HasValueAtX(float val) {
         foreach (Vector2 pt in points) {
             if (pt.x == val) {
@@ -353,6 +373,7 @@ public class Graph : MonoBehaviour
         return false;
     }
 
+    /// <summary>Returns the point with a given X value.</summary>
     public Vector2 ValueAtX(float val) {
         foreach (Vector2 pt in points) {
             if (pt.x == val) {
@@ -366,7 +387,6 @@ public class Graph : MonoBehaviour
         Vector2 biggestPoint = Vector2.negativeInfinity;
 
         if (scaled) {
-            //biggestPoint = ScalePoint(biggestPoint);
             return rectTransform.rect.max;
         }
 
@@ -377,13 +397,14 @@ public class Graph : MonoBehaviour
 
 
         if (biggestPoint == Vector2.negativeInfinity) {return Vector2.one;}
+        Debug.Log("Biggest value on " + axis.ToString() + " is " + biggestPoint.ToString());
         return biggestPoint;
     }
 
     public Vector2 GetMinValue(Axis axis, bool scaled = false) {
         Vector2 smallestPoint = Vector2.positiveInfinity;
+
         if (scaled) {
-            //biggestPoint = ScalePoint(biggestPoint);
             return rectTransform.rect.min;
         }
 
@@ -399,7 +420,18 @@ public class Graph : MonoBehaviour
     }
 
     private void ResetLineRenderer() {
-        uiLineRenderer.Points = ScaledPoints(points.ToArray());
+        if (points.Count > 0) {
+            //uiLineRenderer.Points = ScaledPoints(useSimplification ? DouglasPeuckerLineSimplification(points.ToArray(), simplificationAmt) : points.ToArray());
+
+            List<Vector2> simplifiedPointList = new List<Vector2>();
+            LineUtility.Simplify(points, simplificationAmt, simplifiedPointList);
+
+            uiLineRenderer.Points = useSimplification ? simplifiedPointList.ToArray() : points.ToArray();
+
+            if (scalePoints) {
+                uiLineRenderer.Points = ScaledPoints(uiLineRenderer.Points);
+            }
+        }
     }
 
     public void GetTickInterval() {
@@ -415,13 +447,13 @@ public class Graph : MonoBehaviour
     
         float xTicks = xRange / xSpacePerLine;
 
-        gridRenderer.GridColumns = (int)xTicks;
+        gridRenderer.GridColumns = Mathf.CeilToInt(xTicks);
 
 
         float yRange = GetMaxValue(Axis.Y, false).y - GetMinValue(Axis.Y, false).y;
         ySpacePerLine = CalcStepSize(yRange, 5f);
         float yTicks = yRange / ySpacePerLine;
-        gridRenderer.GridRows = (int)yTicks;
+        gridRenderer.GridRows = Mathf.CeilToInt(yTicks);
     }
 
     public static float CalcStepSize(float range, float targetSteps)
@@ -446,123 +478,6 @@ public class Graph : MonoBehaviour
 
         return magMsd*magPow;
     }
-
-    // public void DrawGridLines() {
-    //     // The line needs to start at the TOP LEFT corner (min x, max y) and go to
-    //     // the TOP RIGHT corner (max x, max y). THEN, move one unit down (max x, max y - 1)
-    //     // and then back to (min x, max y - 1)
-
-    //     Vector3 startPos = new Vector3(GetMinValue(Axis.X, true).x, GetMaxValue(Axis.Y, true).y, 0f);
-
-
-
-    //     Vector3 endPos = new Vector3(GetMaxValue(Axis.X, true).x, GetMaxValue(Axis.Y, true).y, 0f);
-
-
-
-    //     int numberOfVertsY = ((int)(GetMaxValue(Axis.Y).y) * 2) + 2;
-
-    //     int numberOfVertsX = ((int)(GetMaxValue(Axis.X).x) * 2) + 1;
-
-    //     int numberOfVerts = numberOfVertsY + numberOfVertsX;
-
-
-    //     gridLineRenderer.positionCount = numberOfVerts;
-    //     //print(numberOfVerts);
-    //     Vector3[] pos = new Vector3[numberOfVerts];
-    //     pos[0] = startPos;
-
-    //     Debug.Log(ScalePoint(Vector2.one));
-
-    //     float yUnitAmt = GetYStep();
-    //     float xUnitAmt = GetXStep();
-    //     Debug.Log("Y unit amt: " + yUnitAmt.ToString());
-
-    //     int status = 0;
-    //     // 0 = moving right
-    //     // 1 = moving down after having moved right
-    //     // 2 = moving left
-    //     // 3 = moving down after having moved left
-
-    //     Vector3 currentPos = new Vector3(GetMinValue(Axis.X, true).x, GetMaxValue(Axis.Y, true).y, 0f);
-
-    //     for (int i = 1; i < numberOfVertsY; i++) {
-    //         //Debug.Log("loop iteration " + i.ToString());
-    //         if (status == 0) {
-    //             //Debug.Log("moving right");
-    //             currentPos.x = GetMaxValue(Axis.X, true).x;
-    //             status = 1;
-    //         }
-
-    //         else if (status == 1) {
-    //             //Debug.Log("moving down");
-    //             currentPos.y -= yUnitAmt;
-    //             status = 2;
-    //         }
-
-    //         else if (status == 2) {
-    //             //Debug.Log("moving left");
-    //             currentPos.x = GetMinValue(Axis.X, true).x;
-    //             status = 3;
-    //         } else if (status == 3) {
-    //             //Debug.Log("moving down");
-    //             currentPos.y -= yUnitAmt;
-    //             status = 0;
-    //         }
-
-    //         pos[i] = currentPos;
-    //     }
-
-    //     bool endedOnRight;
-
-    //     if (status == 0) {
-    //         endedOnRight = true;
-    //     } else {
-    //         endedOnRight = false;
-    //     }
-
-    //     // the Ys are taken care of, now for the Xs
-
-    //     status = 0;
-    //     // 0 = moving up
-    //     // 1 = moving left after having moved up
-    //     // 2 = moving down
-    //     // 3 = moving left after having moved down
-
-    //     for (int i = numberOfVertsY; i < numberOfVerts; i++) {
-    //         if (status == 0) {
-    //             currentPos.y = GetMaxValue(Axis.Y, true).y;
-    //             status = 1;
-    //         }
-
-    //         else if (status == 1) {
-    //             currentPos.x += endedOnRight ? xUnitAmt : -(xUnitAmt);
-    //             status = 2;
-    //         }
-
-    //         else if (status == 2) {
-    //             currentPos.y = GetMinValue(Axis.Y, true).y;
-    //             status = 3;
-    //         }
-
-    //         else if (status == 3) {
-    //             currentPos.x += endedOnRight ? -xUnitAmt : (xUnitAmt);
-    //             status = 0;
-    //         }
-
-    //         pos[i] = currentPos;
-    //     }
-
-    //     gridLineRenderer.SetPositions(pos);
-    //     gridLineRenderer.startWidth = 1f;
-    //     gridLineRenderer.endWidth = 1f;
-
-
-
-    //     // gridLineRenderer.startColor = new Color(0.3f, 0.3f, 0.3f, 0.7f);
-    //     // gridLineRenderer.endColor = new Color(0.3f, 0.3f, 0.3f, 0.7f);
-
-    // }
     
     public float GetYStep() {
         // Return the world-space units that correspond to one graph-unit on the Y axis
@@ -582,7 +497,6 @@ public class Graph : MonoBehaviour
     }
 
     public Vector3[] Vec2ArrayToVec3Array(Vector2[] val) {
-        //Debug.LogError(val);
         if (val == null) {return null;}
         Vector3[] outval = new Vector3[val.Length];
 
@@ -628,12 +542,64 @@ public class Graph : MonoBehaviour
     }
 
     public Vector2 ScalePoint(Vector2 val) {
-        // float maxX = GetMaxValue(Axis.X).x == 0 ? 1 : GetMaxValue(Axis.X).x;
-        // float maxY = GetMaxValue(Axis.Y).y == 0 ? 1 : GetMaxValue(Axis.Y).y;
-
         float maxX = ((gridRenderer.GridColumns + 1) * xSpacePerLine);
         float maxY = ((gridRenderer.GridRows + 1) * ySpacePerLine);
         return new Vector2(((val.x / maxX * rectTransform.rect.width) - (rectTransform.pivot.x * rectTransform.rect.width)), ((val.y / maxY * rectTransform.rect.height) - (rectTransform.pivot.y * rectTransform.rect.height)));
+    }
+
+    private Vector2[] DouglasPeuckerLineSimplification(Vector2[] inval, int epsilon) {
+        int dmax = 0;
+        int index = 0;
+        int end = inval.Length;
+
+        for (int i = 1; i < end; i++) {
+            int d = GetPerpendicularDistance(inval[i], inval[0], inval[end - 1]);
+            if (d > dmax) {
+                index = i;
+                dmax = d;
+            }
+        }
+
+        List<Vector2> result = new List<Vector2>();
+
+        if (dmax > epsilon) {
+
+            Vector2[] in_zero_to_index = inval.Take(index).ToArray();
+            Vector2[] in_index_to_end = inval.Skip(index).ToArray();
+            Vector2[] recursiveOne = DouglasPeuckerLineSimplification(in_zero_to_index, epsilon);
+            Vector2[] recursiveTwo = DouglasPeuckerLineSimplification(in_index_to_end, epsilon);
+
+            // some line I don't understand should go here
+            // ResultList[] = {recursiveOne[1...recursiveLength.Length-1], recursiveTwo[1...length(recursiveTwo)]}
+
+            for (int i = 0; i < recursiveOne.Length; i++) {
+                result.Add(recursiveOne[i]);
+            }
+
+            for (int i = 0; i < recursiveTwo.Length; i++) {
+                result.Add(recursiveTwo[i]);
+            }
+            
+        }
+        else {
+            Debug.Log("The length of inval is " + inval.Length.ToString());
+            Debug.Log(inval[inval.Length - 1]);
+            result = new List<Vector2> {inval[0], inval[inval.Length - 1]};
+
+        }
+        return result.ToArray();
+    }
+
+    public int GetPerpendicularDistance(Vector2 inpt, Vector2 line_pt1, Vector2 line_pt2) {
+        float numerator = Mathf.Abs(
+            (line_pt2.y - line_pt1.y) * inpt.x - (line_pt2.x - line_pt1.x) * inpt.y + line_pt2.x * line_pt1.y - line_pt2.y * line_pt1.x
+        );
+
+        float denominator = Mathf.Sqrt(
+            Mathf.Pow(line_pt2.y - line_pt1.y, 2f) + Mathf.Pow(line_pt2.x - line_pt1.x, 2f)
+        );
+
+        return (int)(numerator / denominator);
     }
 
 }

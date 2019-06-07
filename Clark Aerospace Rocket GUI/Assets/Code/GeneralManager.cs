@@ -13,6 +13,8 @@ public class GeneralManager : MonoBehaviour
     public TMP_InputField arduinoBaudRateInput;
     public TMP_InputField launchTimeInput;
 
+    public TMP_InputField timeoutInput;
+
     public Button openSettingsButton;
     public Button saveSettingsButton;
     public GameObject settingsPanel;
@@ -23,7 +25,8 @@ public class GeneralManager : MonoBehaviour
     public Button openTimelineButton;
     public Button closeTimelineButton;
     public GameObject timelinePanel;
-    public Image timelineBar;
+    public Image timelineBarTakeoffToApogee;
+    public Image timelineBarApogeeToLanding;
 
     public int launchEpochTime;
 
@@ -38,6 +41,8 @@ public class GeneralManager : MonoBehaviour
 
         openTimelineButton.onClick.AddListener(OpenTimeline);
         closeTimelineButton.onClick.AddListener(CloseTimeline);
+
+        departureTime = DateTime.Parse(PlayerPrefs.GetString("launch_time", "00:00"));
 
     }
 
@@ -61,21 +66,28 @@ public class GeneralManager : MonoBehaviour
 
         //arduinoPortsList.OverrideHighlighted = true;
         //arduinoPortsList.SelectedItem = arduinoPortsList.Items.Find(item => item.ID == PlayerPrefs.GetString("port_name"));
-        arduinoBaudRateInput.text = PlayerPrefs.GetInt("port_baud_rate").ToString();
+        arduinoBaudRateInput.text = PlayerPrefs.GetInt("port_baud_rate", 57600).ToString();
+        timeoutInput.text = PlayerPrefs.GetInt("port_timeout", 0).ToString();
+        launchTimeInput.text = PlayerPrefs.GetString("launch_time", "00:00");
+        arduinoPortsList.SetSelectedIndex(arduinoPortsList.Items.FindIndex(item => item.ID == PlayerPrefs.GetString("port_name", "/dev/cu.usbserial-AK06RGGT")));
     }
 
     public void SaveSettings() {
+        settingsPanel.SetActive(false);
         PlayerPrefs.SetString("port_name", arduinoPortsList.SelectedItem.ID);
         PlayerPrefs.SetInt("port_baud_rate", int.Parse(arduinoBaudRateInput.text));
+        PlayerPrefs.SetInt("port_timeout", int.Parse(timeoutInput.text));
+        PlayerPrefs.SetString("launch_time", launchTimeInput.text);
 
         ArduinoReciever.reciever.serialPort.Close();
 
         ArduinoReciever.reciever.serialPort.PortName = arduinoPortsList.SelectedItem.ID;
         ArduinoReciever.reciever.serialPort.BaudRate = int.Parse(arduinoBaudRateInput.text);
+        ArduinoReciever.reciever.serialPort.ReadTimeout = int.Parse(timeoutInput.text);
         ArduinoReciever.reciever.serialPort.Open();
 
         departureTime = DateTime.Parse(launchTimeInput.text);
-        settingsPanel.SetActive(false);
+        
     }
 
     public void OpenTimeline() {
@@ -107,6 +119,7 @@ public class GeneralManager : MonoBehaviour
         launchTimerLabel.text = tMinus;
         bigLaunchTimerLabel.text = tMinus;
 
-        timelineBar.fillAmount = Mathf.InverseLerp(0f, 20f * 60f, (float)diff.TotalSeconds);
+        timelineBarTakeoffToApogee.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
+        timelineBarApogeeToLanding.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
     }
 }

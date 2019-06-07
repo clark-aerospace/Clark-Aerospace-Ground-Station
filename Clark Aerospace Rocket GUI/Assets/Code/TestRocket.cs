@@ -11,6 +11,10 @@ public class TestRocket : MonoBehaviour
     public TextMeshProUGUI lastUpdatedLabel;
     public TextMeshProUGUI timeSinceLastDataLabel;
 
+    public TextMeshProUGUI latLabel;
+    public TextMeshProUGUI longLabel;
+    public TextMeshProUGUI ambientTempLabel;
+
     public System.DateTime dateOfNewData;
 
     public Transform mapTransform;
@@ -56,11 +60,14 @@ public class TestRocket : MonoBehaviour
     }
 
     void UpdatePosition() {
-        transform.position = new Vector3(0f, ArduinoReciever.GetValue("ALT"), 0f);
+        transform.position = new Vector3(0f, ArduinoReciever.GetValue("pos_alt"), 0f);
         rocketObj.transform.rotation = new Quaternion(ArduinoReciever.GetValue("rot_x"), ArduinoReciever.GetValue("rot_y"), ArduinoReciever.GetValue("rot_z"), ArduinoReciever.GetValue("rot_w"));
-        altitudeLabel.text = ArduinoReciever.GetValue("ALT").ToString() + " ft";
+        altitudeLabel.text = ArduinoReciever.GetValue("pos_alt").ToString() + " ft";
 
-        parachuteObj.SetActive(ArduinoReciever.GetValue("para") != 0);
+        parachuteObj.SetActive(ArduinoReciever.GetValue("para") != 0f);
+
+
+
         //parachuteObj.SetActive(true);
         //parachuteObj.transform.rotation = Quaternion.Inverse(transform.rotation);
         //transform.Translate(0f, 0.5f, 0f);
@@ -71,6 +78,10 @@ public class TestRocket : MonoBehaviour
         timeThing = 0f;
 
         dateOfNewData = System.DateTime.Now;
+
+        latLabel.text = ArduinoReciever.GetValue("pos_lat").ToString("0.##") + "°";
+        longLabel.text = ArduinoReciever.GetValue("pos_long").ToString("0.##") + "°";
+        ambientTempLabel.text = ArduinoReciever.GetValue("temp_ambient").ToString("0.#") + "°C";
 
         // lastUpdatedLabel.text = "Last updated " + dateOfNewData.ToLongTimeString() + " " + dateOfNewData.ToShortDateString();
         //altitudeLabel.text = "Alt: " + transform.position.y.ToString(); 
