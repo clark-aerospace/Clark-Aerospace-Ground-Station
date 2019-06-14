@@ -21,6 +21,8 @@ public class MeasurementItem : ScriptableObject
     public Button button;
     public Material mat;
     public Graph graphUI;
+    public string graphXAxisLabel;
+    public string graphYAxisLabel;
 
 
 }

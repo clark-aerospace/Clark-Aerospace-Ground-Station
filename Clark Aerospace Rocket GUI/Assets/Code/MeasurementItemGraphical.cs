@@ -6,6 +6,7 @@ using TMPro;
 public class MeasurementItemGraphical : MonoBehaviour
 {
     public MeasurementItem measurementItem;
+    public int timer = 0;
     public void SetUpUI(MeasurementItem mI, Transform list) {
         measurementItem = mI;
         measurementItem.guiInstance = Instantiate(RocketPartPopulator.populator.measurementPrefab);
@@ -18,6 +19,9 @@ public class MeasurementItemGraphical : MonoBehaviour
         measurementItem.button.transform.Find("ButtonText").GetComponent<TextMeshProUGUI>().text = measurementItem.buttonText;
 
         measurementItem.graphUI = measurementItem.guiInstance.transform.Find("GraphContainer/Graph").GetComponent<Graph>();
+        measurementItem.graphUI.XAxisLabel = measurementItem.graphXAxisLabel;
+        measurementItem.graphUI.YAxisLabel = measurementItem.graphYAxisLabel;
+        //measurementItem.graphUI.addTestPoints = true;
 
         GraphDisplayer disp = measurementItem.guiInstance.transform.Find("GraphContainer").GetComponent<GraphDisplayer>();
         disp.parentRectTransform = GetComponent<RectTransform>();
@@ -26,8 +30,11 @@ public class MeasurementItemGraphical : MonoBehaviour
     void Update()
     {
         float val = ArduinoReciever.GetValue(measurementItem.id);
-
+        if (val == 0f) {return;}
         measurementItem.infoLabel.text = val.ToString("0.0") + measurementItem.suffix;
+
+        if (timer >= 8) {measurementItem.graphUI.AddPoint(Time.time, val); timer = 0;}
+        timer++;
 
 
         Color colOut = measurementItem.gradient.Evaluate(Mathf.InverseLerp(measurementItem.minMaxValues.x, measurementItem.minMaxValues.y, val));

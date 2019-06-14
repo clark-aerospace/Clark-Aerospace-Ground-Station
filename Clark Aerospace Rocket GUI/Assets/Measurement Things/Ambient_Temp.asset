@@ -52,3 +52,5 @@ MonoBehaviour:
   button: {fileID: 0}
   mat: {fileID: 0}
   graphUI: {fileID: 0}
+  graphXAxisLabel: Time
+  graphYAxisLabel: "Temp (\xBAC)"

@@ -9,6 +9,29 @@ using TMPro;
 public class Graph : MonoBehaviour
 {
 
+    public string XAxisLabel {
+        set {
+            _xAxisLabelText = value;
+            if (xAxisLabel != null) {xAxisLabel.text = value;}
+        }
+        get {
+            return _xAxisLabelText;
+        }
+    }
+
+    public string YAxisLabel {
+        set {
+            _yAxisLabelText = value;
+            if (yAxisLabel != null) {yAxisLabel.text = value;}
+        }
+        get {
+            return _yAxisLabelText;
+        }
+    }
+
+    private string _xAxisLabelText, _yAxisLabelText;
+
+
     public enum Axis {
         X = 0,
         Y = 1
@@ -19,6 +42,9 @@ public class Graph : MonoBehaviour
     public int simplificationAmt = 0;
     public bool addTestPoints = false;
     public bool scalePoints = true;
+
+    // if true, the x axis won't be scaled to set amounts
+    public bool xAxisFluidMax = false;
 
     public UILineRenderer uiLineRenderer;
     public UIGridRenderer gridRenderer;
@@ -44,7 +70,7 @@ public class Graph : MonoBehaviour
     public float yPadding = 1f;
 
     float currentYPt = 5;
-    float time = 0;
+    float time = 3;
 
     int thing = 0;
 
@@ -66,10 +92,15 @@ public class Graph : MonoBehaviour
     public TextMeshProUGUI scrolleyThing_Label;
 
 
+    [Header("TESTING")]
+    public TextMeshProUGUI latestPointBox;
+
+
 
     public void Start() {
 
         uiLineRenderer = new GameObject("Graph Line Renderer").AddComponent<UILineRenderer>();
+        uiLineRenderer.RelativeSize = true;
         uiLineRenderer.transform.SetParent(transform, false);
         uiLineRenderer.LineThickness = 3;
 
@@ -176,15 +207,15 @@ public class Graph : MonoBehaviour
         xAxisLabel.rectTransform.pivot = new Vector2(0.5f,1f);
         xAxisLabel.rectTransform.anchorMax = new Vector2(0.5f,0f);
         xAxisLabel.rectTransform.anchorMin = new Vector2(0.5f,0f);
-        xAxisLabel.rectTransform.anchoredPosition = new Vector2(0f, -10f);
+        xAxisLabel.rectTransform.anchoredPosition = new Vector2(0f, 0f);
         xAxisLabel.rectTransform.sizeDelta = new Vector2(100,25);
         xAxisLabel.font = defaultTextFont;
         xAxisLabel.fontSize = 15;
         xAxisLabel.alignment = TextAlignmentOptions.Center;
         xAxisLabel.text = "X Axis";
 
-        // AddPoint(0, 0);
-        // AddPoint(1, 2);
+        AddPoint(0, 0);
+        // AddPoint(1, 1);
         // AddPoint(2, 3);
         // AddPoint(3, 5);
         // AddPoint(4, 6);
@@ -202,6 +233,7 @@ public class Graph : MonoBehaviour
         // AddPoint(16, 27);
         // AddPoint(17, 30);
         // AddPoint(18, 34);
+        // ResetLineRenderer();
 
         //SetLineColor();
         
@@ -214,27 +246,43 @@ public class Graph : MonoBehaviour
     }
 
     public void Update() {
-        return;
-        if (thing >= 40 && addTestPoints) {AddTestPoint();}
-        if (addTestPoints) {thing++;}
+        //return;
 
-        ResetLineRenderer();
+        xAxisLabel.text = _xAxisLabelText;
+        yAxisLabel.text = _yAxisLabelText;
+
         SetLineColor();
         //OnMouseOver();
         //GenerateMesh();
-        GetTickInterval();
+
+        if (thing >= 5 && addTestPoints) {AddTestPoint();}
+        if (addTestPoints) {thing++;}
+
+        ResetLineRenderer();
+        Vector2 intervals = GetTickInterval();
+        gridRenderer.GridColumns = Mathf.CeilToInt(intervals.x);
+        Debug.LogWarning((intervals.y));
+        gridRenderer.GridRows = Mathf.CeilToInt(intervals.y);
 
         
-        xAxisMaxLabel.text = (gridRenderer.GridColumns * xSpacePerLine).ToString();
+        xAxisMaxLabel.text = xAxisFluidMax ? "Now" : (gridRenderer.GridColumns * xSpacePerLine).ToString();
         yAxisMaxLabel.text = (gridRenderer.GridRows * ySpacePerLine).ToString();
+
+
+
+
+        Debug.Log("------");
     }
 
     public void AddTestPoint() {
         currentYPt = currentYPt + Random.Range(-1f, 2f);
         AddPoint(time, currentYPt);
-        Debug.Log(time.ToString() + " , " + currentYPt.ToString());
+        //Debug.Log(time.ToString() + " , " + currentYPt.ToString());
         time++;
         thing = 0;
+
+        //latestPointBox.text = time.ToString() + " , " + currentYPt.ToString();
+        //ResetLineRenderer();
     }
 
 
@@ -313,6 +361,7 @@ public class Graph : MonoBehaviour
             points.Add(new Vector2(x, y));
         }
 
+        Debug.Log("ADDING POINT " + x.ToString() + "," + y.ToString());
         //ResetLineRenderer();
         
     }
@@ -397,7 +446,7 @@ public class Graph : MonoBehaviour
 
 
         if (biggestPoint == Vector2.negativeInfinity) {return Vector2.one;}
-        Debug.Log("Biggest value on " + axis.ToString() + " is " + biggestPoint.ToString());
+        //Debug.Log("Biggest value on " + axis.ToString() + " is " + biggestPoint.ToString());
         return biggestPoint;
     }
 
@@ -434,26 +483,40 @@ public class Graph : MonoBehaviour
         }
     }
 
-    public void GetTickInterval() {
-        float xRange = GetMaxValue(Axis.X, false).x - GetMinValue(Axis.X, false).x;
+
+    // public Vector2 GetTickIntervalNew() {
+    //     float xRange = GetMaxValue(Axis.X, false).x - GetMinValue(Axis.X, false).x;
+    //     float yRange;
+    // }
+
+    public Vector2 GetTickInterval() {
+        Debug.Log("GETTING TICK INTERVAL");
+
+        if (points.Count == 0) {
+            return new Vector2(5,5);
+        }
+        float xRange = Mathf.Ceil(GetMaxValue(Axis.X, false).x - GetMinValue(Axis.X, false).x);
 
         // We now have the range of X values. Let's find the CLOSEST number
         // to it that fits a good number (power of 1, 5, or 10).
 
-        xSpacePerLine = CalcStepSize(xRange, 8f);
+        xSpacePerLine = CalcStepSize(xRange == 0 ? 1f : xRange, 16f);
         //Debug.Log("Step size is " + xSpacePerLine.ToString());
 
         // the number of steps would be 
     
         float xTicks = xRange / xSpacePerLine;
 
-        gridRenderer.GridColumns = Mathf.CeilToInt(xTicks);
+        //Debug.Log("Max Y is " + GetMaxValue(Axis.Y, false).y.ToString());
 
-
-        float yRange = GetMaxValue(Axis.Y, false).y - GetMinValue(Axis.Y, false).y;
-        ySpacePerLine = CalcStepSize(yRange, 5f);
+        float yRange = Mathf.Ceil(GetMaxValue(Axis.Y, false).y - GetMinValue(Axis.Y, false).y);
+        ySpacePerLine = CalcStepSize(yRange == 0 ? 1f : yRange, 10f);
         float yTicks = yRange / ySpacePerLine;
-        gridRenderer.GridRows = Mathf.CeilToInt(yTicks);
+
+        Debug.Log("Absolute max X is " + GetMaxValue(Axis.X, false).x.ToString() + ", upper bound is " + (xSpacePerLine * xTicks).ToString());
+        Debug.Log("Absolute max Y is " + GetMaxValue(Axis.Y, false).y.ToString() + ", upper bound is " + (ySpacePerLine * yTicks).ToString());
+
+        return new Vector2(xTicks, yTicks);
     }
 
     public static float CalcStepSize(float range, float targetSteps)
@@ -542,9 +605,24 @@ public class Graph : MonoBehaviour
     }
 
     public Vector2 ScalePoint(Vector2 val) {
-        float maxX = ((gridRenderer.GridColumns + 1) * xSpacePerLine);
-        float maxY = ((gridRenderer.GridRows + 1) * ySpacePerLine);
-        return new Vector2(((val.x / maxX * rectTransform.rect.width) - (rectTransform.pivot.x * rectTransform.rect.width)), ((val.y / maxY * rectTransform.rect.height) - (rectTransform.pivot.y * rectTransform.rect.height)));
+        // Vector2 numTicks = GetTickInterval(true);
+    
+        float maxX = ((gridRenderer.GridColumns) * xSpacePerLine);
+        float maxY = ((gridRenderer.GridRows) * ySpacePerLine);
+
+        // float maxX = GetMaxValue(Axis.X, false).x;
+        // float maxY = GetMaxValue(Axis.Y, false).y;
+
+        return new Vector2(
+            val.x / (maxX == 0 ? 1 : maxX),
+            val.y / (maxY == 0 ? 1 : maxY)
+        );
+
+        // return new Vector2(
+        //     (val.x / Mathf.CeilToInt(numTicks.x)),
+        //     (val.y / Mathf.CeilToInt(numTicks.y))
+        // );
+        //return new Vector2(((val.x / maxX * rectTransform.rect.width) - (rectTransform.pivot.x * rectTransform.rect.width)), ((val.y / maxY * rectTransform.rect.height) - (rectTransform.pivot.y * rectTransform.rect.height)));
     }
 
     private Vector2[] DouglasPeuckerLineSimplification(Vector2[] inval, int epsilon) {
@@ -582,8 +660,8 @@ public class Graph : MonoBehaviour
             
         }
         else {
-            Debug.Log("The length of inval is " + inval.Length.ToString());
-            Debug.Log(inval[inval.Length - 1]);
+            //Debug.Log("The length of inval is " + inval.Length.ToString());
+            //Debug.Log(inval[inval.Length - 1]);
             result = new List<Vector2> {inval[0], inval[inval.Length - 1]};
 
         }

@@ -77,7 +77,7 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Thresh: 0.498
+    - _Thresh: 0.258
     - _ThreshHigh: 0.373
     - _ThreshLow: 0
     - _Threshold: 0.5

@@ -33,8 +33,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: -60, y: -35}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -70, y: -70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &473112038386124320
 MonoBehaviour:
@@ -48,6 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab6e3bc2773d46e3b17a6cbfbbab783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useSimplification: 1
+  simplificationAmt: 0
+  addTestPoints: 0
+  scalePoints: 1
+  xAxisFluidMax: 0
   uiLineRenderer: {fileID: 0}
   gridRenderer: {fileID: 0}
   rectTransform: {fileID: 0}
@@ -68,6 +73,7 @@ MonoBehaviour:
   defaultTextFont: {fileID: 11400000, guid: 51f376482686f491ebd0e020f8cb4162, type: 2}
   scrolleyThing: {fileID: 0}
   scrolleyThing_Label: {fileID: 0}
+  latestPointBox: {fileID: 0}
 --- !u!1 &4383019713654896504
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6076851730031537335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -102,10 +108,10 @@ RectTransform:
   m_Father: {fileID: 2803461886905254462}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100.8, y: -35}
-  m_SizeDelta: {x: 201.6, y: 200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1271551733211583531
 CanvasRenderer:

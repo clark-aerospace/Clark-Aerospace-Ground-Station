@@ -6,6 +6,7 @@ import binascii
 
 """
 /dev/cu.usbserial-AK06RGGT
+/dev/cu.usbserial-AL02UU3Z
 
 """
 class Window(QtWidgets.QMainWindow):
@@ -15,7 +16,7 @@ class Window(QtWidgets.QMainWindow):
         self.closeThread = False
         self.simThread = threading.Thread(target=self.DoRocketSim)
         try:
-            self.ser = serial.Serial('/dev/cu.usbserial-AK06RGGT')
+            self.ser = serial.Serial('/dev/cu.usbserial-AL02UU3Z')
             self.ser.baudrate = 57600
             self.ser.bytesize = serial.EIGHTBITS
             self.ser.parity = serial.PARITY_NONE
@@ -92,7 +93,7 @@ class Window(QtWidgets.QMainWindow):
         self.tempInfoLayout = QtWidgets.QFormLayout()
         self.tempInfoLayout.addRow(QtWidgets.QLabel("Payload"), self.tempInfo_payload)
         self.tempInfoLayout.addRow(QtWidgets.QLabel("Avionics"), self.tempInfo_avionics)
-        self.tempInfoLayout.addRow(QtWidgets.QLabel("Airbrakes Curr"), self.tempInfo_airbrakesCurr)
+        #self.tempInfoLayout.addRow(QtWidgets.QLabel("Airbrakes Curr"), self.tempInfo_airbrakesCurr)
         self.tempInfoLayout.addRow(QtWidgets.QLabel("Ambient"), self.tempInfo_ambient)
         self.tempInfo.setLayout(self.tempInfoLayout)
         self.tempInfoLayout.setAlignment(Qt.AlignLeft)
@@ -171,7 +172,7 @@ class Window(QtWidgets.QMainWindow):
     def SendData(self):
         print("Send data")
         # dataStruct = struct.Struct('d ? L') # only alt
-        dataStruct = struct.Struct('< 3s 2d I 3d 4d 4d ? 3s')
+        dataStruct = struct.Struct('< 3s 2d I 3d 4d d 3d ? L 3s')
         #dataStruct = struct.Struct('3s 3d 3d 4d 4d ? L 3s') # 6d + 8d + ? + L
 
         timeEpoch = int(time.time())
@@ -191,14 +192,15 @@ class Window(QtWidgets.QMainWindow):
             self.rotInfo_z.value(),
             self.rotInfo_w.value(),
 
+            0,
+
             self.tempInfo_payload.value(),
             self.tempInfo_avionics.value(),
-            self.tempInfo_airbrakesCurr.value(),
             self.tempInfo_ambient.value(),
 
             self.posInfo_para.isChecked(),
 
-            # timeEpoch,
+            timeEpoch,
             b"END"
         )
 
