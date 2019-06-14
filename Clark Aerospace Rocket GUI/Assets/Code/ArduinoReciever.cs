@@ -41,6 +41,8 @@ public class ArduinoReciever : MonoBehaviour
     public StreamWriter logWriter;
     public StreamReader logReader;
 
+    public FileStream logStream;
+
 
     [Header("Data playback")]
     public bool dataPlaybackMode = false;
@@ -84,9 +86,9 @@ public class ArduinoReciever : MonoBehaviour
         // logging
         logPath = Application.dataPath + "/recorded_data.csv";
         Debug.LogError(logPath);
-        FileStream logStream = File.Open(logPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        logStream = File.Open(logPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
         logWriter = new StreamWriter(logStream);
-        logReader = new StreamReader(logStream);
+
     }
 
     #if UNITY_EDITOR
@@ -132,23 +134,25 @@ public class ArduinoReciever : MonoBehaviour
         bool latestReached = false;
         int targetEpochTime = time;
 
-        string data = "";
 
         if (new FileInfo(logPath).Length == 0) {
             Debug.Log("Empty log file");
             return;
         }
 
-        while (!logReader.EndOfStream)
-        {
-            data = logReader.ReadLine();
-            targetEpochTime = int.Parse(data.Split(new[] {System.Environment.NewLine}, StringSplitOptions.None)[15]);
+        string[] lines = logReader.ReadToEnd().Split('\n');
+        string closestVal = "";
+
+        foreach (string line in lines) {
+            targetEpochTime = int.Parse(line.Split(new[] {System.Environment.NewLine}, StringSplitOptions.None)[15]);
             if (targetEpochTime < time) {
                 break;
+            } else {
+                closestVal = line;
             }
         }
 
-        string[] allData = data.Split(new[] {','}, StringSplitOptions.None);
+        string[] allData = closestVal.Split(',');
 
         float pos_lat = float.Parse(allData[0]);
         float pos_long = float.Parse(allData[1]);
@@ -303,8 +307,6 @@ public class ArduinoReciever : MonoBehaviour
 
         logWriter.Flush();
         Debug.Log("Data written to log file");
-
-
     }
 
     public static int GetCurrentEpochTime() {
@@ -316,11 +318,13 @@ public class ArduinoReciever : MonoBehaviour
     }
 
     public void EnableDataPlayback() {
+        logReader = new StreamReader(logStream);
         dataPlaybackMode = true;
         dataPlaybackTime = ToUnixTime(GeneralManager.manager.departureTime);
     }
 
     public void DisableDataPlayback() {
+        logReader.Close();
         dataPlaybackMode = false;
     }
 
