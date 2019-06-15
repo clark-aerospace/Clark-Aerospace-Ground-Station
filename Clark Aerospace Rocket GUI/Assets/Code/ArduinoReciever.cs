@@ -130,13 +130,14 @@ public class ArduinoReciever : MonoBehaviour
     }
 
     void LoadValuesForTime(int time) {
+        if (!logReader.BaseStream.CanRead) {return;}
+        logReader.BaseStream.Seek(0, SeekOrigin.Begin);
         // loop through each line in the record until we find a time that's larger than the current one
-        bool latestReached = false;
         int targetEpochTime = time;
 
 
         if (new FileInfo(logPath).Length == 0) {
-            Debug.Log("Empty log file");
+            Debug.LogError("Empty log file");
             return;
         }
 
@@ -144,16 +145,23 @@ public class ArduinoReciever : MonoBehaviour
         string closestVal = "";
 
         foreach (string line in lines) {
-            targetEpochTime = int.Parse(line.Split(new[] {System.Environment.NewLine}, StringSplitOptions.None)[15]);
-            if (targetEpochTime < time) {
+            Debug.LogError(line);
+            Debug.LogError("This line has " + line.Split(',').Length.ToString() + " entries");
+            if (line.Split(',').Length < 16) {
+                continue;
+            }
+            targetEpochTime = int.Parse(line.Split(',')[15]);
+            if (targetEpochTime > time) {
                 break;
             } else {
                 closestVal = line;
             }
         }
-
+    
         string[] allData = closestVal.Split(',');
-
+        Debug.Log(allData.Length.ToString() + " should be 16");
+        if (allData.Length < 16) return;
+        Debug.LogError("Current time is " + time + ", closest match found was " + allData[15] + " - alt was " + allData[2].ToString());
         float pos_lat = float.Parse(allData[0]);
         float pos_long = float.Parse(allData[1]);
         float pos_alt = float.Parse(allData[2]);
@@ -285,7 +293,7 @@ public class ArduinoReciever : MonoBehaviour
         lastRecievedEpoch = reader.ReadUInt32();
         dateTimeAtRecieve = DateTime.Now;
 
-
+        logWriter.BaseStream.Seek(0, SeekOrigin.End);
         logWriter.WriteLine(
             pos_lat.ToString() + "," +
             pos_long.ToString() + "," +
@@ -324,12 +332,12 @@ public class ArduinoReciever : MonoBehaviour
     }
 
     public void DisableDataPlayback() {
-        logReader.Close();
+        logReader?.Close();
         dataPlaybackMode = false;
     }
 
     void OnApplicationQuit() {
-        logWriter.Close();
+        logWriter?.Close();
         Debug.Log("Application closing - log writer was closed");
     }
 

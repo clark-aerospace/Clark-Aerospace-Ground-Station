@@ -180,8 +180,8 @@ public class GeneralManager : MonoBehaviour
         replayDataButtonText.text = "Live";
         replayDataButtonImage.color = new Color(1f, 0f, 0.25f, 1f);
         replayDataButtonImage.sprite = liveSprite;
-        ArduinoReciever.reciever.DisableDataPlayback();
         seekButtons.SetActive(false);
+        ArduinoReciever.reciever.DisableDataPlayback();
     }
 
     public static DateTime FromUnixTime(long unixTime)

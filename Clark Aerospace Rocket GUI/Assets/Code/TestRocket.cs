@@ -45,7 +45,7 @@ public class TestRocket : MonoBehaviour
 
             //TimeSpan lagTime = ArduinoReciever.reciever.dateTimeAtRecieve - timeOfLastData;
 
-            string lastRecieved = "Last recieved at " + timeOfLastData.ToLongTimeString() + " ";
+            string lastRecieved = "Last recieved at " + ArduinoReciever.reciever.dateTimeAtRecieve.ToLongTimeString() + " ";
             string sinceLastRecieved = timeSinceLastData.TotalSeconds.ToString("0.##") + " s ago";
             //string lagAmt = "Lag " + lagTime.TotalSeconds.ToString("0.##") + " s";
 
