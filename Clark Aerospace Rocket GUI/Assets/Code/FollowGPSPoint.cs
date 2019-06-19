@@ -11,6 +11,6 @@ public class FollowGPSPoint : MonoBehaviour
 
     void Update()
     {
-        transform.position = map.GeoToWorldPosition(new Mapbox.Utils.Vector2d(lat, lon), false);
+        transform.position = GeneralManager.manager.GetCurrentMap().GeoToWorldPosition(new Mapbox.Utils.Vector2d(lat, lon), false);
     }
 }

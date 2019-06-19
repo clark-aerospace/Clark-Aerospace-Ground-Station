@@ -73,6 +73,7 @@ public class ArduinoReciever : MonoBehaviour
 
         serialPort = new SerialPort(PlayerPrefs.GetString("port_name", "/dev/cu.usbserial-AK06RGGT"), PlayerPrefs.GetInt("port_baud_rate", 57600));
         serialPort.ReadTimeout = 0;
+        serialPort.WriteTimeout = 0;
         serialPort.Parity = Parity.None;
         serialPort.DataBits = 8;
         serialPort.StopBits = StopBits.One;
@@ -132,8 +133,11 @@ public class ArduinoReciever : MonoBehaviour
     void LoadValuesForTime(int time) {
         if (!logReader.BaseStream.CanRead) {return;}
         logReader.BaseStream.Seek(0, SeekOrigin.Begin);
+
+
         // loop through each line in the record until we find a time that's larger than the current one
         int targetEpochTime = time;
+        int targetRelativeTime = time;
 
 
         if (new FileInfo(logPath).Length == 0) {
@@ -150,8 +154,10 @@ public class ArduinoReciever : MonoBehaviour
             if (line.Split(',').Length < 16) {
                 continue;
             }
-            targetEpochTime = int.Parse(line.Split(',')[15]);
-            if (targetEpochTime > time) {
+            //targetEpochTime = int.Parse(line.Split(',')[15]);
+            targetRelativeTime = int.Parse(line.Split(',')[16]);
+
+            if (targetRelativeTime > time) {
                 break;
             } else {
                 closestVal = line;
@@ -310,11 +316,25 @@ public class ArduinoReciever : MonoBehaviour
             temp_avionics.ToString() + "," +
             temp_ambient.ToString() + "," +
             (para_out ? "1" : "0") + "," +
-            GetCurrentEpochTime().ToString()
+            GetCurrentEpochTime().ToString() + 
+            GetSecondsSinceLaunch()
         );
 
         logWriter.Flush();
         Debug.Log("Data written to log file");
+    }
+
+    public string GetSecondsSinceLaunch() {
+        if (GeneralManager.manager.launchQueued) {
+            return (DateTime.Now - GeneralManager.manager.departureTime).TotalSeconds.ToString();
+        }
+        else {
+            return "NA";
+        }
+    }
+
+    public void SendGoMessage() {
+        serialPort.Write(new char[] {'S', 'E', 'N', 'D'}, 0, 4);
     }
 
     public static int GetCurrentEpochTime() {
@@ -328,7 +348,8 @@ public class ArduinoReciever : MonoBehaviour
     public void EnableDataPlayback() {
         logReader = new StreamReader(logStream);
         dataPlaybackMode = true;
-        dataPlaybackTime = ToUnixTime(GeneralManager.manager.departureTime);
+        dataPlaybackTime = 0;
+        //ToUnixTime(GeneralManager.manager.departureTime);
     }
 
     public void DisableDataPlayback() {

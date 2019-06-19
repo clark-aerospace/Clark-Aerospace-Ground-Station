@@ -9,6 +9,8 @@ using TMPro;
 public class Graph : MonoBehaviour
 {
 
+    public static List<Graph> graphs = new List<Graph>();
+
     public string XAxisLabel {
         set {
             _xAxisLabelText = value;
@@ -37,6 +39,7 @@ public class Graph : MonoBehaviour
         Y = 1
     }
     private List<Vector2> points = new List<Vector2>();
+    public int maxValuesOnGraph = 0;
 
     public bool useSimplification = true;
     public int simplificationAmt = 0;
@@ -96,9 +99,14 @@ public class Graph : MonoBehaviour
     public TextMeshProUGUI latestPointBox;
 
 
+    public static void ClearAllGraphs() {
+        foreach (Graph g in graphs) {
+            g.ClearData();
+        }
+    }
 
     public void Start() {
-
+        graphs.Add(this);
         uiLineRenderer = new GameObject("Graph Line Renderer").AddComponent<UILineRenderer>();
         uiLineRenderer.RelativeSize = true;
         uiLineRenderer.transform.SetParent(transform, false);
@@ -214,7 +222,7 @@ public class Graph : MonoBehaviour
         xAxisLabel.alignment = TextAlignmentOptions.Center;
         xAxisLabel.text = "X Axis";
 
-        AddPoint(0, 0);
+
         // AddPoint(1, 1);
         // AddPoint(2, 3);
         // AddPoint(3, 5);
@@ -268,13 +276,25 @@ public class Graph : MonoBehaviour
         xAxisMaxLabel.text = xAxisFluidMax ? "Now" : (gridRenderer.GridColumns * xSpacePerLine).ToString();
         yAxisMaxLabel.text = (gridRenderer.GridRows * ySpacePerLine).ToString();
 
+        //xAxisMinLabel.text = GetMinValue(Axis.X, false).x.ToString("0");
+        //yAxisMinLabel.text = GetMinValue(Axis.Y, false).y.ToString("0");
+
 
 
 
         Debug.Log("------");
     }
 
+    public void ClearData() {
+        Vector2 lastPoint = points[points.Count-1];
+        points.Clear();
+        //AddPoint(0, 0);
+        Update();
+    }
     public void AddTestPoint() {
+        if (points.Count == 0) {
+
+        }
         currentYPt = currentYPt + Random.Range(-1f, 2f);
         AddPoint(time, currentYPt);
         //Debug.Log(time.ToString() + " , " + currentYPt.ToString());
@@ -355,7 +375,9 @@ public class Graph : MonoBehaviour
 
     /// <summary> Add a point at coordinates (x,y) </summary>
     public void AddPoint(float x, float y) {
-
+        if (points.Count == 0 && (x != 0f && y != 0f)) {
+            AddPoint(0f, 0f);
+        }
         // Ensure only one point exists for each x
         if (points.Find(item => item.x == x) != null) {
             points.Add(new Vector2(x, y));
@@ -414,7 +436,7 @@ public class Graph : MonoBehaviour
 
     /// <summary>Returns True if there is a point at the specified X value.</summary>
     public bool HasValueAtX(float val) {
-        foreach (Vector2 pt in points) {
+        foreach (Vector2 pt in GetPointList()) {
             if (pt.x == val) {
                 return true;
             }
@@ -439,7 +461,7 @@ public class Graph : MonoBehaviour
             return rectTransform.rect.max;
         }
 
-        foreach (Vector2 pt in points) {
+        foreach (Vector2 pt in GetPointList()) {
             if (axis == Axis.X) {if (pt.x > biggestPoint.x) {biggestPoint = pt;}}
             else if (axis == Axis.Y) {if (pt.y > biggestPoint.y) {biggestPoint = pt;}}
         }
@@ -457,7 +479,8 @@ public class Graph : MonoBehaviour
             return rectTransform.rect.min;
         }
 
-        foreach (Vector2 pt in points) {
+
+        foreach (Vector2 pt in GetPointList()) {
             if (axis == Axis.X) {if (pt.x < smallestPoint.x) {smallestPoint = pt;}}
             else if (axis == Axis.Y) {if (pt.y < smallestPoint.y) {smallestPoint = pt;}}
         }
@@ -468,14 +491,27 @@ public class Graph : MonoBehaviour
         return smallestPoint;
     }
 
+    public List<Vector2> GetPointList() {
+        List<Vector2> fullPoints = new List<Vector2>(points);
+        if (maxValuesOnGraph > 0 && fullPoints.Count > maxValuesOnGraph) {
+            int amountToTruncate = fullPoints.Count - maxValuesOnGraph;
+            fullPoints.RemoveRange(0, amountToTruncate);
+        }
+        return fullPoints;
+    }
+
     private void ResetLineRenderer() {
         if (points.Count > 0) {
             //uiLineRenderer.Points = ScaledPoints(useSimplification ? DouglasPeuckerLineSimplification(points.ToArray(), simplificationAmt) : points.ToArray());
 
             List<Vector2> simplifiedPointList = new List<Vector2>();
-            LineUtility.Simplify(points, simplificationAmt, simplifiedPointList);
 
-            uiLineRenderer.Points = useSimplification ? simplifiedPointList.ToArray() : points.ToArray();
+
+
+            
+            LineUtility.Simplify(GetPointList(), simplificationAmt, simplifiedPointList);
+
+            uiLineRenderer.Points = useSimplification ? simplifiedPointList.ToArray() : GetPointList().ToArray();
 
             if (scalePoints) {
                 uiLineRenderer.Points = ScaledPoints(uiLineRenderer.Points);
@@ -483,11 +519,6 @@ public class Graph : MonoBehaviour
         }
     }
 
-
-    // public Vector2 GetTickIntervalNew() {
-    //     float xRange = GetMaxValue(Axis.X, false).x - GetMinValue(Axis.X, false).x;
-    //     float yRange;
-    // }
 
     public Vector2 GetTickInterval() {
         Debug.Log("GETTING TICK INTERVAL");
@@ -605,24 +636,19 @@ public class Graph : MonoBehaviour
     }
 
     public Vector2 ScalePoint(Vector2 val) {
-        // Vector2 numTicks = GetTickInterval(true);
     
         float maxX = ((gridRenderer.GridColumns) * xSpacePerLine);
         float maxY = ((gridRenderer.GridRows) * ySpacePerLine);
 
-        // float maxX = GetMaxValue(Axis.X, false).x;
-        // float maxY = GetMaxValue(Axis.Y, false).y;
+        if (maxValuesOnGraph > 0 && points.Count > maxValuesOnGraph) {
+            val -= GetPointList()[0];
+        }
 
         return new Vector2(
             val.x / (maxX == 0 ? 1 : maxX),
             val.y / (maxY == 0 ? 1 : maxY)
         );
 
-        // return new Vector2(
-        //     (val.x / Mathf.CeilToInt(numTicks.x)),
-        //     (val.y / Mathf.CeilToInt(numTicks.y))
-        // );
-        //return new Vector2(((val.x / maxX * rectTransform.rect.width) - (rectTransform.pivot.x * rectTransform.rect.width)), ((val.y / maxY * rectTransform.rect.height) - (rectTransform.pivot.y * rectTransform.rect.height)));
     }
 
     private Vector2[] DouglasPeuckerLineSimplification(Vector2[] inval, int epsilon) {

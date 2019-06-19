@@ -33,7 +33,7 @@ public class MeasurementItemGraphical : MonoBehaviour
         if (val == 0f) {return;}
         measurementItem.infoLabel.text = val.ToString("0.0") + measurementItem.suffix;
 
-        if (timer >= 8) {measurementItem.graphUI.AddPoint(Time.time, val); timer = 0;}
+        if (timer >= 8) {measurementItem.graphUI.AddPoint(Time.time - GeneralManager.manager.timeOffsetOfGraphClear, val); timer = 0;}
         timer++;
 
 

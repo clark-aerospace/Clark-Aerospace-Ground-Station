@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using Mapbox.Unity.Map;
 
 public class TestRocket : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class TestRocket : MonoBehaviour
     public TextMeshProUGUI latLabel;
     public TextMeshProUGUI longLabel;
     public TextMeshProUGUI ambientTempLabel;
+
+    public TextMeshProUGUI accXLabel, accYLabel, accZLabel;
 
     public System.DateTime dateOfNewData;
 
@@ -66,6 +69,11 @@ public class TestRocket : MonoBehaviour
 
         parachuteObj.SetActive(ArduinoReciever.GetValue("para") != 0f);
 
+        float lat = ArduinoReciever.GetValue("pos_lat");
+        float lon = ArduinoReciever.GetValue("pos_long");
+        if (lat != 0f && lon != 0f) {GeneralManager.manager.GetCurrentMap().SetCenterLatitudeLongitude(new Mapbox.Utils.Vector2d(lat, lon));}
+        else {GeneralManager.manager.GetCurrentMap().SetCenterLatitudeLongitude(new Mapbox.Utils.Vector2d(32.955354f, -106.9398311f));}
+
 
 
         //parachuteObj.SetActive(true);
@@ -82,6 +90,11 @@ public class TestRocket : MonoBehaviour
         latLabel.text = ArduinoReciever.GetValue("pos_lat").ToString("0.##") + "°";
         longLabel.text = ArduinoReciever.GetValue("pos_long").ToString("0.##") + "°";
         ambientTempLabel.text = ArduinoReciever.GetValue("temp_ambient").ToString("0.#") + "°C";
+
+
+        accXLabel.text = ArduinoReciever.GetValue("acc_x").ToString("0.##");
+        accYLabel.text = ArduinoReciever.GetValue("acc_y").ToString("0.##");
+        accZLabel.text = ArduinoReciever.GetValue("acc_z").ToString("0.##");
 
         // lastUpdatedLabel.text = "Last updated " + dateOfNewData.ToLongTimeString() + " " + dateOfNewData.ToShortDateString();
         //altitudeLabel.text = "Alt: " + transform.position.y.ToString(); 

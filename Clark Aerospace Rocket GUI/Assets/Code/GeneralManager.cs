@@ -7,6 +7,7 @@ using LeTai.Asset.TranslucentImage;
 using TMPro;
 using UnityEngine.UI.Extensions;
 using System.IO.Ports;
+using Mapbox.Unity.Map;
 
 public class GeneralManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GeneralManager : MonoBehaviour
 
     public Button openSettingsButton;
     public Button saveSettingsButton;
+    public Button cancelSettingsButton;
     public GameObject settingsPanel;
 
     [Header("Timeline Stuff")]
@@ -28,6 +30,7 @@ public class GeneralManager : MonoBehaviour
     public Button openTimelineButton;
     public Button closeTimelineButton;
     public GameObject timelinePanel;
+    public Animator timelineAnimator;
     public Image timelineBarTakeoffToApogee;
     public Image timelineBarApogeeToLanding;
 
@@ -37,17 +40,33 @@ public class GeneralManager : MonoBehaviour
     public int launchEpochTime;
 
     public DateTime departureTime = new DateTime(2019, 5, 14, 15, 00, 0);
+    public bool launchQueued = false;
 
     public int quitLength = 0;
 
     public Graph altGraph;
     public int programStartedEpochTime;
+    public float timeOffsetOfGraphClear = 0f;
 
     [Header("Replay data button")]
     public TextMeshProUGUI replayDataButtonText;
     public Image replayDataButtonImage;
     public Sprite replaySprite, liveSprite;
     public GameObject seekButtons;
+
+    [Header("Map stuff")]
+    public AbstractMap worldScaleMap;
+    public AbstractMap overheadMap;
+    public GameObject overheadCamera;
+    public Camera mainCamera;
+    public MapMode currentMapMode = MapMode.WorldScale;
+
+    
+
+    public enum MapMode {
+        WorldScale = 0,
+        Overhead = 1
+    }
 
 
 
@@ -65,7 +84,8 @@ public class GeneralManager : MonoBehaviour
         openTimelineButton.onClick.AddListener(OpenTimeline);
         closeTimelineButton.onClick.AddListener(CloseTimeline);
 
-        departureTime = DateTime.Parse(PlayerPrefs.GetString("launch_time", "00:00"));
+        departureTime = DateTime.Now;
+        //departureTime = DateTime.Parse(PlayerPrefs.GetString("launch_time", "00:00"));
 
         DisableReplayData();
 
@@ -115,12 +135,26 @@ public class GeneralManager : MonoBehaviour
         
     }
 
+    public void CancelSettings() {
+        settingsPanel.SetActive(false);
+    }
+
     public void OpenTimeline() {
-        timelinePanel.SetActive(true);
+        timelineAnimator.SetBool("timeline_active", true);
+        //timelinePanel.SetActive(true);
     }
 
     public void CloseTimeline() {
-        timelinePanel.SetActive(false);
+        timelineAnimator.SetBool("timeline_active", false);
+        //timelinePanel.SetActive(false);
+    }
+
+    public void StartThirtySecondCountdown() {
+        launchQueued = true;
+        departureTime = DateTime.Now.AddSeconds(30);
+        ArduinoReciever.reciever.SendGoMessage();
+        //CloseTimeline();
+
     }
 
     public void Update() {
@@ -137,27 +171,73 @@ public class GeneralManager : MonoBehaviour
             Debug.Break();
         }
 
-        if (ArduinoReciever.GetValue("pos_alt") != 0f) {altGraph.AddPoint(Time.time, ArduinoReciever.GetValue("pos_alt"));}
+        if (ArduinoReciever.GetValue("pos_alt") != 0f) {altGraph.AddPoint(Time.time - timeOffsetOfGraphClear, ArduinoReciever.GetValue("pos_alt"));}
 
-        bool playback = ArduinoReciever.reciever.dataPlaybackMode;
-        TimeSpan diff = (playback ? FromUnixTime((long)ArduinoReciever.reciever.dataPlaybackTime) : DateTime.Now) - departureTime;
 
-        string symbol = (diff > TimeSpan.Zero) ? "+" : "-";
-        string tMinus = "T" + symbol + diff.ToString(@"mm\:ss");
-        launchTimerLabel.text = tMinus;
-        bigLaunchTimerLabel.text = tMinus;
+        if (!launchQueued) {
+            launchTimerLabel.text = "Not Set";
+            bigLaunchTimerLabel.text = "Not Set";
+            timelineBarTakeoffToApogee.fillAmount = 0f;
+            timelineBarApogeeToLanding.fillAmount = 0f;
 
-        timelineBarTakeoffToApogee.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
-        timelineBarApogeeToLanding.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
+            timelineBarTakeoffToApogeeBig.fillAmount = 0f;
+            timelineBarApogeeToLandingBig.fillAmount = 0f;
+        }
+        else {
+            bool playback = ArduinoReciever.reciever.dataPlaybackMode;
+            TimeSpan diff;
+            if (playback) {
+                diff = new TimeSpan(0, 0, ArduinoReciever.reciever.dataPlaybackTime);
+                timelineBarTakeoffToApogee.fillAmount = Mathf.InverseLerp(0f, 30f, ArduinoReciever.reciever.dataPlaybackTime);
+                timelineBarApogeeToLanding.fillAmount = Mathf.InverseLerp(30, 224f, ArduinoReciever.reciever.dataPlaybackTime);
 
-        timelineBarTakeoffToApogeeBig.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
-        timelineBarApogeeToLandingBig.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
+            } else {
+                diff = (playback ? FromUnixTime((long)ArduinoReciever.reciever.dataPlaybackTime) : DateTime.Now) - departureTime;
+                timelineBarTakeoffToApogee.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
+                timelineBarApogeeToLanding.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
 
-        if (playback) { // change color of bars
-            //timelineBarApogeeToLanding.color;
+                timelineBarTakeoffToApogeeBig.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
+                timelineBarApogeeToLandingBig.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
+
+            }
+            string symbol = (diff > TimeSpan.Zero) ? "+" : "-";
+            string tMinus = "T" + symbol + diff.ToString(@"mm\:ss");
+            launchTimerLabel.text = tMinus;
+            bigLaunchTimerLabel.text = tMinus;
+            
+
+
         }
 
 
+    }
+
+    public void SetOverheadMapActive() {
+        overheadMap.gameObject.SetActive(true);
+        worldScaleMap.gameObject.SetActive(false);
+        overheadCamera.SetActive(true);
+        mainCamera.orthographic = true;
+        currentMapMode = MapMode.Overhead;
+    }
+
+    public void SetWorldScaleMapActive() {
+        overheadMap.gameObject.SetActive(false);
+        worldScaleMap.gameObject.SetActive(true);
+        overheadCamera.SetActive(false);
+        mainCamera.orthographic = false;
+        currentMapMode = MapMode.WorldScale;
+    }
+
+    public AbstractMap GetCurrentMap() {
+        switch (currentMapMode) {
+            case MapMode.Overhead:
+                return overheadMap;
+                break;
+            case MapMode.WorldScale:
+                return worldScaleMap;
+            default:
+                return worldScaleMap;
+        }
     }
 
     public void ToggleReplayData() {
@@ -182,6 +262,11 @@ public class GeneralManager : MonoBehaviour
         replayDataButtonImage.sprite = liveSprite;
         seekButtons.SetActive(false);
         ArduinoReciever.reciever.DisableDataPlayback();
+    }
+
+    public void ClearGraphs() {
+        timeOffsetOfGraphClear = Time.time;
+        Graph.ClearAllGraphs();
     }
 
     public static DateTime FromUnixTime(long unixTime)
