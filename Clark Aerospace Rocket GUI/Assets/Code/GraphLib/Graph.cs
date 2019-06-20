@@ -286,15 +286,18 @@ public class Graph : MonoBehaviour
     }
 
     public void ClearData() {
-        Vector2 lastPoint = points[points.Count-1];
-        points.Clear();
+        if (points.Count > 0) {
+            Vector2 lastPoint = points[points.Count-1];
+            points.Clear();
+            points.Add(lastPoint);
+            Update();
+        } else {
+            
+        }
         //AddPoint(0, 0);
-        Update();
+        
     }
     public void AddTestPoint() {
-        if (points.Count == 0) {
-
-        }
         currentYPt = currentYPt + Random.Range(-1f, 2f);
         AddPoint(time, currentYPt);
         //Debug.Log(time.ToString() + " , " + currentYPt.ToString());

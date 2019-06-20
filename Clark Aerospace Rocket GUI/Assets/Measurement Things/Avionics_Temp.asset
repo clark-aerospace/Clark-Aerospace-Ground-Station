@@ -41,8 +41,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
-  minMaxValues: {x: 50, y: 200}
-  suffix: " \xB0C"
+  minMaxValues: {x: 60, y: 150}
+  suffix: "\xB0F"
   id: temp_avionics
   buttonEnabled: 0
   buttonText: 

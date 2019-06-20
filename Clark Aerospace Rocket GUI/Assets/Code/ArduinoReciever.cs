@@ -81,7 +81,12 @@ public class ArduinoReciever : MonoBehaviour
         serialPort.RtsEnable = true;
         //serialPort.Handshake = Handshake.None;
         //serialPort.Encoding = System.Text.Encoding.BigEndianUnicode;
-        serialPort.Open();
+        try {
+            serialPort.Open();
+        }
+        catch (IOException e) {
+            Debug.LogError("Not opened");
+        }
         dateTimeAtRecieve = DateTime.Now;
 
         // logging
@@ -146,46 +151,64 @@ public class ArduinoReciever : MonoBehaviour
         }
 
         string[] lines = logReader.ReadToEnd().Split('\n');
-        string closestVal = "";
+        string closestValBelow = "";
+        string closestValAbove = "";
 
         foreach (string line in lines) {
-            Debug.LogError(line);
-            Debug.LogError("This line has " + line.Split(',').Length.ToString() + " entries");
+            //Debug.LogError(line);
+            //Debug.LogError("This line has " + line.Split(',').Length.ToString() + " entries");
             if (line.Split(',').Length < 16) {
                 continue;
             }
             //targetEpochTime = int.Parse(line.Split(',')[15]);
+            if (line.Split(',')[16] == "NA") {continue;}
             targetRelativeTime = int.Parse(line.Split(',')[16]);
-
             if (targetRelativeTime > time) {
+                closestValAbove = line;
                 break;
             } else {
-                closestVal = line;
+                closestValBelow = line;
             }
         }
+
+        if (closestValBelow == "") {
+            if (closestValAbove != "") {
+                closestValBelow = closestValAbove;
+            }
+        }
+
+        if (closestValAbove == "") {
+            if (closestValBelow == "") {
+                GeneralManager.manager.DisableReplayData();
+                Debug.LogError("Both above and below were empty, suggesting the file was empty... or something.");
+                return;
+            }
+            closestValAbove = closestValBelow;
+        }
     
-        string[] allData = closestVal.Split(',');
-        Debug.Log(allData.Length.ToString() + " should be 16");
-        if (allData.Length < 16) return;
-        Debug.LogError("Current time is " + time + ", closest match found was " + allData[15] + " - alt was " + allData[2].ToString());
-        float pos_lat = float.Parse(allData[0]);
-        float pos_long = float.Parse(allData[1]);
-        float pos_alt = float.Parse(allData[2]);
+        string[] allData_Below = closestValBelow.Split(',');
+        string[] allData_Above = closestValAbove.Split(',');
+        Debug.Log(allData_Below.Length.ToString() + " should be 16");
+        if (allData_Below.Length < 16) return;
+        //Debug.LogError("Current time is " + time + ", closest match found was " + allData[15] + " - alt was " + allData[2].ToString());
+        float pos_lat = Mathf.LerpUnclamped(float.Parse(allData_Below[0]), float.Parse(allData_Above[0]), fracsOfSecond);
+        float pos_long = Mathf.LerpUnclamped(float.Parse(allData_Below[1]), float.Parse(allData_Above[1]), fracsOfSecond);
+        float pos_alt = Mathf.LerpUnclamped(float.Parse(allData_Below[2]), float.Parse(allData_Above[2]), fracsOfSecond);
 
-        float acc_x = float.Parse(allData[3]);
-        float acc_y = float.Parse(allData[4]);
-        float acc_z = float.Parse(allData[5]);
+        float acc_x = Mathf.LerpUnclamped(float.Parse(allData_Below[3]), float.Parse(allData_Above[3]), fracsOfSecond);
+        float acc_y = Mathf.LerpUnclamped(float.Parse(allData_Below[4]), float.Parse(allData_Above[4]), fracsOfSecond);
+        float acc_z = Mathf.LerpUnclamped(float.Parse(allData_Below[5]), float.Parse(allData_Above[5]), fracsOfSecond);
 
-        float rot_x = float.Parse(allData[6]);
-        float rot_y = float.Parse(allData[7]);
-        float rot_z = float.Parse(allData[8]);
-        float rot_w = float.Parse(allData[9]);
+        float rot_x = Mathf.LerpUnclamped(float.Parse(allData_Below[6]), float.Parse(allData_Above[6]), fracsOfSecond);
+        float rot_y = Mathf.LerpUnclamped(float.Parse(allData_Below[7]), float.Parse(allData_Above[7]), fracsOfSecond);
+        float rot_z = Mathf.LerpUnclamped(float.Parse(allData_Below[8]), float.Parse(allData_Above[8]), fracsOfSecond);
+        float rot_w = Mathf.LerpUnclamped(float.Parse(allData_Below[9]), float.Parse(allData_Above[9]), fracsOfSecond);
 
-        float airbrakes_angle = float.Parse(allData[10]);
-        float temp_payload = float.Parse(allData[11]);
-        float temp_avionics = float.Parse(allData[12]);
-        float temp_ambient = float.Parse(allData[13]);
-        bool para = float.Parse(allData[14]) == 1f;
+        float airbrakes_angle = Mathf.LerpUnclamped(float.Parse(allData_Below[10]), float.Parse(allData_Above[10]), fracsOfSecond);
+        float temp_payload = Mathf.LerpUnclamped(float.Parse(allData_Below[11]), float.Parse(allData_Above[12]), fracsOfSecond);
+        float temp_avionics = Mathf.LerpUnclamped(float.Parse(allData_Below[12]), float.Parse(allData_Above[12]), fracsOfSecond);
+        float temp_ambient = Mathf.LerpUnclamped(float.Parse(allData_Below[13]), float.Parse(allData_Above[13]), fracsOfSecond);
+        bool para = float.Parse(allData_Below[14]) == 1f;
 
         InputToDict("pos_lat", pos_lat);
         InputToDict("pos_long", pos_long);
@@ -316,7 +339,7 @@ public class ArduinoReciever : MonoBehaviour
             temp_avionics.ToString() + "," +
             temp_ambient.ToString() + "," +
             (para_out ? "1" : "0") + "," +
-            GetCurrentEpochTime().ToString() + 
+            GetCurrentEpochTime().ToString() + "," +
             GetSecondsSinceLaunch()
         );
 
@@ -326,15 +349,22 @@ public class ArduinoReciever : MonoBehaviour
 
     public string GetSecondsSinceLaunch() {
         if (GeneralManager.manager.launchQueued) {
-            return (DateTime.Now - GeneralManager.manager.departureTime).TotalSeconds.ToString();
+            return Mathf.FloorToInt((float)(DateTime.Now - GeneralManager.manager.departureTime).TotalSeconds).ToString();
         }
         else {
             return "NA";
         }
     }
 
-    public void SendGoMessage() {
-        serialPort.Write(new char[] {'S', 'E', 'N', 'D'}, 0, 4);
+    public IEnumerator SendGoMessage() {
+        if (serialPort.IsOpen) {
+            for (int i = 0; i < 10; i++) {
+                serialPort.Write(new char[] {'S', 'E', 'N', 'D'}, 0, 4);
+                yield return new WaitForSeconds(1f);
+            }
+        }
+        yield return null;
+
     }
 
     public static int GetCurrentEpochTime() {
@@ -346,7 +376,13 @@ public class ArduinoReciever : MonoBehaviour
     }
 
     public void EnableDataPlayback() {
-        logReader = new StreamReader(logStream);
+        try {
+            logReader = new StreamReader(logStream);
+        }
+        catch (ArgumentException e) { 
+            logStream = File.Open(logPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            logReader = new StreamReader(logStream);
+        }
         dataPlaybackMode = true;
         dataPlaybackTime = 0;
         //ToUnixTime(GeneralManager.manager.departureTime);

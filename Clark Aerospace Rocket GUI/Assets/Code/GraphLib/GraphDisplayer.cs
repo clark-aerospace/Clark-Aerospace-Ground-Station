@@ -7,6 +7,11 @@ public class GraphDisplayer : MonoBehaviour
 {
 
     public RectTransform parentRectTransform;
+
+    public void Start() {
+        parentRectTransform = transform.parent.GetComponent<RectTransform>();
+    }
+    
     public void ToggleGraphVisible() {
         gameObject.active = !gameObject.active;
         Canvas.ForceUpdateCanvases();

@@ -17,6 +17,7 @@ public class TestRocket : MonoBehaviour
     public TextMeshProUGUI ambientTempLabel;
 
     public TextMeshProUGUI accXLabel, accYLabel, accZLabel;
+    public TextMeshProUGUI airbrakesLabel;
 
     public System.DateTime dateOfNewData;
 
@@ -63,16 +64,29 @@ public class TestRocket : MonoBehaviour
     }
 
     void UpdatePosition() {
-        transform.position = new Vector3(0f, ArduinoReciever.GetValue("pos_alt"), 0f);
+
         rocketObj.transform.rotation = new Quaternion(ArduinoReciever.GetValue("rot_x"), ArduinoReciever.GetValue("rot_y"), ArduinoReciever.GetValue("rot_z"), ArduinoReciever.GetValue("rot_w"));
-        altitudeLabel.text = ArduinoReciever.GetValue("pos_alt").ToString() + " ft";
+        if (ArduinoReciever.GetValue("pos_alt") != 0f) {
+            altitudeLabel.text = ArduinoReciever.GetValue("pos_alt").ToString() + " ft";
+        }
 
         parachuteObj.SetActive(ArduinoReciever.GetValue("para") != 0f);
 
         float lat = ArduinoReciever.GetValue("pos_lat");
         float lon = ArduinoReciever.GetValue("pos_long");
-        if (lat != 0f && lon != 0f) {GeneralManager.manager.GetCurrentMap().SetCenterLatitudeLongitude(new Mapbox.Utils.Vector2d(lat, lon));}
-        else {GeneralManager.manager.GetCurrentMap().SetCenterLatitudeLongitude(new Mapbox.Utils.Vector2d(32.955354f, -106.9398311f));}
+        if (lat != 0f && lon != 0f) {
+            GeneralManager.manager.SetLatLongMaps(lat, lon);
+        }
+        else {
+            GeneralManager.manager.SetLatLongMaps(32.9405884f, -106.9204034f);
+        }
+
+        if (ArduinoReciever.GetValue("pos_alt") != 0f) {
+            Vector3 rocketAlt = new Vector3(0f, ArduinoReciever.GetValue("pos_alt"), 0f);
+            float rocketAltOffset = GeneralManager.manager.worldScaleMap.QueryElevationInUnityUnitsAt(new Mapbox.Utils.Vector2d(lat, lon)); // = GeneralManager.manager.worldScaleMap.GeoToWorldPosition(new Mapbox.Utils.Vector2d(lat, lon), true).y;
+            rocketAlt.y += rocketAltOffset;
+            transform.position = rocketAlt;
+        }
 
 
 
@@ -89,12 +103,14 @@ public class TestRocket : MonoBehaviour
 
         latLabel.text = ArduinoReciever.GetValue("pos_lat").ToString("0.##") + "°";
         longLabel.text = ArduinoReciever.GetValue("pos_long").ToString("0.##") + "°";
-        ambientTempLabel.text = ArduinoReciever.GetValue("temp_ambient").ToString("0.#") + "°C";
+        ambientTempLabel.text = ArduinoReciever.GetValue("temp_ambient").ToString("0.#") + "°F";
 
 
         accXLabel.text = ArduinoReciever.GetValue("acc_x").ToString("0.##");
         accYLabel.text = ArduinoReciever.GetValue("acc_y").ToString("0.##");
         accZLabel.text = ArduinoReciever.GetValue("acc_z").ToString("0.##");
+
+        airbrakesLabel.text = ArduinoReciever.GetValue("airbrakes_angle").ToString();
 
         // lastUpdatedLabel.text = "Last updated " + dateOfNewData.ToLongTimeString() + " " + dateOfNewData.ToShortDateString();
         //altitudeLabel.text = "Alt: " + transform.position.y.ToString(); 

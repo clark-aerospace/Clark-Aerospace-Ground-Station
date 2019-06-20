@@ -93,13 +93,18 @@ public class GeneralManager : MonoBehaviour
 
     public void LoadSerialPorts() {
         string[] portNames = SerialPort.GetPortNames();
+        
+        string allnames = "";
         List<DropDownListItem> items = new List<DropDownListItem>();
 
         foreach (string p in portNames) {
             //Debug.Log(p);
             DropDownListItem item = new DropDownListItem(p, p);
             items.Add(item);
+            allnames += p + ", ";
         }
+
+        Debug.LogError("ALL PORT NAMES: " + allnames);
 
         arduinoPortsList.Items = items;
 
@@ -107,10 +112,10 @@ public class GeneralManager : MonoBehaviour
 
     public void OpenSettings() {
         settingsPanel.SetActive(true);
+        Debug.LogError("Before loading serial ports");
         LoadSerialPorts();
+        Debug.LogError("After loading serial ports");
 
-        //arduinoPortsList.OverrideHighlighted = true;
-        //arduinoPortsList.SelectedItem = arduinoPortsList.Items.Find(item => item.ID == PlayerPrefs.GetString("port_name"));
         arduinoBaudRateInput.text = PlayerPrefs.GetInt("port_baud_rate", 57600).ToString();
         timeoutInput.text = PlayerPrefs.GetInt("port_timeout", 0).ToString();
         launchTimeInput.text = PlayerPrefs.GetString("launch_time", "00:00");
@@ -149,10 +154,10 @@ public class GeneralManager : MonoBehaviour
         //timelinePanel.SetActive(false);
     }
 
-    public void StartThirtySecondCountdown() {
+    public void StartTenSecondCountdown() {
         launchQueued = true;
-        departureTime = DateTime.Now.AddSeconds(30);
-        ArduinoReciever.reciever.SendGoMessage();
+        departureTime = DateTime.Now.AddSeconds(10);
+        StartCoroutine(ArduinoReciever.reciever.SendGoMessage());
         //CloseTimeline();
 
     }
@@ -173,8 +178,14 @@ public class GeneralManager : MonoBehaviour
 
         if (ArduinoReciever.GetValue("pos_alt") != 0f) {altGraph.AddPoint(Time.time - timeOffsetOfGraphClear, ArduinoReciever.GetValue("pos_alt"));}
 
-
-        if (!launchQueued) {
+        bool playback = ArduinoReciever.reciever.dataPlaybackMode;
+        if (playback) {
+            TimeSpan diff = new TimeSpan(0, 0, ArduinoReciever.reciever.dataPlaybackTime);
+            timelineBarTakeoffToApogee.fillAmount = Mathf.InverseLerp(0f, 30f, ArduinoReciever.reciever.dataPlaybackTime);
+            timelineBarApogeeToLanding.fillAmount = Mathf.InverseLerp(30, 224f, ArduinoReciever.reciever.dataPlaybackTime);
+            UpdateTimelineTimeLabels(diff);
+        }
+        else if (!launchQueued) {
             launchTimerLabel.text = "Not Set";
             bigLaunchTimerLabel.text = "Not Set";
             timelineBarTakeoffToApogee.fillAmount = 0f;
@@ -184,32 +195,23 @@ public class GeneralManager : MonoBehaviour
             timelineBarApogeeToLandingBig.fillAmount = 0f;
         }
         else {
-            bool playback = ArduinoReciever.reciever.dataPlaybackMode;
             TimeSpan diff;
-            if (playback) {
-                diff = new TimeSpan(0, 0, ArduinoReciever.reciever.dataPlaybackTime);
-                timelineBarTakeoffToApogee.fillAmount = Mathf.InverseLerp(0f, 30f, ArduinoReciever.reciever.dataPlaybackTime);
-                timelineBarApogeeToLanding.fillAmount = Mathf.InverseLerp(30, 224f, ArduinoReciever.reciever.dataPlaybackTime);
+            diff = (playback ? FromUnixTime((long)ArduinoReciever.reciever.dataPlaybackTime) : DateTime.Now) - departureTime;
+            timelineBarTakeoffToApogee.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
+            timelineBarApogeeToLanding.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
 
-            } else {
-                diff = (playback ? FromUnixTime((long)ArduinoReciever.reciever.dataPlaybackTime) : DateTime.Now) - departureTime;
-                timelineBarTakeoffToApogee.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
-                timelineBarApogeeToLanding.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
-
-                timelineBarTakeoffToApogeeBig.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
-                timelineBarApogeeToLandingBig.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
-
-            }
-            string symbol = (diff > TimeSpan.Zero) ? "+" : "-";
-            string tMinus = "T" + symbol + diff.ToString(@"mm\:ss");
-            launchTimerLabel.text = tMinus;
-            bigLaunchTimerLabel.text = tMinus;
-            
-
-
+            timelineBarTakeoffToApogeeBig.fillAmount = Mathf.InverseLerp(0f, 30f, (float)diff.TotalSeconds);
+            timelineBarApogeeToLandingBig.fillAmount = Mathf.InverseLerp(30, 224f, (float)diff.TotalSeconds);
+            UpdateTimelineTimeLabels(diff);
         }
 
+    }
 
+    public void UpdateTimelineTimeLabels(TimeSpan diff) {
+        string symbol = (diff > TimeSpan.Zero) ? "+" : "-";
+        string tMinus = "T" + symbol + diff.ToString(@"mm\:ss");
+        launchTimerLabel.text = tMinus;
+        bigLaunchTimerLabel.text = tMinus;
     }
 
     public void SetOverheadMapActive() {
@@ -228,15 +230,25 @@ public class GeneralManager : MonoBehaviour
         currentMapMode = MapMode.WorldScale;
     }
 
+    public void SetLatLongMaps(float lat, float lon) {
+        // worldScaleMap.SetCenterLatitudeLongitude(new Mapbox.Utils.Vector2d(lat, lon));
+        // overheadMap.SetCenterLatitudeLongitude(new Mapbox.Utils.Vector2d(lat, lon));
+
+        worldScaleMap.UpdateMap(new Mapbox.Utils.Vector2d(lat, lon));
+        overheadMap.UpdateMap(new Mapbox.Utils.Vector2d(lat, lon));
+    }
+
     public AbstractMap GetCurrentMap() {
         switch (currentMapMode) {
+            case MapMode.WorldScale:
+                return worldScaleMap;
+                break;
             case MapMode.Overhead:
                 return overheadMap;
                 break;
-            case MapMode.WorldScale:
-                return worldScaleMap;
             default:
                 return worldScaleMap;
+                break;
         }
     }
 

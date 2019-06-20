@@ -7,6 +7,7 @@ import binascii
 """
 /dev/cu.usbserial-AK06RGGT
 /dev/cu.usbserial-AL02UU3Z
+/dev/cu.usbserial-AI0691QA
 
 """
 class Window(QtWidgets.QMainWindow):
@@ -16,7 +17,7 @@ class Window(QtWidgets.QMainWindow):
         self.closeThread = False
         self.simThread = threading.Thread(target=self.DoRocketSim)
         try:
-            self.ser = serial.Serial('/dev/cu.usbserial-AL02UU3Z')
+            self.ser = serial.Serial('/dev/cu.usbserial-AI0691QA')
             self.ser.baudrate = 57600
             self.ser.bytesize = serial.EIGHTBITS
             self.ser.parity = serial.PARITY_NONE
@@ -25,8 +26,8 @@ class Window(QtWidgets.QMainWindow):
             self.ser.dsrdtr = True
             self.ser.write_timeout = 0
             self.serialConnected = True
-        except serial.serialutil.SerialException:
-            pass
+        except serial.serialutil.SerialException as e:
+            print(e)
         self.posInfo = QtWidgets.QGroupBox("Position")
         self.posInfo_lat = QtWidgets.QDoubleSpinBox()
         self.posInfo_lat.setRange(-9999,9999)
@@ -80,6 +81,13 @@ class Window(QtWidgets.QMainWindow):
         self.rotInfo.setLayout(self.rotInfoLayout)
         self.rotInfoLayout.setAlignment(Qt.AlignLeft)
 
+
+        self.airbrakesInfoGroup = QtWidgets.QGroupBox("Airbrakes")
+        self.airbrakesInfoLayout = QtWidgets.QFormLayout()
+        self.airbrakesAngle = QtWidgets.QDoubleSpinBox()
+        self.airbrakesInfoLayout.addRow(QtWidgets.QLabel("Angle"), self.airbrakesAngle)
+        self.airbrakesInfoGroup.setLayout(self.airbrakesInfoLayout)
+
         self.tempInfo = QtWidgets.QGroupBox("Temperature")
         self.tempInfo_payload = QtWidgets.QDoubleSpinBox()
         self.tempInfo_payload.setRange(-9999,9999)
@@ -89,6 +97,7 @@ class Window(QtWidgets.QMainWindow):
         self.tempInfo_airbrakesCurr.setRange(-9999,9999)
         self.tempInfo_ambient = QtWidgets.QDoubleSpinBox()
         self.tempInfo_ambient.setRange(-9999,9999)
+
 
         self.tempInfoLayout = QtWidgets.QFormLayout()
         self.tempInfoLayout.addRow(QtWidgets.QLabel("Payload"), self.tempInfo_payload)
@@ -110,6 +119,7 @@ class Window(QtWidgets.QMainWindow):
         self.layout.addWidget(self.posInfo)
         self.layout.addWidget(self.accelInfo)
         self.layout.addWidget(self.rotInfo)
+        self.layout.addWidget(self.airbrakesInfoGroup)
         self.layout.addWidget(self.tempInfo)
         self.layout.addWidget(self.autoButton)
         self.layout.addWidget(self.sendButton)
@@ -192,7 +202,7 @@ class Window(QtWidgets.QMainWindow):
             self.rotInfo_z.value(),
             self.rotInfo_w.value(),
 
-            0,
+            self.airbrakesAngle.value(),
 
             self.tempInfo_payload.value(),
             self.tempInfo_avionics.value(),

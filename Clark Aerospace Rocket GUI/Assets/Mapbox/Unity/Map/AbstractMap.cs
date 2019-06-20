@@ -342,8 +342,9 @@ namespace Mapbox.Unity.Map
 
 			//Set Center in Latitude Longitude and Mercator.
 			SetCenterLatitudeLongitude(new Vector2d(xDelta, zDelta));
-			Options.scalingOptions.scalingStrategy.SetUpScaling(this);
-			Options.placementOptions.placementStrategy.SetUpPlacement(this);
+			Debug.Log(Options.scalingOptions.scalingStrategy);
+			Options.scalingOptions.scalingStrategy?.SetUpScaling(this);
+			Options.placementOptions.placementStrategy?.SetUpPlacement(this);
 
 			//Scale the map accordingly.
 			if (Math.Abs(differenceInZoom) > Constants.EpsilonFloatingPoint || isAtInitialZoom)
@@ -353,7 +354,7 @@ namespace Mapbox.Unity.Map
 			}
 
 			//Update Tile extent.
-			_tileProvider.UpdateTileExtent();
+			_tileProvider?.UpdateTileExtent();
 
 			if (OnUpdated != null)
 			{
