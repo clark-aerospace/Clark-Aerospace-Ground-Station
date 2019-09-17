@@ -1,4 +1,9 @@
 sceneSetups:
-- path: Assets/Scenes/MainScene.unity
+- path: Assets/Scenes/2020_UI.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/GraphTest.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
