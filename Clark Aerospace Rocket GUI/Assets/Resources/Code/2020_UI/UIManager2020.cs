@@ -6,12 +6,17 @@ public class UIManager2020 : MonoBehaviour
 {
     public static UIManager2020 instance;
 
+    [Header("General Rocket Stuff")]
     public GameObject InformationItemPrefab;
 
     public InformationItem2020 altitudeItem, headingItem, speedItem, distanceItem, bearingItem;
 
     public Vector2 ourPosition = new Vector2(0,0);
     public Vector2 targetPosition = new Vector2(0,0);
+
+    [Header("Rocket Part Specific")]
+    public GameObject RocketPartInfoPrefab;
+    
 
     void Awake() {
         if (instance == null) {

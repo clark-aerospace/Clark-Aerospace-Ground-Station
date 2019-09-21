@@ -38,6 +38,8 @@ public class ArduinoReciever : MonoBehaviour
 
     float secondsSinceLastEstTrans = 0f;
 
+    int lengthOfData = 147;
+
     float transmissionDelay = 0.75f;
     public int estimatedTransmissions = 1;
     public int recievedTransmissions = 1;
@@ -92,7 +94,7 @@ public class ArduinoReciever : MonoBehaviour
         serialPort.DtrEnable = true;
         serialPort.RtsEnable = true;
         //serialPort.Handshake = Handshake.None;
-        //serialPort.Encoding = System.Text.Encoding.BigEndianUnicode;
+        serialPort.Encoding = System.Text.Encoding.BigEndianUnicode;
         try {
             serialPort.Open();
         }
@@ -276,10 +278,10 @@ public class ArduinoReciever : MonoBehaviour
         }
         //Debug.Log(serialPort.ReadLine());
 
-        byte[] buf = new byte[143]; // prev 111
+        byte[] buf = new byte[lengthOfData]; // prev 111
 
         // UNCOMMENT
-        try {serialPort.Read(buf, 0, 143);}
+        try {serialPort.Read(buf, 0, lengthOfData);}
         catch (TimeoutException e) {
             //InputExistingValues();
             //Debug.LogError("No data recieved");
@@ -303,13 +305,13 @@ public class ArduinoReciever : MonoBehaviour
             return;
         }
 
-        float pos_lat = System.BitConverter.ToSingle(reader.ReadBytes(4), 0);
+        float pos_lat = (float)reader.ReadDouble();
         InputToDict("pos_lat", pos_lat);
 
-        float pos_long = System.BitConverter.ToSingle(reader.ReadBytes(4), 0);
+        float pos_long = (float)reader.ReadDouble();
         InputToDict("pos_long", pos_long);
 
-        int alt = reader.ReadUInt16();
+        float alt = (float)reader.ReadDouble();
         InputToDict("pos_alt", alt);
 
         float acc_x = (float)reader.ReadDouble();
@@ -349,14 +351,56 @@ public class ArduinoReciever : MonoBehaviour
         InputToDict("para", (para_out ? 1f : 0f));
 
 
-        float batt_payload = (float)reader.ReadDouble();
+
+
+
+
+        
+
+
+        byte[] batt_payload_raw = reader.ReadBytes(8);
+        Debug.Log("PAYLOAD: " + BitConverter.ToString(batt_payload_raw).Replace("-",""));
+
+        byte[] batt_avionics_raw = reader.ReadBytes(8);
+        // Debug.Log("AVIONICS: " + BitConverter.ToString(batt_avionics_raw).Replace("-",""));
+
+        byte[] batt_airbrakes_raw = reader.ReadBytes(8);
+        // Debug.Log("AIRBRAKES: " + BitConverter.ToString(batt_airbrakes_raw).Replace("-",""));
+
+        float batt_payload = (float)BitConverter.ToDouble(batt_payload_raw, 0);
+        float batt_avionics = (float)BitConverter.ToDouble(batt_avionics_raw, 0);
+        float batt_airbrakes = (float)BitConverter.ToDouble(batt_airbrakes_raw, 0);
+
+        Debug.Log("STR: " + batt_payload.ToString());
+
         InputToDict("batt_payload", batt_payload);
 
-        float batt_avionics = (float)reader.ReadDouble();
         InputToDict("batt_avionics", batt_avionics);
 
-        float batt_airbrakes = (float)reader.ReadDouble();
         InputToDict("batt_airbrakes", batt_airbrakes);
+
+        Debug.Log(string.Format(
+            "{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13} {14} {15} {16}",
+            pos_lat,
+            pos_long,
+            alt,
+            acc_x,
+            acc_y,
+            acc_z,
+            rot_x,
+            rot_y,
+            rot_z,
+            rot_w,
+            airbrakes_angle,
+            temp_payload,
+            temp_avionics,
+            temp_ambient,
+            batt_payload,
+            batt_avionics,
+            batt_airbrakes
+        ));
+
+        //Debug.Log(batt_payload);
 
         lastRecievedEpoch = reader.ReadUInt32();
 
@@ -475,8 +519,11 @@ public class ArduinoReciever : MonoBehaviour
 
     public static float GetValue(string key) {
         float value;
-        if (key == null) {
-            Debug.LogError("The key requested was null!");
+
+        // Debug.Log("Getting value for key " + key);
+        if (key == null || key == "null") {
+            key = "null";
+            Debug.LogError("The key " + key + " could not be found!");
             return 0f;
         }
         bool hasValue = reciever.values.TryGetValue(key, out value);

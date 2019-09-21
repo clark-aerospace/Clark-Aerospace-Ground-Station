@@ -104,6 +104,26 @@ class Window(QtWidgets.QMainWindow):
         self.tempInfo_ambient.setRange(-9999,9999)
 
 
+        self.battery = QtWidgets.QGroupBox("Battery")
+        self.batteryLayout = QtWidgets.QFormLayout()
+
+        self.batteryPayload = QtWidgets.QSpinBox()
+        self.batteryPayload.setRange(0, 100)
+
+        self.batteryAvionics = QtWidgets.QSpinBox()
+        self.batteryAvionics.setRange(0, 100)
+
+        self.batteryAirbrakes = QtWidgets.QSpinBox()
+        self.batteryAirbrakes.setRange(0, 100)
+
+
+        self.batteryLayout.addRow(QtWidgets.QLabel("Payload"), self.batteryPayload)
+        self.batteryLayout.addRow(QtWidgets.QLabel("Avionics"), self.batteryAvionics)
+        self.batteryLayout.addRow(QtWidgets.QLabel("Airbrakes"), self.batteryAirbrakes)
+
+        self.battery.setLayout(self.batteryLayout)
+
+
         self.tempInfoLayout = QtWidgets.QFormLayout()
         self.tempInfoLayout.addRow(QtWidgets.QLabel("Payload"), self.tempInfo_payload)
         self.tempInfoLayout.addRow(QtWidgets.QLabel("Avionics"), self.tempInfo_avionics)
@@ -129,15 +149,16 @@ class Window(QtWidgets.QMainWindow):
         self.sendButton.setEnabled(self.serialConnected)
 
 
-        self.layout = QtWidgets.QVBoxLayout()
-        self.layout.addWidget(self.posInfo)
-        self.layout.addWidget(self.accelInfo)
-        self.layout.addWidget(self.rotInfo)
-        self.layout.addWidget(self.airbrakesInfoGroup)
-        self.layout.addWidget(self.tempInfo)
-        self.layout.addWidget(self.listOfSerials)
-        self.layout.addWidget(self.autoButton)
-        self.layout.addWidget(self.sendButton)
+        self.layout = QtWidgets.QGridLayout()
+        self.layout.addWidget(self.posInfo, 0, 0)
+        self.layout.addWidget(self.accelInfo, 1, 0)
+        self.layout.addWidget(self.rotInfo, 0, 1)
+        self.layout.addWidget(self.airbrakesInfoGroup, 1, 1)
+        self.layout.addWidget(self.tempInfo, 2, 0)
+        self.layout.addWidget(self.battery, 2, 1)
+        self.layout.addWidget(self.listOfSerials, 3, 0)
+        self.layout.addWidget(self.autoButton, 4, 0)
+        self.layout.addWidget(self.sendButton, 5, 0)
 
 
         self.mainWidget = QtWidgets.QWidget()
@@ -236,7 +257,7 @@ class Window(QtWidgets.QMainWindow):
         End marker "END"
 
         """
-        dataStruct = struct.Struct('< 3s 2d I 3d 4d d 3d ? 3d L 3s')
+        dataStruct = struct.Struct('< 3s 2d d 3d 4d d 3d ? 3d L 3s')
 
         timeEpoch = int(time.time())
 
@@ -244,7 +265,7 @@ class Window(QtWidgets.QMainWindow):
             b"STR",
             self.posInfo_lat.value(),
             self.posInfo_long.value(),
-            int(self.posInfo_alt.value()),
+            self.posInfo_alt.value(),
 
             self.accelInfo_x.value(),
             self.accelInfo_y.value(),
@@ -263,9 +284,9 @@ class Window(QtWidgets.QMainWindow):
 
             self.posInfo_para.isChecked(),
 
-            1.0, # Payload battery
-            1.0, # AV battery
-            1.0, # Airbrakes battery
+            float(self.batteryPayload.value()) / 100.0, # Payload battery
+            float(self.batteryAvionics.value()) / 100.0, # AV battery
+            float(self.batteryAirbrakes.value()) / 100.0, # Airbrakes battery
 
             timeEpoch,
             b"END"
