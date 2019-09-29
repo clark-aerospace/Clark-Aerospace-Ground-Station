@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CreateRocketPartInfo : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class CreateRocketPartInfo : MonoBehaviour
 
     public bool useDetail = false;
 
+    public UnityEvent detailEvent; 
+
     [Header("Sources")]
     public string batteryLevelSource = "null";
     public string temperatureSource = "null";
+    public Vector2 temperatureBounds = new Vector2(0,1);
 
     
     private RocketPartInfo2020 rocketPart;
@@ -44,5 +48,7 @@ public class CreateRocketPartInfo : MonoBehaviour
     void Update()
     {
         rocketPart.batteryLevel = ArduinoReciever.GetValue(batteryLevelSource);
+        rocketPart.temperature = ArduinoReciever.GetValue(temperatureSource);
+        rocketPart.minMaxTemperatures = temperatureBounds;
     }
 }

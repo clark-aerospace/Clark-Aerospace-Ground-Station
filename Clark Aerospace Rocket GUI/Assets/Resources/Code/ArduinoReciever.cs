@@ -522,8 +522,6 @@ public class ArduinoReciever : MonoBehaviour
 
         // Debug.Log("Getting value for key " + key);
         if (key == null || key == "null") {
-            key = "null";
-            Debug.LogError("The key " + key + " could not be found!");
             return 0f;
         }
         bool hasValue = reciever.values.TryGetValue(key, out value);

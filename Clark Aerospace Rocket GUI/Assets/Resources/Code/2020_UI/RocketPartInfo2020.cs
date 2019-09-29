@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
 public class RocketPartInfo2020 : MonoBehaviour
 {
     public string partName = "Rocket Part";
-    public bool useDetailIndicator = false;
+    public bool useDetailIndicator = false; 
 
     [Header("Battery")]
     public bool useBatteryLevel = false;

@@ -13,7 +13,14 @@ public class InformationItem2020 : MonoBehaviour
     [SerializeField]
     private string _value;
 
+    [SerializeField]
+    private string dataSource = "null";
+
+    [SerializeField]
+    private string _suffix = "";
+
     private GameObject instanceGameObject;
+    private RectTransform instanceGameObjectRectTransform;
 
     private TextMeshProUGUI _titleLabel;
     private TextMeshProUGUI _valueLabel;
@@ -21,7 +28,7 @@ public class InformationItem2020 : MonoBehaviour
 
     public string Value {
         set {
-            _valueLabel.text = value;
+            //_valueLabel.text = value;
             _value = value;
         }
     }
@@ -36,6 +43,11 @@ public class InformationItem2020 : MonoBehaviour
 
         instanceGameObject.transform.SetParent(transform, false);
 
+        instanceGameObjectRectTransform = instanceGameObject.GetComponent<RectTransform>();
+        instanceGameObjectRectTransform.anchorMax = new Vector2(0,0);
+        instanceGameObjectRectTransform.anchorMin = new Vector2(0,0);
+        instanceGameObjectRectTransform.anchoredPosition = new Vector2(0,0);
+
 
 
     }
@@ -44,7 +56,9 @@ public class InformationItem2020 : MonoBehaviour
     void Update()
     {
         _titleLabel.text = _title;
-        _valueLabel.text = _value; 
+
+        if (dataSource != "inherit") _value = ArduinoReciever.GetValue(dataSource).ToString();
+        _valueLabel.text = _value + _suffix; 
     }
 }
 
@@ -54,10 +68,15 @@ public class InformationItem2020Editor : Editor
 {
 	SerializedProperty titleProperty;
 	SerializedProperty valueProperty;
+    SerializedProperty dataSourceProperty;
+    SerializedProperty suffixProperty;
+
 
     void OnEnable() {
         titleProperty = serializedObject.FindProperty("_title");
         valueProperty = serializedObject.FindProperty("_value");
+        dataSourceProperty = serializedObject.FindProperty("dataSource");
+        suffixProperty = serializedObject.FindProperty("_suffix");
     }
 
 	public override void OnInspectorGUI()
@@ -66,6 +85,9 @@ public class InformationItem2020Editor : Editor
         EditorGUILayout.LabelField("Visible Properties", EditorStyles.boldLabel);
 		EditorGUILayout.PropertyField(titleProperty);
         EditorGUILayout.PropertyField(valueProperty);
+        EditorGUILayout.PropertyField(suffixProperty);
+        EditorGUILayout.PropertyField(dataSourceProperty);
+
 
         serializedObject.ApplyModifiedProperties ();
     }

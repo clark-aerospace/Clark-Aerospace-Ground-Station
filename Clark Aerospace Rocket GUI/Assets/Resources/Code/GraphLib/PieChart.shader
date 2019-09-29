@@ -149,6 +149,8 @@ Shader "UI/Graph/Pie Chart"
                 #ifdef UNITY_UI_ALPHACLIP
                 clip (color.a - 0.001);
                 #endif
+
+                //color.rgb = ddy(IN.texcoord.x);
                 return color;
             }
         ENDCG

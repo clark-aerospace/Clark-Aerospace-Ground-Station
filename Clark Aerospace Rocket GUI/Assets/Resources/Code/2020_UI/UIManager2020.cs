@@ -40,11 +40,12 @@ public class UIManager2020 : MonoBehaviour
 
         // Calculates the distance and heading to the rocket
         //Vector2 rocketPosition = new Vector2(rocketLat, rocketLong);
+        targetPosition = new Vector2(rocketLat, rocketLong);
         Vector2 rocketPosition = targetPosition;
         float distanceToRocket = GlobeMath.Haversine(ourPosition, rocketPosition);
         float bearingToRocket = GlobeMath.BearingToPoint(ourPosition, rocketPosition);
 
-        distanceItem.Value = string.Format("{0} km", distanceToRocket.ToString("F1"));
-        bearingItem.Value = string.Format("{0}°", bearingToRocket.ToString("F1"));
+        distanceItem.Value = distanceToRocket.ToString("F1");
+        bearingItem.Value = bearingToRocket.ToString("F1");
     }
 }
