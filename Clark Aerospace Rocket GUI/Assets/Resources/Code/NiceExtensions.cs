@@ -8,4 +8,13 @@ public static class NiceExtensions {
         image.color = c;
         return;
     }
+
+    public static void StretchToFill(this RectTransform r) {
+        r.anchorMin = new Vector2(0,0);
+        r.anchorMax = new Vector2(1,1);
+
+        r.offsetMin = Vector2.zero;
+        r.offsetMax = Vector2.zero;
+        return;
+    }
 }
