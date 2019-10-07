@@ -84,6 +84,10 @@ namespace GraphLib {
                     // Let's scale the points to fit the whatchamacallit
 
                     Vector2 point = d.values[i];
+
+                    point.x -= xBounds.x;
+                    point.y -= yBounds.x;
+                    
                     point.x /= xBounds.y;
                     point.y /= yBounds.y;
 
