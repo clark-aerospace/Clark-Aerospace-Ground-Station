@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 731476853}
   - component: {fileID: 731476852}
   - component: {fileID: 731476855}
+  - component: {fileID: 731476856}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -286,6 +287,32 @@ MonoBehaviour:
   graph: {fileID: 1690821301}
   xVal: -1
   yVal: 0
+--- !u!114 &731476856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731476851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee01e66702087b4798e633ca34c7956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxUpdateRate: Infinity
+  preview: 0
+  size: 5
+  iteration: 4
+  blurRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  maxDepth: 4
+  downsample: 0
+  lastDownsample: 0
+  strength: 80
 --- !u!1 &1205030610
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +558,6 @@ GameObject:
   - component: {fileID: 1690821302}
   - component: {fileID: 1690821301}
   - component: {fileID: 1690821303}
-  - component: {fileID: 1690821304}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -614,6 +640,7 @@ MonoBehaviour:
   xBounds: {x: 0, y: 10}
   yBounds: {x: 0, y: 10}
   gridColor: {r: 0, g: 0, b: 0, a: 1}
+  xAxisLines: 10
 --- !u!222 &1690821302
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -631,11 +658,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1690821299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 196bb08d6c2d3c9499c04e1281fd4ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+  m_Material: {fileID: 2100000, guid: 96c5704d0681e35408630c488fc0c234, type: 2}
+  m_Color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -652,19 +679,11 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1690821304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690821299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
+  source: {fileID: 731476856}
+  vibrancy: 1.45
+  brightness: 0.2
+  flatten: 0.2
+  spriteBlending: 0.65
 --- !u!1 &1961660763
 GameObject:
   m_ObjectHideFlags: 0
