@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
+using TMPro;
 
 
 namespace GraphLib {
@@ -28,6 +30,15 @@ namespace GraphLib {
         [Header("Grid")]
         public Color gridColor = Color.black;
 
+        /// <summary>
+        /// The number of x axis lines in between the edges of the screen.
+        /// The true number of lines is thus this value, plus 2.
+        /// </summary>
+        public int xAxisLines = 5;
+
+
+        private List<TextMeshProUGUI> xAxisLabels = new List<TextMeshProUGUI>();
+
 
         private RectTransform rectTransform;
 
@@ -35,11 +46,24 @@ namespace GraphLib {
 
         void Start() {
             rectTransform = GetComponent<RectTransform>();
+
+            // Create container for line renderers
+            RectTransform lineRendererContainer = new GameObject("Line Renderer Container").AddComponent<RectTransform>();
+            lineRendererContainer.SetParent(transform, false);
+            lineRendererContainer.anchorMin = new Vector2(0,0);
+            lineRendererContainer.anchorMax = new Vector2(1,1);
+            lineRendererContainer.sizeDelta = new Vector2(1,1);
+            lineRendererContainer.anchoredPosition = Vector2.zero;
+            lineRendererContainer.gameObject.AddComponent<Mask>();
+
+            Image a = lineRendererContainer.gameObject.AddComponent<Image>();
+            a.SetAlpha(0.01f);
+
             // Create the line renderer
 
             foreach (DataSet d in dataSets) {
                 d.lineRenderer = new GameObject("DataSet Line Renderer").AddComponent<UILineRenderer>();
-                d.lineRenderer.transform.SetParent(transform, false);
+                d.lineRenderer.transform.SetParent(lineRendererContainer.transform, false);
 
                 d.lineRenderer.GetComponent<RectTransform>().StretchToFill();
 
@@ -58,8 +82,31 @@ namespace GraphLib {
             gridRenderer.GetComponent<RectTransform>().StretchToFill();
 
             Vector2 intervals = GetTickInterval();
-            gridRenderer.GridColumns = Mathf.FloorToInt(intervals.x);
+            // gridRenderer.GridColumns = Mathf.FloorToInt(intervals.x);
             gridRenderer.GridRows = Mathf.FloorToInt(intervals.y);
+
+
+            // Create ticks
+            float xAxisDistancePerTick = (xBounds.y - xBounds.x) / xAxisLines;
+            gridRenderer.GridColumns = xAxisLines;
+            for (int i = 0; i <= xAxisLines; i++) {
+                TextMeshProUGUI newLabel = new GameObject("X Axis Tick Label").AddComponent<TextMeshProUGUI>();
+                RectTransform newLabelRectTransform = newLabel.GetComponent<RectTransform>();
+
+                newLabelRectTransform.SetParent(rectTransform, false);
+
+                Vector2 anchorVec = new Vector2((float)i/(float)xAxisLines, 0);
+                newLabelRectTransform.anchorMin = anchorVec;
+                newLabelRectTransform.anchorMax = anchorVec;
+                newLabelRectTransform.anchoredPosition = Vector2.zero;
+                newLabelRectTransform.sizeDelta = new Vector2(50, 20);
+
+                newLabel.text = (xBounds.x + (xAxisDistancePerTick) * i).ToString();
+                newLabel.alignment = TextAlignmentOptions.Center;
+                newLabel.enableWordWrapping = false;
+                xAxisLabels.Add(newLabel);
+
+            }
         }
 
 
@@ -87,7 +134,7 @@ namespace GraphLib {
 
                     point.x -= xBounds.x;
                     point.y -= yBounds.x;
-                    
+
                     point.x /= xBounds.y;
                     point.y /= yBounds.y;
 

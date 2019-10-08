@@ -257,7 +257,7 @@ class Window(QtWidgets.QMainWindow):
         End marker "END"
 
         """
-        dataStruct = struct.Struct('< 3s 2d d 3d 4d d 3d ? 3d L 3s')
+        dataStruct = struct.Struct('< 3s 3d 3d 4d d 3d ? 3d L 3s')
 
         timeEpoch = int(time.time())
 
