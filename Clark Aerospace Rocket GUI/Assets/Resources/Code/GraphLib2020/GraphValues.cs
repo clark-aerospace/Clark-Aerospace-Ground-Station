@@ -15,6 +15,7 @@ namespace GraphLib
         public bool useBezier = false;
 
         public UILineRenderer lineRenderer;
+        //public List<Image> dots = new List<Image>();
 
 
         // For use with animating n stuff

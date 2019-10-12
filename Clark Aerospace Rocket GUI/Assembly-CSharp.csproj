@@ -55,6 +55,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
      <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\ComputerVisionController.cs" />
      <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\EdgeDetector.cs" />
      <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\TextureReader.cs" />
@@ -553,6 +560,7 @@
      <Compile Include="Assets\Resources\Code\GraphLib2020\Graph2020Test.cs" />
      <Compile Include="Assets\Resources\Code\GraphLib2020\GraphValues.cs" />
      <Compile Include="Assets\Resources\Code\GraphLib2020\LineGraph.cs" />
+     <Compile Include="Assets\Resources\Code\GraphLib2020\LineGraphTweenExtensions.cs" />
      <Compile Include="Assets\Resources\Code\IconFollow.cs" />
      <Compile Include="Assets\Resources\Code\NiceExtensions.cs" />
      <Compile Include="Assets\Resources\Code\ZenithLib\GlobeMath.cs" />
@@ -854,6 +862,7 @@
      <None Include="Assets\Resources\Code\GraphLib\ShaderVer\GraphShader.shader" />
      <None Include="Assets\unity-ui-extensions\Shaders\UI Particle AddMultiply.shader" />
      <None Include="Assets\Mapbox\Unity\Location\ExampleGpsTraces\LocationProviderUnity.txt" />
+     <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\Mapbox\Unity\Location\ExampleGpsTraces\LocationProviderAndroidNative-2.txt" />
      <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\YUVShaderLinear.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -1130,6 +1139,9 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>/Applications/Unity/Hub/Editor/2019.2.4f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>/Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark Aerospace Rocket GUI/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="Mapbox.VectorTile.Geometry">
  <HintPath>/Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark Aerospace Rocket GUI/Assets/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.Geometry.dll</HintPath>

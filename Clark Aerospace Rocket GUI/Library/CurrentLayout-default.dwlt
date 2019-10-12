@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 372}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -111,10 +111,10 @@ MonoBehaviour:
     y: 30
     width: 1440
     height: 805
-  m_MinSize: {x: 683, y: 494}
-  m_MaxSize: {x: 14004, y: 14044}
+  m_MinSize: {x: 679, y: 322}
+  m_MaxSize: {x: 12004, y: 8022}
   vertical: 0
-  controlID: 88
+  controlID: 5749
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,10 +136,10 @@ MonoBehaviour:
     y: 0
     width: 1030
     height: 805
-  m_MinSize: {x: 406, y: 494}
-  m_MaxSize: {x: 10002, y: 14044}
+  m_MinSize: {x: 404, y: 322}
+  m_MaxSize: {x: 8004, y: 8022}
   vertical: 1
-  controlID: 89
+  controlID: 5750
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,10 +161,10 @@ MonoBehaviour:
     y: 0
     width: 1030
     height: 533
-  m_MinSize: {x: 406, y: 222}
-  m_MaxSize: {x: 8006, y: 4022}
+  m_MinSize: {x: 404, y: 222}
+  m_MaxSize: {x: 8004, y: 4022}
   vertical: 0
-  controlID: 90
+  controlID: 5751
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -184,8 +184,8 @@ MonoBehaviour:
     y: 0
     width: 261
     height: 533
-  m_MinSize: {x: 202, y: 222}
-  m_MaxSize: {x: 4002, y: 4022}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -239,14 +239,14 @@ MonoBehaviour:
     y: 533
     width: 1030
     height: 272
-  m_MinSize: {x: 232, y: 272}
-  m_MaxSize: {x: 10002, y: 10022}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -266,8 +266,8 @@ MonoBehaviour:
     y: 0
     width: 410
     height: 805
-  m_MinSize: {x: 277, y: 72}
-  m_MaxSize: {x: 4002, y: 4022}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -385,9 +385,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: be590000
-      m_LastClickedID: 22974
-      m_ExpandedIDs: defaffffb4590000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 5cdaffff74fbffff8657000090570000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -447,9 +447,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1172.3024, y: 722.07153, z: -6947.002}
+    m_Target: {x: 806.8558, y: 549.42816, z: -10497.687}
     speed: 2
-    m_Value: {x: 1172.3024, y: 722.07153, z: -6947.002}
+    m_Value: {x: 806.8558, y: 549.42816, z: -10497.687}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -482,9 +482,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1500.8591
+    m_Target: 192.33424
     speed: 2
-    m_Value: 1500.8591
+    m_Value: 192.33424
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -531,9 +531,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 202
+    x: 261
     y: 75
-    width: 844
+    width: 767
     height: 514
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &16
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   Collection:
     filter: 0
-    lastUpdateTime: Oct 5, 20:02
+    lastUpdateTime: Oct 9, 07:18
     listPackagesOffline:
     - Name: com.unity.2d.sprite
       DisplayName: 2D Sprite
@@ -736,6 +736,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -762,6 +763,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -840,6 +842,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -866,6 +869,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -944,6 +948,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -970,6 +975,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1048,6 +1054,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1074,6 +1081,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1152,6 +1160,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1178,6 +1187,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1256,6 +1266,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1282,6 +1293,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1360,6 +1372,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1386,6 +1399,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1464,6 +1478,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1490,6 +1505,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1568,6 +1584,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1594,6 +1611,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1672,6 +1690,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1698,6 +1717,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1776,6 +1796,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1802,6 +1823,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1880,6 +1902,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -1906,6 +1929,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -1984,6 +2008,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2010,6 +2035,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2088,6 +2114,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2114,6 +2141,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2192,6 +2220,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2218,6 +2247,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2296,6 +2326,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2322,6 +2353,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2400,6 +2432,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2426,6 +2459,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2504,6 +2538,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2530,6 +2565,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2608,6 +2644,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2634,6 +2671,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2712,6 +2750,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2738,6 +2777,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2816,6 +2856,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2842,6 +2883,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -2920,6 +2962,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -2946,6 +2989,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -3024,6 +3068,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -3050,6 +3095,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -3128,6 +3174,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -3154,6 +3201,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -3175,6 +3223,112 @@ MonoBehaviour:
     - Name: com.unity.ads
       DisplayName: Advertisement
       _Version: 3.2.0
+      Description: Unity Ads is a video ad network for iOS and Android that allows
+        you to quickly and effectively monetize your games.
+      Category: 
+      State: 1
+      IsLatest: 0
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.ads@2.3.1
+        m_IsDirectDependency: 1
+        m_Version: 2.3.1
+        m_Source: 1
+        m_ResolvedPath: /Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark
+          Aerospace Rocket GUI/Library/PackageCache/com.unity.ads@2.3.1
+        m_AssetPath: Packages/com.unity.ads
+        m_Name: com.unity.ads
+        m_DisplayName: Advertisement
+        m_Category: 
+        m_Type: 
+        m_Description: Unity Ads is a video ad network for iOS and Android that allows
+          you to quickly and effectively monetize your games.
+        m_Status: 4
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 0.0.3
+          - 0.0.4
+          - 0.0.5
+          - 0.0.6
+          - 0.0.7
+          - 0.0.8
+          - 0.0.10
+          - 0.0.11
+          - 0.0.12
+          - 0.0.13
+          - 0.0.14
+          - 0.0.15
+          - 0.0.16
+          - 2.0.0
+          - 2.0.3
+          - 2.0.4
+          - 2.0.7
+          - 2.0.8
+          - 2.3.1
+          - 2.3.2
+          - 3.0.1
+          - 3.0.2
+          - 3.0.3
+          - 3.1.1
+          - 3.2.0
+          - 3.3.0
+          m_Compatible:
+          - 0.0.3
+          - 0.0.4
+          - 0.0.5
+          - 0.0.6
+          - 0.0.7
+          - 0.0.8
+          - 0.0.10
+          - 0.0.11
+          - 0.0.12
+          - 0.0.13
+          - 0.0.14
+          - 0.0.15
+          - 0.0.16
+          - 2.0.0
+          - 2.0.3
+          - 2.0.4
+          - 2.0.7
+          - 2.0.8
+          - 2.3.1
+          - 2.3.2
+          - 3.0.1
+          - 3.0.2
+          - 3.0.3
+          - 3.1.1
+          - 3.2.0
+          - 3.3.0
+          m_Recommended: 2.0.8
+        m_Dependencies: []
+        m_ResolvedDependencies: []
+        m_Keywords:
+        - ads
+        - unity
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 636898887310000000
+      IsInstalled: 0
+    - Name: com.unity.ads
+      DisplayName: Advertisement
+      _Version: 3.3.0
       Description: Unity Ads is a video ad network for iOS and Android that allows
         you to quickly and effectively monetize your games.
       Category: 
@@ -3232,6 +3386,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -3258,6 +3413,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -7800,12 +7956,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -7869,12 +8027,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -7938,12 +8098,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -8007,12 +8169,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -8041,7 +8205,7 @@ MonoBehaviour:
         discovery of installations, etc.
       Category: 
       State: 1
-      IsLatest: 1
+      IsLatest: 0
       Group: Packages
       Type: 
       Origin: 1
@@ -8076,12 +8240,85 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
+          m_Recommended: 1.1.1
+        m_Dependencies:
+        - m_Name: com.unity.ext.nunit
+          m_Version: 1.0.0
+        m_ResolvedDependencies:
+        - m_Name: com.unity.ext.nunit
+          m_Version: 1.0.0
+        m_Keywords: []
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 637001065180000000
+      IsInstalled: 0
+    - Name: com.unity.ide.rider
+      DisplayName: Rider Editor
+      _Version: 1.1.2-preview.2
+      Description: Code editor integration for supporting Rider as code editor for
+        unity. Adds support for generating csproj files for code completion, auto
+        discovery of installations, etc.
+      Category: 
+      State: 1
+      IsLatest: 1
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.ide.rider@1.1.0
+        m_IsDirectDependency: 1
+        m_Version: 1.1.0
+        m_Source: 1
+        m_ResolvedPath: /Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark
+          Aerospace Rocket GUI/Library/PackageCache/com.unity.ide.rider@1.1.0
+        m_AssetPath: Packages/com.unity.ide.rider
+        m_Name: com.unity.ide.rider
+        m_DisplayName: Rider Editor
+        m_Category: 
+        m_Type: 
+        m_Description: Code editor integration for supporting Rider as code editor
+          for unity. Adds support for generating csproj files for code completion,
+          auto discovery of installations, etc.
+        m_Status: 4
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 1.0.2
+          - 1.0.6
+          - 1.0.8
+          - 1.1.0
+          - 1.1.1
+          - 1.1.2-preview
+          - 1.1.2-preview.2
+          m_Compatible:
+          - 1.0.2
+          - 1.0.6
+          - 1.0.8
+          - 1.1.0
+          - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -20410,6 +20647,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -20436,6 +20674,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -20514,6 +20753,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -20540,6 +20780,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -20618,6 +20859,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -20644,6 +20886,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -20722,6 +20965,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -20748,6 +20992,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -20826,6 +21071,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -20852,6 +21098,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -20930,6 +21177,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -20956,6 +21204,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21034,6 +21283,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21060,6 +21310,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21138,6 +21389,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21164,6 +21416,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21242,6 +21495,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21268,6 +21522,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21346,6 +21601,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21372,6 +21628,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21450,6 +21707,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21476,6 +21734,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21554,6 +21813,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21580,6 +21840,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21658,6 +21919,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21684,6 +21946,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21762,6 +22025,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21788,6 +22052,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21866,6 +22131,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21892,6 +22158,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -21970,6 +22237,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -21996,6 +22264,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22074,6 +22343,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22100,6 +22370,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22178,6 +22449,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22204,6 +22476,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22282,6 +22555,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22308,6 +22582,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22386,6 +22661,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22412,6 +22688,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22490,6 +22767,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22516,6 +22794,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22594,6 +22873,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22620,6 +22900,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22698,6 +22979,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22724,6 +23006,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22802,6 +23085,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22828,6 +23112,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -22849,6 +23134,112 @@ MonoBehaviour:
     - Name: com.unity.ads
       DisplayName: Advertisement
       _Version: 3.2.0
+      Description: Unity Ads is a video ad network for iOS and Android that allows
+        you to quickly and effectively monetize your games.
+      Category: 
+      State: 1
+      IsLatest: 0
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.ads@2.3.1
+        m_IsDirectDependency: 1
+        m_Version: 2.3.1
+        m_Source: 1
+        m_ResolvedPath: /Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark
+          Aerospace Rocket GUI/Library/PackageCache/com.unity.ads@2.3.1
+        m_AssetPath: Packages/com.unity.ads
+        m_Name: com.unity.ads
+        m_DisplayName: Advertisement
+        m_Category: 
+        m_Type: 
+        m_Description: Unity Ads is a video ad network for iOS and Android that allows
+          you to quickly and effectively monetize your games.
+        m_Status: 4
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 0.0.3
+          - 0.0.4
+          - 0.0.5
+          - 0.0.6
+          - 0.0.7
+          - 0.0.8
+          - 0.0.10
+          - 0.0.11
+          - 0.0.12
+          - 0.0.13
+          - 0.0.14
+          - 0.0.15
+          - 0.0.16
+          - 2.0.0
+          - 2.0.3
+          - 2.0.4
+          - 2.0.7
+          - 2.0.8
+          - 2.3.1
+          - 2.3.2
+          - 3.0.1
+          - 3.0.2
+          - 3.0.3
+          - 3.1.1
+          - 3.2.0
+          - 3.3.0
+          m_Compatible:
+          - 0.0.3
+          - 0.0.4
+          - 0.0.5
+          - 0.0.6
+          - 0.0.7
+          - 0.0.8
+          - 0.0.10
+          - 0.0.11
+          - 0.0.12
+          - 0.0.13
+          - 0.0.14
+          - 0.0.15
+          - 0.0.16
+          - 2.0.0
+          - 2.0.3
+          - 2.0.4
+          - 2.0.7
+          - 2.0.8
+          - 2.3.1
+          - 2.3.2
+          - 3.0.1
+          - 3.0.2
+          - 3.0.3
+          - 3.1.1
+          - 3.2.0
+          - 3.3.0
+          m_Recommended: 2.0.8
+        m_Dependencies: []
+        m_ResolvedDependencies: []
+        m_Keywords:
+        - ads
+        - unity
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 636898887310000000
+      IsInstalled: 0
+    - Name: com.unity.ads
+      DisplayName: Advertisement
+      _Version: 3.3.0
       Description: Unity Ads is a video ad network for iOS and Android that allows
         you to quickly and effectively monetize your games.
       Category: 
@@ -22906,6 +23297,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -22932,6 +23324,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -27474,12 +27867,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -27543,12 +27938,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -27612,12 +28009,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -27681,12 +28080,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -27715,7 +28116,7 @@ MonoBehaviour:
         discovery of installations, etc.
       Category: 
       State: 1
-      IsLatest: 1
+      IsLatest: 0
       Group: Packages
       Type: 
       Origin: 1
@@ -27750,12 +28151,85 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
+          m_Recommended: 1.1.1
+        m_Dependencies:
+        - m_Name: com.unity.ext.nunit
+          m_Version: 1.0.0
+        m_ResolvedDependencies:
+        - m_Name: com.unity.ext.nunit
+          m_Version: 1.0.0
+        m_Keywords: []
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 637001065180000000
+      IsInstalled: 0
+    - Name: com.unity.ide.rider
+      DisplayName: Rider Editor
+      _Version: 1.1.2-preview.2
+      Description: Code editor integration for supporting Rider as code editor for
+        unity. Adds support for generating csproj files for code completion, auto
+        discovery of installations, etc.
+      Category: 
+      State: 1
+      IsLatest: 1
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.ide.rider@1.1.0
+        m_IsDirectDependency: 1
+        m_Version: 1.1.0
+        m_Source: 1
+        m_ResolvedPath: /Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark
+          Aerospace Rocket GUI/Library/PackageCache/com.unity.ide.rider@1.1.0
+        m_AssetPath: Packages/com.unity.ide.rider
+        m_Name: com.unity.ide.rider
+        m_DisplayName: Rider Editor
+        m_Category: 
+        m_Type: 
+        m_Description: Code editor integration for supporting Rider as code editor
+          for unity. Adds support for generating csproj files for code completion,
+          auto discovery of installations, etc.
+        m_Status: 4
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 1.0.2
+          - 1.0.6
+          - 1.0.8
+          - 1.1.0
+          - 1.1.1
+          - 1.1.2-preview
+          - 1.1.2-preview.2
+          m_Compatible:
+          - 1.0.2
+          - 1.0.6
+          - 1.0.8
+          - 1.1.0
+          - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.ext.nunit
@@ -47672,9 +48146,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -47713,6 +48187,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -47739,6 +48214,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -47755,7 +48231,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -47775,9 +48251,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -47816,6 +48292,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -47842,6 +48319,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -47858,7 +48336,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -47878,9 +48356,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -47919,6 +48397,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -47945,6 +48424,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -47961,7 +48441,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -47981,9 +48461,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48022,6 +48502,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48048,6 +48529,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48064,7 +48546,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48084,9 +48566,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48125,6 +48607,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48151,6 +48634,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48167,7 +48651,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48187,9 +48671,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48228,6 +48712,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48254,6 +48739,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48270,7 +48756,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48290,9 +48776,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48331,6 +48817,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48357,6 +48844,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48373,7 +48861,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48393,9 +48881,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48434,6 +48922,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48460,6 +48949,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48476,7 +48966,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48496,9 +48986,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48537,6 +49027,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48563,6 +49054,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48579,7 +49071,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48599,9 +49091,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48640,6 +49132,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48666,6 +49159,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48682,7 +49176,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48702,9 +49196,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48743,6 +49237,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48769,6 +49264,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48785,7 +49281,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48805,9 +49301,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48846,6 +49342,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48872,6 +49369,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48888,7 +49386,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -48908,9 +49406,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -48949,6 +49447,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -48975,6 +49474,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -48991,7 +49491,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49011,9 +49511,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49052,6 +49552,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49078,6 +49579,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49094,7 +49596,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49114,9 +49616,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49155,6 +49657,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49181,6 +49684,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49197,7 +49701,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49217,9 +49721,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49258,6 +49762,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49284,6 +49789,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49300,7 +49806,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49320,9 +49826,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49361,6 +49867,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49387,6 +49894,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49403,7 +49911,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49423,9 +49931,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49464,6 +49972,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49490,6 +49999,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49506,7 +50016,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49526,9 +50036,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49567,6 +50077,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49593,6 +50104,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49609,7 +50121,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49629,9 +50141,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49670,6 +50182,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49696,6 +50209,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49712,7 +50226,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49732,9 +50246,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49773,6 +50287,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49799,6 +50314,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49815,7 +50331,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49835,9 +50351,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49876,6 +50392,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -49902,6 +50419,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -49918,7 +50436,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -49938,9 +50456,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -49979,6 +50497,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -50005,6 +50524,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -50021,7 +50541,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
@@ -50041,9 +50561,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -50082,6 +50602,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -50108,6 +50629,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -50124,11 +50646,116 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ads
       DisplayName: Advertisement
       _Version: 3.2.0
+      Description: Unity Ads is a video ad network for iOS and Android that allows
+        you to quickly and effectively monetize your games.
+      Category: 
+      State: 0
+      IsLatest: 0
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.ads@3.3.0
+        m_IsDirectDependency: 0
+        m_Version: 3.3.0
+        m_Source: 1
+        m_ResolvedPath: 
+        m_AssetPath: Packages/com.unity.ads
+        m_Name: com.unity.ads
+        m_DisplayName: Advertisement
+        m_Category: 
+        m_Type: 
+        m_Description: Unity Ads is a video ad network for iOS and Android that allows
+          you to quickly and effectively monetize your games.
+        m_Status: 1
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 0.0.3
+          - 0.0.4
+          - 0.0.5
+          - 0.0.6
+          - 0.0.7
+          - 0.0.8
+          - 0.0.10
+          - 0.0.11
+          - 0.0.12
+          - 0.0.13
+          - 0.0.14
+          - 0.0.15
+          - 0.0.16
+          - 2.0.0
+          - 2.0.3
+          - 2.0.4
+          - 2.0.7
+          - 2.0.8
+          - 2.3.1
+          - 2.3.2
+          - 3.0.1
+          - 3.0.2
+          - 3.0.3
+          - 3.1.1
+          - 3.2.0
+          - 3.3.0
+          m_Compatible:
+          - 0.0.3
+          - 0.0.4
+          - 0.0.5
+          - 0.0.6
+          - 0.0.7
+          - 0.0.8
+          - 0.0.10
+          - 0.0.11
+          - 0.0.12
+          - 0.0.13
+          - 0.0.14
+          - 0.0.15
+          - 0.0.16
+          - 2.0.0
+          - 2.0.3
+          - 2.0.4
+          - 2.0.7
+          - 2.0.8
+          - 2.3.1
+          - 2.3.2
+          - 3.0.1
+          - 3.0.2
+          - 3.0.3
+          - 3.1.1
+          - 3.2.0
+          - 3.3.0
+          m_Recommended: 2.0.8
+        m_Dependencies: []
+        m_ResolvedDependencies: []
+        m_Keywords:
+        - ads
+        - unity
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 637061544550000000
+      IsInstalled: 0
+    - Name: com.unity.ads
+      DisplayName: Advertisement
+      _Version: 3.3.0
       Description: Unity Ads is a video ad network for iOS and Android that allows
         you to quickly and effectively monetize your games.
       Category: 
@@ -50144,9 +50771,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 1
       Info:
-        m_PackageId: com.unity.ads@3.2.0
+        m_PackageId: com.unity.ads@3.3.0
         m_IsDirectDependency: 0
-        m_Version: 3.2.0
+        m_Version: 3.3.0
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.ads
@@ -50185,6 +50812,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Compatible:
           - 0.0.3
           - 0.0.4
@@ -50211,6 +50839,7 @@ MonoBehaviour:
           - 3.0.3
           - 3.1.1
           - 3.2.0
+          - 3.3.0
           m_Recommended: 2.0.8
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -50227,7 +50856,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636996024380000000
+        m_DatePublishedTicks: 637061544550000000
       IsInstalled: 0
     - Name: com.unity.ai.planner
       DisplayName: AI Planner
@@ -63145,9 +63774,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63172,6 +63801,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63183,7 +63813,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63205,7 +63836,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
@@ -63226,9 +63857,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63253,6 +63884,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63264,7 +63896,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63286,7 +63919,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
@@ -63307,9 +63940,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63334,6 +63967,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63345,7 +63979,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63367,7 +64002,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
@@ -63388,9 +64023,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63415,6 +64050,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63426,7 +64062,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63448,7 +64085,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
@@ -63469,9 +64106,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63496,6 +64133,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63507,7 +64145,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63529,7 +64168,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
@@ -63550,9 +64189,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63577,6 +64216,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63588,7 +64228,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63610,7 +64251,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
@@ -63631,9 +64272,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63658,6 +64299,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63669,7 +64311,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63691,7 +64334,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
@@ -63712,9 +64355,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63739,6 +64382,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63750,7 +64394,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63772,7 +64417,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
@@ -63793,9 +64438,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 0
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63820,6 +64465,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63831,7 +64477,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63853,11 +64500,94 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.alembic
       DisplayName: Alembic
       _Version: 1.0.5
+      Description: The Alembic package provides support to import and export Alembic
+        files (.abc). Alembic is a format commonly used in animation to transfer facial,
+        cloth, and other simulation between applications.
+      Category: 
+      State: 0
+      IsLatest: 0
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.formats.alembic@1.0.6
+        m_IsDirectDependency: 0
+        m_Version: 1.0.6
+        m_Source: 1
+        m_ResolvedPath: 
+        m_AssetPath: Packages/com.unity.formats.alembic
+        m_Name: com.unity.formats.alembic
+        m_DisplayName: Alembic
+        m_Category: 
+        m_Type: 
+        m_Description: The Alembic package provides support to import and export Alembic
+          files (.abc). Alembic is a format commonly used in animation to transfer
+          facial, cloth, and other simulation between applications.
+        m_Status: 1
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 0.1.2-preview
+          - 1.0.0-preview.2
+          - 1.0.0-preview.7
+          - 1.0.0-preview.8
+          - 1.0.0
+          - 1.0.1
+          - 1.0.2
+          - 1.0.3
+          - 1.0.4
+          - 1.0.5
+          - 1.0.6
+          m_Compatible:
+          - 0.1.2-preview
+          - 1.0.0-preview.2
+          - 1.0.0-preview.7
+          - 1.0.0-preview.8
+          - 1.0.0
+          - 1.0.1
+          - 1.0.2
+          - 1.0.3
+          - 1.0.4
+          - 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
+        m_Dependencies:
+        - m_Name: com.unity.timeline
+          m_Version: 1.0.0
+        m_ResolvedDependencies: []
+        m_Keywords:
+        - alembic
+        - abc
+        - animation
+        - facial
+        - cloth
+        - simulation
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 637062265500000000
+      IsInstalled: 0
+    - Name: com.unity.formats.alembic
+      DisplayName: Alembic
+      _Version: 1.0.6
       Description: The Alembic package provides support to import and export Alembic
         files (.abc). Alembic is a format commonly used in animation to transfer facial,
         cloth, and other simulation between applications.
@@ -63874,9 +64604,9 @@ MonoBehaviour:
       Samples: []
       HasFullFetch: 1
       Info:
-        m_PackageId: com.unity.formats.alembic@1.0.5
+        m_PackageId: com.unity.formats.alembic@1.0.6
         m_IsDirectDependency: 0
-        m_Version: 1.0.5
+        m_Version: 1.0.6
         m_Source: 1
         m_ResolvedPath: 
         m_AssetPath: Packages/com.unity.formats.alembic
@@ -63901,6 +64631,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
+          - 1.0.6
           m_Compatible:
           - 0.1.2-preview
           - 1.0.0-preview.2
@@ -63912,7 +64643,8 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4
           - 1.0.5
-          m_Recommended: 1.0.5
+          - 1.0.6
+          m_Recommended: 1.0.6
         m_Dependencies:
         - m_Name: com.unity.timeline
           m_Version: 1.0.0
@@ -63934,7 +64666,7 @@ MonoBehaviour:
           m_Url: https://packages.unity.com
           m_IsDefault: 1
         m_HideInEditor: 1
-        m_DatePublishedTicks: 636931836650000000
+        m_DatePublishedTicks: 637062265500000000
       IsInstalled: 0
     - Name: com.unity.formats.fbx
       DisplayName: FBX Exporter
@@ -64980,12 +65712,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.test-framework
@@ -65046,12 +65780,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.test-framework
@@ -65112,12 +65848,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.test-framework
@@ -65178,12 +65916,14 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.test-framework
@@ -65210,7 +65950,7 @@ MonoBehaviour:
         discovery of installations, etc.
       Category: 
       State: 0
-      IsLatest: 1
+      IsLatest: 0
       Group: Packages
       Type: 
       Origin: 1
@@ -65244,12 +65984,82 @@ MonoBehaviour:
           - 1.1.0
           - 1.1.1
           - 1.1.2-preview
+          - 1.1.2-preview.2
           m_Compatible:
           - 1.0.2
           - 1.0.6
           - 1.0.8
           - 1.1.0
           - 1.1.1
+          - 1.1.2-preview.2
+          m_Recommended: 1.1.1
+        m_Dependencies:
+        - m_Name: com.unity.test-framework
+          m_Version: 1.1.1
+        m_ResolvedDependencies: []
+        m_Keywords: []
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 637048513610000000
+      IsInstalled: 0
+    - Name: com.unity.ide.rider
+      DisplayName: Rider Editor
+      _Version: 1.1.2-preview.2
+      Description: Code editor integration for supporting Rider as code editor for
+        unity. Adds support for generating csproj files for code completion, auto
+        discovery of installations, etc.
+      Category: 
+      State: 0
+      IsLatest: 1
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.ide.rider@1.1.1
+        m_IsDirectDependency: 0
+        m_Version: 1.1.1
+        m_Source: 1
+        m_ResolvedPath: 
+        m_AssetPath: Packages/com.unity.ide.rider
+        m_Name: com.unity.ide.rider
+        m_DisplayName: Rider Editor
+        m_Category: 
+        m_Type: 
+        m_Description: Code editor integration for supporting Rider as code editor
+          for unity. Adds support for generating csproj files for code completion,
+          auto discovery of installations, etc.
+        m_Status: 1
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 1.0.2
+          - 1.0.6
+          - 1.0.8
+          - 1.1.0
+          - 1.1.1
+          - 1.1.2-preview
+          - 1.1.2-preview.2
+          m_Compatible:
+          - 1.0.2
+          - 1.0.6
+          - 1.0.8
+          - 1.1.0
+          - 1.1.1
+          - 1.1.2-preview.2
           m_Recommended: 1.1.1
         m_Dependencies:
         - m_Name: com.unity.test-framework
@@ -70565,6 +71375,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -70585,6 +71396,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -70664,6 +71476,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -70684,6 +71497,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -70763,6 +71577,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -70783,6 +71598,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -70862,6 +71678,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -70882,6 +71699,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -70961,6 +71779,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -70981,6 +71800,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71060,6 +71880,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71080,6 +71901,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71159,6 +71981,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71179,6 +72002,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71258,6 +72082,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71278,6 +72103,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71357,6 +72183,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71377,6 +72204,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71456,6 +72284,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71476,6 +72305,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71555,6 +72385,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71575,6 +72406,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71654,6 +72486,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71674,6 +72507,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71753,6 +72587,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71773,6 +72608,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71852,6 +72688,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71872,6 +72709,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -71951,6 +72789,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -71971,6 +72810,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -72050,6 +72890,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -72070,6 +72911,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -72149,6 +72991,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -72169,6 +73012,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -72248,6 +73092,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -72268,6 +73113,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -72291,6 +73137,107 @@ MonoBehaviour:
     - Name: com.unity.mobile.notifications
       DisplayName: Mobile Notifications
       _Version: 1.0.4-preview.2
+      Description: 'Mobile Notifications package adds support for scheduling local
+        repeatable or one-time notifications on iOS and Android.
+
+
+        Requires iOS 10 and Android 4.4 or above.'
+      Category: 
+      State: 0
+      IsLatest: 0
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.mobile.notifications@1.0.3
+        m_IsDirectDependency: 0
+        m_Version: 1.0.3
+        m_Source: 1
+        m_ResolvedPath: 
+        m_AssetPath: Packages/com.unity.mobile.notifications
+        m_Name: com.unity.mobile.notifications
+        m_DisplayName: Mobile Notifications
+        m_Category: 
+        m_Type: 
+        m_Description: 'Mobile Notifications package adds support for scheduling local
+          repeatable or one-time notifications on iOS and Android.
+
+
+          Requires iOS 10 and Android 4.4 or above.'
+        m_Status: 1
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 1.0.0-preview.4
+          - 1.0.0-preview.5
+          - 1.0.0-preview.7
+          - 1.0.0-preview.8
+          - 1.0.0-preview.9
+          - 1.0.0-preview.10
+          - 1.0.0-preview.13
+          - 1.0.0-preview.17
+          - 1.0.0-preview.21
+          - 1.0.0-preview.23
+          - 1.0.2
+          - 1.0.3-preview
+          - 1.0.3-preview.3
+          - 1.0.3-preview.4
+          - 1.0.3-preview.5
+          - 1.0.3-preview.6
+          - 1.0.3
+          - 1.0.4-preview.1
+          - 1.0.4-preview.2
+          - 1.0.4-preview.3
+          m_Compatible:
+          - 1.0.0-preview.4
+          - 1.0.0-preview.5
+          - 1.0.0-preview.7
+          - 1.0.0-preview.8
+          - 1.0.0-preview.9
+          - 1.0.0-preview.10
+          - 1.0.0-preview.13
+          - 1.0.0-preview.17
+          - 1.0.0-preview.21
+          - 1.0.0-preview.23
+          - 1.0.2
+          - 1.0.3-preview
+          - 1.0.3-preview.3
+          - 1.0.3-preview.4
+          - 1.0.3-preview.5
+          - 1.0.3-preview.6
+          - 1.0.3
+          - 1.0.4-preview.1
+          - 1.0.4-preview.2
+          - 1.0.4-preview.3
+          m_Recommended: 
+        m_Dependencies: []
+        m_ResolvedDependencies: []
+        m_Keywords:
+        - Android
+        - iOS
+        - Notifications
+        - Mobile
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 637020793450000000
+      IsInstalled: 0
+    - Name: com.unity.mobile.notifications
+      DisplayName: Mobile Notifications
+      _Version: 1.0.4-preview.3
       Description: 'Mobile Notifications package adds support for scheduling local
         repeatable or one-time notifications on iOS and Android.
 
@@ -72347,6 +73294,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Compatible:
           - 1.0.0-preview.4
           - 1.0.0-preview.5
@@ -72367,6 +73315,7 @@ MonoBehaviour:
           - 1.0.3
           - 1.0.4-preview.1
           - 1.0.4-preview.2
+          - 1.0.4-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -86265,6 +87214,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -86290,6 +87240,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -86386,6 +87337,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -86411,6 +87363,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -86507,6 +87460,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -86532,6 +87486,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -86628,6 +87583,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -86653,6 +87609,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -86749,6 +87706,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -86774,6 +87732,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -86870,6 +87829,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -86895,6 +87855,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -86991,6 +87952,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87016,6 +87978,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -87112,6 +88075,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87137,6 +88101,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -87233,6 +88198,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87258,6 +88224,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -87354,6 +88321,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87379,6 +88347,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -87475,6 +88444,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87500,6 +88470,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -87596,6 +88567,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87621,6 +88593,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -87717,6 +88690,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87742,6 +88716,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -87838,6 +88813,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87863,6 +88839,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -87959,6 +88936,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -87984,6 +88962,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88080,6 +89059,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -88105,6 +89085,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88201,6 +89182,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -88226,6 +89208,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88322,6 +89305,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -88347,6 +89331,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88443,6 +89428,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -88468,6 +89454,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88564,6 +89551,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -88589,6 +89577,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88685,6 +89674,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -88710,6 +89700,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88806,6 +89797,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -88831,6 +89823,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88927,6 +89920,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -88952,6 +89946,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -88983,6 +89978,129 @@ MonoBehaviour:
     - Name: com.unity.quicksearch
       DisplayName: Quick Search
       _Version: 1.4.2-preview.2
+      Description: 'Search multiple areas of Unity: assets, scene objects, menu items,
+        packages, APIs, settings, etc.
+
+
+        On Windows simply press Alt+'' to find anything or Option+'' on Mac.
+
+        Look in the shortcut manager for additional Quick Search shortcut bindings.'
+      Category: 
+      State: 0
+      IsLatest: 0
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies ApS
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.quicksearch@1.4.1
+        m_IsDirectDependency: 0
+        m_Version: 1.4.1
+        m_Source: 1
+        m_ResolvedPath: 
+        m_AssetPath: Packages/com.unity.quicksearch
+        m_Name: com.unity.quicksearch
+        m_DisplayName: Quick Search
+        m_Category: 
+        m_Type: 
+        m_Description: 'Search multiple areas of Unity: assets, scene objects, menu
+          items, packages, APIs, settings, etc.
+
+
+          On Windows simply press Alt+'' to find anything or Option+'' on Mac.
+
+          Look in the shortcut manager for additional Quick Search shortcut bindings.'
+        m_Status: 1
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 0.9.5-preview.1
+          - 0.9.6-preview.1
+          - 0.9.7-preview.3
+          - 0.9.9-preview.2
+          - 0.9.95-preview
+          - 1.0.0-preview.2
+          - 1.0.1-preview.1
+          - 1.0.9-preview.2
+          - 1.1.0-preview.1
+          - 1.2.0-preview.1
+          - 1.2.1-preview
+          - 1.2.2-preview
+          - 1.2.3-preview
+          - 1.2.4-preview
+          - 1.2.6-preview
+          - 1.2.7-preview
+          - 1.2.8-preview
+          - 1.2.9-preview
+          - 1.3.0-preview
+          - 1.3.1-preview
+          - 1.3.2-preview
+          - 1.4.1
+          - 1.4.2-preview.1
+          - 1.4.2-preview.2
+          - 1.4.2-preview.3
+          m_Compatible:
+          - 0.9.5-preview.1
+          - 0.9.6-preview.1
+          - 0.9.7-preview.3
+          - 0.9.9-preview.2
+          - 0.9.95-preview
+          - 1.0.0-preview.2
+          - 1.0.1-preview.1
+          - 1.0.9-preview.2
+          - 1.1.0-preview.1
+          - 1.2.0-preview.1
+          - 1.2.1-preview
+          - 1.2.2-preview
+          - 1.2.3-preview
+          - 1.2.4-preview
+          - 1.2.6-preview
+          - 1.2.7-preview
+          - 1.2.8-preview
+          - 1.2.9-preview
+          - 1.3.0-preview
+          - 1.3.1-preview
+          - 1.3.2-preview
+          - 1.4.1
+          - 1.4.2-preview.1
+          - 1.4.2-preview.2
+          - 1.4.2-preview.3
+          m_Recommended: 
+        m_Dependencies: []
+        m_ResolvedDependencies: []
+        m_Keywords:
+        - unity
+        - editor
+        - omni
+        - tool
+        - quick
+        - search
+        - assets
+        - menu
+        - scene
+        - api
+        - packages
+        - anything
+        m_Author:
+          m_Name: Unity Technologies ApS
+          m_Email: 
+          m_Url: https://blogs.unity3d.com/2019/04/16/introducing-unity-2019-1/#quicksearch
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 637032926070000000
+      IsInstalled: 0
+    - Name: com.unity.quicksearch
+      DisplayName: Quick Search
+      _Version: 1.4.2-preview.3
       Description: 'Search multiple areas of Unity: assets, scene objects, menu items,
         packages, APIs, settings, etc.
 
@@ -89048,6 +90166,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Compatible:
           - 0.9.5-preview.1
           - 0.9.6-preview.1
@@ -89073,6 +90192,7 @@ MonoBehaviour:
           - 1.4.1
           - 1.4.2-preview.1
           - 1.4.2-preview.2
+          - 1.4.2-preview.3
           m_Recommended: 
         m_Dependencies: []
         m_ResolvedDependencies: []
@@ -100287,6 +101407,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -100297,6 +101418,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -100379,6 +101501,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -100389,6 +101512,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -100471,6 +101595,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -100481,6 +101606,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -100563,6 +101689,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -100573,6 +101700,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -100655,6 +101783,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -100665,6 +101794,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -100747,6 +101877,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -100757,6 +101888,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -100839,6 +101971,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -100849,6 +101982,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -100931,6 +102065,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -100941,6 +102076,101 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
+          - 0.16.1-preview
+          m_Recommended: 
+        m_Dependencies:
+        - m_Name: com.unity.searcher
+          m_Version: 4.0.0-preview
+        - m_Name: com.unity.entities
+          m_Version: 0.0.12-preview.33
+        - m_Name: com.unity.ext.nunit
+          m_Version: 1.0.0
+        - m_Name: com.unity.properties
+          m_Version: 0.5.0-preview
+        - m_Name: com.unity.test-framework
+          m_Version: 1.0.13
+        - m_Name: com.unity.test-framework.performance
+          m_Version: 1.2.0-preview
+        - m_Name: nuget.moq
+          m_Version: 1.0.0
+        - m_Name: nuget.mono-cecil
+          m_Version: 0.1.6-preview
+        - m_Name: com.unity.textmeshpro
+          m_Version: 2.0.1
+        m_ResolvedDependencies: []
+        m_Keywords:
+        - tiny
+        - instant
+        - playables
+        - html5
+        - canvas
+        m_Author:
+          m_Name: 
+          m_Email: 
+          m_Url: 
+        m_HasRegistry: 1
+        m_Registry:
+          m_Name: 
+          m_Url: https://packages.unity.com
+          m_IsDefault: 1
+        m_HideInEditor: 1
+        m_DatePublishedTicks: 636983573160000000
+      IsInstalled: 0
+    - Name: com.unity.tiny
+      DisplayName: Project Tiny
+      _Version: 0.16.0-preview
+      Description: Project Tiny enables you to create lightweight Web-based games
+        using the Unity Editor.
+      Category: 
+      State: 0
+      IsLatest: 0
+      Group: Packages
+      Type: 
+      Origin: 1
+      Errors: []
+      IsVerified: 0
+      Author: Unity Technologies Inc.
+      IsDiscoverable: 1
+      Samples: []
+      HasFullFetch: 0
+      Info:
+        m_PackageId: com.unity.tiny@0.16.1-preview
+        m_IsDirectDependency: 0
+        m_Version: 0.16.1-preview
+        m_Source: 1
+        m_ResolvedPath: 
+        m_AssetPath: Packages/com.unity.tiny
+        m_Name: com.unity.tiny
+        m_DisplayName: Project Tiny
+        m_Category: 
+        m_Type: 
+        m_Description: Project Tiny enables you to create lightweight Web-based games
+          using the Unity Editor.
+        m_Status: 1
+        m_Errors: []
+        m_Versions:
+          m_All:
+          - 0.13.2-preview
+          - 0.13.4-preview
+          - 0.14.1-preview
+          - 0.14.2-preview
+          - 0.14.3-preview
+          - 0.14.4-preview
+          - 0.14.5-preview
+          - 0.15.3-preview
+          - 0.16.0-preview
+          - 0.16.1-preview
+          m_Compatible:
+          - 0.13.2-preview
+          - 0.13.4-preview
+          - 0.14.1-preview
+          - 0.14.2-preview
+          - 0.14.3-preview
+          - 0.14.4-preview
+          - 0.14.5-preview
+          - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -101023,6 +102253,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Compatible:
           - 0.13.2-preview
@@ -101033,6 +102264,7 @@ MonoBehaviour:
           - 0.14.4-preview
           - 0.14.5-preview
           - 0.15.3-preview
+          - 0.16.0-preview
           - 0.16.1-preview
           m_Recommended: 
         m_Dependencies:
@@ -117415,11 +118647,11 @@ MonoBehaviour:
         m_HideInEditor: 1
         m_DatePublishedTicks: 637032133170000000
       IsInstalled: 0
-    listPackagesVersion: 48
-    listPackagesOfflineVersion: 47
-    searchOperationOngoing: 0
-    listOperationOngoing: 0
-    listOperationOfflineOngoing: 0
+    listPackagesVersion: 58
+    listPackagesOfflineVersion: 57
+    searchOperationOngoing: 1
+    listOperationOngoing: 1
+    listOperationOfflineOngoing: 1
   SearchFilter:
     SearchText: 
   SelectionManager:
@@ -117899,6 +119131,10 @@ MonoBehaviour:
         Expanded: 0
         SeeAllVersions: 0
         Selected: 0
+      - PackageId: com.unity.formats.alembic@1.0.6
+        Expanded: 0
+        SeeAllVersions: 0
+        Selected: 0
     BuiltInSelection:
       States: []
 --- !u!114 &17
@@ -117954,7 +119190,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 196.99951}
     m_SelectedIDs: c2500000
     m_LastClickedID: 20674
-    m_ExpandedIDs: 000000008c430000ea460000f646000010470000504a0000d24b0000d64b0000ba4c0000404f00002052000000ca9a3b
+    m_ExpandedIDs: 000000008c430000ea460000f646000010470000504a0000d24b0000d64b0000404f00002052000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -117982,7 +119218,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008c430000ea460000f646000010470000504a0000d24b0000d64b0000404f000020520000
+    m_ExpandedIDs: 000000008c430000ea460000f646000010470000504a0000d24b0000d64b0000404f00002052000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -118007,24 +119243,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 42290000
+    m_LastClickedInstanceID: 10562
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000e25c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: LineGraph
-      m_OriginalName: LineGraph
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 11604
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:

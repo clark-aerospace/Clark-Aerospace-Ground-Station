@@ -821,6 +821,12 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Hub/Editor/2019.2.4f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="DOTween">
+ <HintPath>/Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark Aerospace Rocket GUI/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTweenEditor">
+ <HintPath>/Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark Aerospace Rocket GUI/Assets/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+ </Reference>
  <Reference Include="Mapbox.VectorTile.Geometry">
  <HintPath>/Users/malcolmanderson/Documents/Clark Aerospace/Rocket GUI/Clark Aerospace Rocket GUI/Assets/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.Geometry.dll</HintPath>
  </Reference>

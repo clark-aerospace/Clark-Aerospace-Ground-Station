@@ -7,6 +7,7 @@ using UnityEngine.UI.Extensions;
 using TMPro;
 
 
+
 namespace GraphLib {
     public class LineGraph : MonoBehaviour
     {
@@ -20,24 +21,96 @@ namespace GraphLib {
             ScaleManually
         }
 
+        public enum AxisGraphLabelType {
+            Normal,
+            Time,
+            TimeRelativeToNow,
+            Percent
+        }
+
+        public enum AxisGraphDotType {
+            NoDots,
+            DotOnEveryPoint,
+            DotOnLastPoint
+        }
+
         public AxisGraphScaleType xScaleType = AxisGraphScaleType.ScaleAutomatically;
         public AxisGraphScaleType yScaleType = AxisGraphScaleType.ScaleAutomatically;
 
+        public AxisGraphLabelType xLabelType = AxisGraphLabelType.Normal;
+        public AxisGraphLabelType yLabelType = AxisGraphLabelType.Normal;
+
+        public AxisGraphDotType xDotType = AxisGraphDotType.NoDots;
+        public AxisGraphDotType yDotType = AxisGraphDotType.NoDots;
+
         public Vector2 xBounds = new Vector2(0, 1);
         public Vector2 yBounds = new Vector2(0, 1);
+
+        public float GridAlpha {
+            get {
+                return gridColor.a;
+            } set {
+                gridColor.a = value;
+            }
+        }
+
+        public float xMinimum {
+            get {
+                return xBounds.x;
+            } set {
+                xBounds.x = value;
+
+                ResetAxisLabels();
+            }
+        }
+
+        public float xMaximum {
+            get {
+                return xBounds.y;
+            } set {
+                xBounds.y = value;
+
+                ResetAxisLabels();
+            }
+        }
+
+        public float yMinimum {
+            get {
+                return yBounds.x;
+            } set {
+                yBounds.x = value;
+                ResetAxisLabels();
+            }
+        }
+
+        public float yMaximum {
+            get {
+                return yBounds.y;
+            } set {
+                yBounds.y = value;
+                ResetAxisLabels();
+            }
+        }
 
 
         [Header("Grid")]
         public Color gridColor = Color.black;
 
         /// <summary>
-        /// The number of x axis lines in between the edges of the screen.
+        /// The number of x axis lines in between the edges of the graph.
         /// The true number of lines is thus this value, plus 2.
         /// </summary>
         public int xAxisLines = 5;
 
+        /// <summary>
+        /// The number of y axis lines in between the edges of the graph.
+        /// The true number of lines is thus this value, plus 2.
+        /// </summary>
+        public int yAxisLines = 5;
 
-        private List<TextMeshProUGUI> xAxisLabels = new List<TextMeshProUGUI>();
+
+        public List<TextMeshProUGUI> xAxisLabels = new List<TextMeshProUGUI>();
+        public List<TextMeshProUGUI> yAxisLabels = new List<TextMeshProUGUI>();
 
 
         private RectTransform rectTransform;
@@ -70,6 +143,8 @@ namespace GraphLib {
                 d.lineRenderer.color = d.mainColor;
                 d.lineRenderer.RelativeSize = true;
 
+
+
                 //d.lineRenderer.BezierMode = d.useBezier ? UILineRenderer.BezierType.Quick : UILineRenderer.BezierType.None;
             }
 
@@ -86,7 +161,7 @@ namespace GraphLib {
             gridRenderer.GridRows = Mathf.FloorToInt(intervals.y);
 
 
-            // Create ticks
+            // Create ticks on x axis
             float xAxisDistancePerTick = (xBounds.y - xBounds.x) / xAxisLines;
             gridRenderer.GridColumns = xAxisLines;
             for (int i = 0; i <= xAxisLines; i++) {
@@ -98,13 +173,74 @@ namespace GraphLib {
                 Vector2 anchorVec = new Vector2((float)i/(float)xAxisLines, 0);
                 newLabelRectTransform.anchorMin = anchorVec;
                 newLabelRectTransform.anchorMax = anchorVec;
-                newLabelRectTransform.anchoredPosition = Vector2.zero;
+                newLabelRectTransform.pivot = new Vector2(0.5f, 1f);
+                newLabelRectTransform.anchoredPosition = new Vector2(0f, -5f);
                 newLabelRectTransform.sizeDelta = new Vector2(50, 20);
 
-                newLabel.text = (xBounds.x + (xAxisDistancePerTick) * i).ToString();
-                newLabel.alignment = TextAlignmentOptions.Center;
+                switch (xLabelType) {
+                    case AxisGraphLabelType.Percent:
+                        newLabel.text = ((xBounds.x + (xAxisDistancePerTick) * i) * 100).ToString() + "%";
+                        break;
+                    case AxisGraphLabelType.Time:
+                        break;
+                    case AxisGraphLabelType.TimeRelativeToNow:
+                        if (i == xAxisLines) {
+                            newLabel.text = "Now";
+                        } else {
+                            int secondsAgo = (int)(xBounds.y - (xBounds.x + (xAxisDistancePerTick) * i));
+                            //int minutesAgo = secondsAgo % 60;
+                            newLabel.text = string.Format("{0}s", secondsAgo);
+                        }
+                        break;
+                    default:
+                        newLabel.text = (xBounds.x + (xAxisDistancePerTick) * i).ToString();
+                        break;
+                }
+                newLabel.alignment = TextAlignmentOptions.Top;
                 newLabel.enableWordWrapping = false;
                 xAxisLabels.Add(newLabel);
+
+            }
+
+            // Create ticks on y axis
+            float yAxisDistancePerTick = (yBounds.y - yBounds.x) / yAxisLines;
+            gridRenderer.GridRows = yAxisLines;
+            for (int i = 0; i <= yAxisLines; i++) {
+                TextMeshProUGUI newLabel = new GameObject("Y Axis Tick Label").AddComponent<TextMeshProUGUI>();
+                RectTransform newLabelRectTransform = newLabel.GetComponent<RectTransform>();
+
+                newLabelRectTransform.SetParent(rectTransform, false);
+
+                Vector2 anchorVec = new Vector2(0, (float)i/(float)yAxisLines);
+                newLabelRectTransform.anchorMin = anchorVec;
+                newLabelRectTransform.anchorMax = anchorVec;
+                newLabelRectTransform.pivot = new Vector2(1f, 0.5f);
+                newLabelRectTransform.anchoredPosition = new Vector2(-5f, 0f);
+                newLabelRectTransform.sizeDelta = new Vector2(50, 20);
+
+                switch (yLabelType) {
+                    case AxisGraphLabelType.Percent:
+                        newLabel.text = ((yBounds.x + (yAxisDistancePerTick) * i) * 100).ToString() + "%";
+                        break;
+                    case AxisGraphLabelType.Time:
+                        break;
+                    case AxisGraphLabelType.TimeRelativeToNow:
+                        if (i == yAxisLines) {
+                            newLabel.text = "Now";
+                        } else {
+                            int secondsAgo = (int)(yBounds.y - (yBounds.x + (yAxisDistancePerTick) * i));
+                            //int minutesAgo = secondsAgo % 60;
+                            newLabel.text = string.Format("{0}s", secondsAgo);
+                        }
+                        break;
+                    default:
+                        newLabel.text = (yBounds.x + (yAxisDistancePerTick) * i).ToString();
+                        break;
+                }
+
+                newLabel.alignment = TextAlignmentOptions.Right;
+                newLabel.enableWordWrapping = false;
+                yAxisLabels.Add(newLabel);
 
             }
         }
@@ -132,11 +268,14 @@ namespace GraphLib {
 
                     Vector2 point = d.values[i];
 
-                    point.x -= xBounds.x;
-                    point.y -= yBounds.x;
+                    // point.x /= xBounds.y;
+                    // point.y /= yBounds.y;
 
-                    point.x /= xBounds.y;
-                    point.y /= yBounds.y;
+                    // point.x -= xBounds.x / xBounds.y;
+                    // point.y -= yBounds.x / yBounds.y;
+
+                    point.x = Mathf.InverseLerp(xBounds.x, xBounds.y, point.x);
+                    point.y = Mathf.InverseLerp(yBounds.x, yBounds.y, point.y);
 
                     newPointArray[i] = point;
                     lastPoint = point;
@@ -295,6 +434,59 @@ namespace GraphLib {
             magMsd = 2;
 
         return magMsd*magPow;
+    }
+
+
+    public void ResetAxisLabels() {
+        float xAxisDistancePerTick = (xBounds.y - xBounds.x) / xAxisLines;
+        float yAxisDistancePerTick = (yBounds.y - yBounds.x) / yAxisLines;
+
+        for (int i = 0; i <= xAxisLines; i++) {
+            TextMeshProUGUI newLabel = xAxisLabels[i];
+
+            switch (xLabelType) {
+                case AxisGraphLabelType.Percent:
+                    newLabel.text = ((xBounds.x + (xAxisDistancePerTick) * i) * 100).ToString() + "%";
+                    break;
+                case AxisGraphLabelType.Time:
+                    break;
+                case AxisGraphLabelType.TimeRelativeToNow:
+                    if (i == xAxisLines) {
+                        newLabel.text = "Now";
+                    } else {
+                        int secondsAgo = (int)(xBounds.y - (xBounds.x + (xAxisDistancePerTick) * i));
+                        //int minutesAgo = secondsAgo % 60;
+                        newLabel.text = string.Format("{0}s", secondsAgo);
+                    }
+                    break;
+                default:
+                    newLabel.text = (xBounds.x + (xAxisDistancePerTick) * i).ToString();
+                    break;
+            }
+        }
+
+        for (int i = 0; i <= yAxisLines; i++) {
+            TextMeshProUGUI newLabel = yAxisLabels[i];
+            switch (yLabelType) {
+                case AxisGraphLabelType.Percent:
+                    newLabel.text = ((yBounds.x + (yAxisDistancePerTick) * i) * 100).ToString() + "%";
+                    break;
+                case AxisGraphLabelType.Time:
+                    break;
+                case AxisGraphLabelType.TimeRelativeToNow:
+                    if (i == yAxisLines) {
+                        newLabel.text = "Now";
+                    } else {
+                        int secondsAgo = (int)(yBounds.y - (yBounds.x + (yAxisDistancePerTick) * i));
+                        //int minutesAgo = secondsAgo % 60;
+                        newLabel.text = string.Format("{0}s", secondsAgo);
+                    }
+                    break;
+                default:
+                    newLabel.text = (yBounds.x + (yAxisDistancePerTick) * i).ToString();
+                    break;
+            }
+        }
     }
 
     }
