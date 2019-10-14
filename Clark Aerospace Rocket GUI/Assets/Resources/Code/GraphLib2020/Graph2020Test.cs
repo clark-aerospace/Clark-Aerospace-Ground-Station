@@ -15,8 +15,18 @@ public class Graph2020Test : MonoBehaviour
 
     public float v = -5.0f;
 
+    public bool boop = false;
+
     public void Start() {
         DOTween.Init();
+
+        float a = 0;
+        float b = 1;
+        float val = 2;
+
+        float origLerpInverse = Mathf.InverseLerp(a, b, val);
+        float myLerpInverse = NiceExtensions.InverseLerpUnclamped(a, b, val);
+        Debug.Log(string.Format("Normal lerp inverse gives {0}, mine gives {1}", origLerpInverse, myLerpInverse));
     }
 
     public void AddPoint() {
@@ -31,10 +41,12 @@ public class Graph2020Test : MonoBehaviour
 
     public void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-
-            graph.SetXMinMaxAnimated(v, 10f, 0.5f);
-            if (v == -5.0f) v = 0f;
-            else v = -5.0f;
+            if (boop) {
+                graph.SetBoundsAnimated(new Vector2(0, 10), new Vector2(0, 10), 0.5f);
+            } else {
+                graph.SetBoundsAnimated(new Vector2(-3, 5), new Vector2(-2, 4), 0.5f);
+            }
+            boop = !boop;
         }
     }
 }

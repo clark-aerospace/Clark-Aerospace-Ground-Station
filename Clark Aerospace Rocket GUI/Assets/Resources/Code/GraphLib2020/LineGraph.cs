@@ -274,8 +274,8 @@ namespace GraphLib {
                     // point.x -= xBounds.x / xBounds.y;
                     // point.y -= yBounds.x / yBounds.y;
 
-                    point.x = Mathf.InverseLerp(xBounds.x, xBounds.y, point.x);
-                    point.y = Mathf.InverseLerp(yBounds.x, yBounds.y, point.y);
+                    point.x = NiceExtensions.InverseLerpUnclamped(xBounds.x, xBounds.y, point.x);
+                    point.y = NiceExtensions.InverseLerpUnclamped(yBounds.x, yBounds.y, point.y);
 
                     newPointArray[i] = point;
                     lastPoint = point;

@@ -17,4 +17,8 @@ public static class NiceExtensions {
         r.offsetMax = Vector2.zero;
         return;
     }
+
+    public static float InverseLerpUnclamped(float a, float b, float value) {
+        return (value - a) / (b - a);
+    }
 }
