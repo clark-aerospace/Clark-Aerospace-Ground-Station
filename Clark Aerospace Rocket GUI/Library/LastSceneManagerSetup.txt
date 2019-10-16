@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Resources/Code/GraphLib2020/GraphLib2020Test.unity
+- path: Assets/Scenes/2020_UI.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
