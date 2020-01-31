@@ -301,9 +301,11 @@ class Window(QtWidgets.QMainWindow):
         # )
         packedData = dataStruct.pack(*info)
 
-        if not self.ser.is_open:
-            self.ser.open()
-        self.ser.write(packedData)
+        # if not self.ser.is_open:
+        #     self.ser.open()
+
+        # if self.ser.is_open:
+        #     self.ser.write(packedData)
 
         print("Length of packed data is " + str(len(packedData)))
         print(binascii.hexlify(packedData))

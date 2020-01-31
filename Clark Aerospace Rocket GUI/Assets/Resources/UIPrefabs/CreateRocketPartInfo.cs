@@ -47,8 +47,18 @@ public class CreateRocketPartInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rocketPart.batteryLevel = ArduinoReciever.GetValue(batteryLevelSource);
-        rocketPart.temperature = ArduinoReciever.GetValue(temperatureSource);
+        RocketData d  = ArduinoReceiver2020.instance.latestData;
+
+        if (d != null) {
+            rocketPart.batteryLevel = ArduinoReceiver2020.instance.latestData.GetFloatValue(batteryLevelSource);
+            rocketPart.temperature = ArduinoReceiver2020.instance.latestData.GetFloatValue(temperatureSource);
+        }
+        else {
+            rocketPart.batteryLevel = 0;
+            rocketPart.temperature = 0;
+        }
+        // rocketPart.batteryLevel = ArduinoReciever.GetValue(batteryLevelSource);
+        // rocketPart.temperature = ArduinoReciever.GetValue(temperatureSource);
         rocketPart.minMaxTemperatures = temperatureBounds;
     }
 }

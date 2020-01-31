@@ -27,10 +27,6 @@ public class RocketPartInfo2020 : MonoBehaviour
     public TemperatureIndicator temperatureIndicator;
     public Image detailIndicator;
 
-    void Start() {
-        Debug.Log(GetComponent<RectTransform>().anchorMax);
-        Debug.Log(GetComponent<RectTransform>().anchorMin);
-    }
 
     // Update is called once per frame
     void Update()

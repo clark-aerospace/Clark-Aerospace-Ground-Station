@@ -80,7 +80,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StartAngle: 0
+    - _StartAngle: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mapbox.Unity.Map;
 
 public class UIManager2020 : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class UIManager2020 : MonoBehaviour
 
     [Header("Rocket Part Specific")]
     public GameObject RocketPartInfoPrefab;
+
+    [Header("Map Stuff")]
+    public AbstractMap overheadMap;
     
 
     void Awake() {
@@ -34,18 +38,20 @@ public class UIManager2020 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float rocketLat = ArduinoReciever.GetValue("pos_lat");
-        float rocketLong = ArduinoReciever.GetValue("pos_long");
-        float rocketAlt = ArduinoReciever.GetValue("pos_alt");
+        RocketData latestData = ArduinoReceiver2020.instance.latestData;
+        if (latestData == null) return;
+        
+        Vector3 gps = latestData.position;
 
         // Calculates the distance and heading to the rocket
-        //Vector2 rocketPosition = new Vector2(rocketLat, rocketLong);
-        targetPosition = new Vector2(rocketLat, rocketLong);
+        targetPosition = new Vector2(gps.x, gps.y);
         Vector2 rocketPosition = targetPosition;
         float distanceToRocket = GlobeMath.Haversine(ourPosition, rocketPosition);
         float bearingToRocket = GlobeMath.BearingToPoint(ourPosition, rocketPosition);
 
         distanceItem.Value = distanceToRocket.ToString("F1");
         bearingItem.Value = bearingToRocket.ToString("F1");
+
+        overheadMap.UpdateMap(new Mapbox.Utils.Vector2d(gps.x, gps.y));
     }
 }

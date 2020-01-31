@@ -10,7 +10,7 @@ public class Test2020 : MonoBehaviour
     public ParticleSystem newDataReceivedParticleSys;
 
     public void Start() {
-        ArduinoReciever.reciever.unityEvent.AddListener(ReceivedInfo);
+        // ArduinoReciever.reciever.unityEvent.AddListener(ReceivedInfo);
     }
 
     public void ReceivedInfo() {

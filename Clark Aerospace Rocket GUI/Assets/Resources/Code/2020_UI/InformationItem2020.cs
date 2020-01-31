@@ -8,10 +8,10 @@ using TMPro;
 public class InformationItem2020 : MonoBehaviour
 {
     [SerializeField]
-    private string _title;
+    private string _title = "Title";
 
     [SerializeField]
-    private string _value;
+    private string _value = "--";
 
     [SerializeField]
     private string dataSource = "null";
@@ -57,7 +57,14 @@ public class InformationItem2020 : MonoBehaviour
     {
         _titleLabel.text = _title;
 
-        if (dataSource != "inherit") _value = ArduinoReciever.GetValue(dataSource).ToString();
+
+        if (dataSource != "inherit") {
+            RocketData d = ArduinoReceiver2020.instance.latestData;
+            if (d != null)
+                _value = d.GetFloatValue(dataSource).ToString();
+            else
+                _value = "NULL";
+        }
         _valueLabel.text = _value + _suffix; 
     }
 }
